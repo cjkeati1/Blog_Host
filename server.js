@@ -10,6 +10,7 @@ connectDb();
 app.use(express.json());
 
 app.use('/api/register', require('./routes/api/registerRouter'));
+app.use('/api/login', require('./routes/api/loginRouter'));
 
 app.listen(process.env.PORT, () => {
    console.log(`Listening on port ${process.env.PORT}`);
