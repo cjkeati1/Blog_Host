@@ -1,10 +1,12 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
+const connectDb = require('./config/db');
 const jwt = require('jsonwebtoken');
 require('dotenv/config');
 const app = express();
 
+connectDb();
 app.use(express.json());
 
 app.get('/', (req, res) => {
