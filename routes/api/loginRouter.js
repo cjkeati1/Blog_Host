@@ -27,8 +27,9 @@ loginRouter.post('/', async (req, res) => {
 
       // User has been verified. Now create a token for them
       const userForToken = {
-         email: email,
-         userId: user._id
+         user: {
+            id: user._id
+         }
       };
 
       // Make a token and send in the response
