@@ -9,9 +9,7 @@ const app = express();
 connectDb();
 app.use(express.json());
 
-app.get('/', (req, res) => {
-   res.send('API listening');
-});
+app.use('/api/register', require('./routes/api/registerRouter'));
 
 app.listen(process.env.PORT, () => {
    console.log(`Listening on port ${process.env.PORT}`);
