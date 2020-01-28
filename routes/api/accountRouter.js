@@ -22,7 +22,7 @@ accountRouter.delete('/', auth, async (req, res) => {
       const user = await User.findByIdAndRemove(req.user);
 
       if (!user)
-         return res.json({msg: 'Account already deleted'});
+         return res.json({msg: 'There is no account to delete'});
 
       return res.json({msg: 'Account deleted'});
 
