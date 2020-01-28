@@ -2,6 +2,8 @@ const express = require('express');
 const profileRouter = express.Router();
 require('dotenv/config');
 const Profile = require('../../models/profile');
+const Post = require('../../models/post');
+
 const auth = require('../../middleware/auth');
 
 // @route GET api/profile/me
@@ -9,7 +11,6 @@ const auth = require('../../middleware/auth');
 // @access Private
 profileRouter.get('/me', auth, async (req, res) => {
    try {
-      console.log(req.user);
       // Check if current user has a profile already
       const profile = await Profile.findOne({user: req.user})
          .populate('user', ['name', 'email']);
@@ -21,8 +22,8 @@ profileRouter.get('/me', auth, async (req, res) => {
 
       // Respond with profile
       return res.json(profile);
-   } catch (e) {
-      console.error(e);
+   } catch (err) {
+      console.error(err);
       return res.status(500).send('Server Error');
    }
 });
@@ -59,12 +60,12 @@ profileRouter.post('/', auth, async (req, res) => {
 
    try {
       // Search for the current user's profile
-      let profile = await Profile.findOne({user: req.user.id});
+      let profile = await Profile.findOne({user: req.user});
 
       // If a profile with the current user's id is found, update it
       if (profile) {
          profile = await Profile.findOneAndUpdate(
-            {user: req.user.id},
+            {user: req.user},
             {$set: profileFields},
             {new: true}
          );
@@ -74,8 +75,32 @@ profileRouter.post('/', auth, async (req, res) => {
       // If not, create a profile for the current user
       profile = await Profile.create(profileFields);
       return res.json(profile);
-   } catch (e) {
-      console.log(e);
+   } catch (err) {
+      console.log(err.message);
+      return res.status(500).send('Server Error');
+   }
+});
+
+// @route GET api/profile/:id
+// @desc Get another user's profile
+// @access Public
+profileRouter.get('/:id', async (req, res) => {
+   try {
+      // Find the corresponding Profile (to :id) in the database
+      const profile = await Profile.findById(req.params.id)
+         .populate('user', ['name', 'email']);
+
+      // If no profile, return bad request
+      if (!profile)
+         return res.status(400).json({error: 'This profile does not exist'})
+
+      // Else, return the profile
+      res.json(profile);
+   } catch (err) {
+      console.log(err.message);
+      if (err.kind === 'ObjectId') {
+         return res.status(400).json({msg: 'Profile not found'});
+      }
       return res.status(500).send('Server Error');
    }
 });
