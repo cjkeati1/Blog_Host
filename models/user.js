@@ -15,6 +15,8 @@ const UserSchema = new Schema({
       type: String,
       required: true
    }
+
+   // TODO Add followers & following
 });
 
 module.exports = User = mongoose.model("User", UserSchema);

@@ -110,7 +110,6 @@ profileRouter.get('/:id', async (req, res) => {
 // @access Private
 profileRouter.delete('/', auth, async (req, res) => {
    try {
-
       // Remove profile
       const profile = await Profile.findOneAndRemove({user: req.user});
 

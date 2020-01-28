@@ -13,6 +13,7 @@ app.use('/api/register', require('./routes/api/registerRouter'));
 app.use('/api/login', require('./routes/api/loginRouter'));
 app.use('/api/profile', require('./routes/api/profileRouter'));
 app.use('/api/account', require('./routes/api/accountRouter'));
+app.use('/api/posts', require('./routes/api/postRouter'));
 
 
 
