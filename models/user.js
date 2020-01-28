@@ -14,9 +14,24 @@ const UserSchema = new Schema({
    password: {
       type: String,
       required: true
-   }
+   },
 
-   // TODO Add followers & following
+   followers: [
+      {
+         user: {
+            type: Schema.Types.ObjectID,
+            ref: 'User'
+         }
+      }
+   ],
+   following: [
+      {
+         user: {
+            type: Schema.Types.ObjectID,
+            ref: 'User'
+         }
+      }
+   ]
 });
 
 module.exports = User = mongoose.model("User", UserSchema);

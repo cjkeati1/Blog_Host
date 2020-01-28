@@ -6,7 +6,6 @@ require('dotenv/config');
 const Post = require('../../models/post');
 const User = require('../../models/user');
 
-
 // @route GET api/posts
 // @desc Get all posts
 // @access Public
