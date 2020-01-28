@@ -46,7 +46,7 @@ postRouter.post('/', auth, async (req, res) => {
 
 // @route POST api/posts
 // @desc Show an individual post
-// @access public
+// @access Public
 postRouter.get('/:id', async (req, res) => {
    try {
       // Get the post by ID
@@ -57,6 +57,35 @@ postRouter.get('/:id', async (req, res) => {
          return res.status(400).json({msg: 'Post not found'});
 
       res.json({post});
+   } catch (err) {
+      if (err.kind === 'ObjectId') {
+         return res.status(400).json({msg: 'Post not found'});
+      }
+      return res.status(500).send('Server Error');
+   }
+});
+
+// @route DELETE api/posts/:id
+// @desc Delete a post
+// @access Private
+postRouter.delete('/:id', auth, async (req, res) => {
+   try {
+      // Get the post by ID
+      const post = await Post.findById(req.params.id);
+
+      // If it doesn't exist, send bad request
+      if (!post)
+         return res.status(400).json({msg: 'Post not found'});
+
+      // If the current user is the author of the post, return unauthorized
+
+      if (req.user !== post.user.toString())
+         return res.status(401).json({msg: 'You cannot delete a post that is not yours'});
+
+      // If verified, delete the post
+      post.remove();
+
+      res.json({msg: 'Post deleted'});
    } catch (err) {
       if (err.kind === 'ObjectId') {
          return res.status(400).json({msg: 'Post not found'});
