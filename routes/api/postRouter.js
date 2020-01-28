@@ -1,23 +1,47 @@
 const express = require('express');
 const postRouter = express.Router();
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
+const auth = require('../../middleware/auth');
 require('dotenv/config');
+
+const Post = require('../../models/post');
 const User = require('../../models/user');
 
-// @route POST api/posts
+
+// @route GET api/posts
 // @desc Get all posts
 // @access Public
 postRouter.get('/', async (req, res) => {
    try {
       // Get all posts in the DB
+      const posts = await Post.find();
 
       // Return them all
+      res.json({posts});
    } catch (err) {
-
+      console.error(err);
+      return res.status(500).send('Server Error');
    }
+});
 
+// @route POST api/posts
+// @desc Create a post
+// @access Private
+postRouter.post('/', auth, async (req, res) => {
+   const {title, body, name} = req.body;
 
+   try {
+      // Get user, leave out the password
+      const user = await User.findById(req.user).select('-password');
+
+      // Make new post and save to db
+      let newPost = await Post.create({title, body, name: user.name, user});
+
+      return res.json(newPost);
+
+   } catch (err) {
+      console.error(err);
+      return res.status(500).send('Server Error');
+   }
 });
 
 module.exports = postRouter;

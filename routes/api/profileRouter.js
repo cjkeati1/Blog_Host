@@ -2,7 +2,6 @@ const express = require('express');
 const profileRouter = express.Router();
 require('dotenv/config');
 const Profile = require('../../models/profile');
-const Post = require('../../models/post');
 
 const auth = require('../../middleware/auth');
 
