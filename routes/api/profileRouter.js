@@ -113,7 +113,7 @@ profileRouter.delete('/', auth, async (req, res) => {
       const profile = await Profile.findOneAndRemove({user: req.user});
 
       if (!profile)
-         return res.json({msg: 'There is no profile to delete'});
+         return res.status(400).json({msg: 'There is no profile to delete'});
 
       return res.json({msg: 'Profile deleted'});
 

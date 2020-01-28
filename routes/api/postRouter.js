@@ -94,4 +94,68 @@ postRouter.delete('/:id', auth, async (req, res) => {
    }
 });
 
+// @route PUT api/posts/:id/like
+// @desc Like a post
+// @access Private
+postRouter.put('/:id/like', auth, async (req, res) => {
+   try {
+      // Get the post by ID
+      let post = await Post.findById(req.params.id);
+
+      // If it doesn't exist, send not found
+      if (!post)
+         return res.status(404).json({msg: 'Post not found'});
+
+      // Check if current user has already liked the post
+      if (post.likes.filter(like => (like.user.toString() === req.user)).length > 0) {
+         return res.status(400).json({msg: 'Cannot like a post more than once'});
+      }
+
+      // If not, add user to likes array
+      post.likes.unshift({user: req.user});
+      await post.save();
+
+      res.send(post.likes);
+
+   } catch (err) {
+      if (err.kind === 'ObjectId') {
+         return res.status(404).json({msg: 'Post not found'});
+      }
+      return res.status(500).send('Server Error');
+   }
+});
+
+// @route PUT api/posts/:id/unlike
+// @desc Unlike a post
+// @access Private
+postRouter.put('/:id/unlike', auth, async (req, res) => {
+   try {
+      // Get the post by ID
+      let post = await Post.findById(req.params.id);
+
+      // If it doesn't exist, send not found
+      if (!post)
+         return res.status(404).json({msg: 'Post not found'});
+
+      // Find index of the user's like if there is one
+      const removeIndex = post.likes.map(like => like.user.toString()).indexOf(req.user.id);
+
+      // If user has not already liked the post
+      if (removeIndex === -1) {
+         return res.status(400).json({msg: 'Cannot unlike a post you haven\'t already liked'});
+      }
+
+      // Remove the like from the array
+      post.likes.splice(removeIndex, 1);
+      await post.save();
+
+      res.send(post.likes);
+   } catch (err) {
+      if (err.kind === 'ObjectId') {
+         return res.status(404).json({msg: 'Post not found'});
+      }
+      return res.status(500).send('Server Error');
+   }
+});
+
 module.exports = postRouter;
