@@ -44,4 +44,25 @@ postRouter.post('/', auth, async (req, res) => {
    }
 });
 
+// @route POST api/posts
+// @desc Show an individual post
+// @access public
+postRouter.get('/:id', async (req, res) => {
+   try {
+      // Get the post by ID
+      const post = await Post.findById(req.params.id);
+
+      // If it doesn't exist, send bad request
+      if (!post)
+         return res.status(400).json({msg: 'This post does not exist'});
+
+      res.json({post});
+   } catch (err) {
+      if (err.kind === 'ObjectId') {
+         return res.status(400).json({msg: 'Profile not found'});
+      }
+      return res.status(500).send('Server Error');
+   }
+});
+
 module.exports = postRouter;
