@@ -59,7 +59,7 @@ postRouter.get('/:id', async (req, res) => {
       res.json({post});
    } catch (err) {
       if (err.kind === 'ObjectId') {
-         return res.status(400).json({msg: 'Profile not found'});
+         return res.status(400).json({msg: 'Post not found'});
       }
       return res.status(500).send('Server Error');
    }
