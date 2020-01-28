@@ -91,7 +91,7 @@ profileRouter.get('/:id', async (req, res) => {
 
       // If no profile, return bad request
       if (!profile)
-         return res.status(400).json({error: 'This profile does not exist'})
+         return res.status(400).json({error: 'Profile not found'});
 
       // Else, return the profile
       res.json(profile);

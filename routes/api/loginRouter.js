@@ -15,7 +15,7 @@ loginRouter.post('/', async (req, res) => {
       let user = await User.findOne({email: email});
 
       if (!user) {
-         return res.status(400).json({msg: 'No user with that email exists'});
+         return res.status(400).json({msg: 'User not found'});
       }
 
       // If user exists, verify the password with the hashed password in db

@@ -54,7 +54,7 @@ postRouter.get('/:id', async (req, res) => {
 
       // If it doesn't exist, send bad request
       if (!post)
-         return res.status(400).json({msg: 'This post does not exist'});
+         return res.status(400).json({msg: 'Post not found'});
 
       res.json({post});
    } catch (err) {
