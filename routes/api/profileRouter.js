@@ -89,16 +89,16 @@ profileRouter.get('/:id', async (req, res) => {
       const profile = await Profile.findById(req.params.id)
          .populate('user', ['name', 'email']);
 
-      // If no profile, return bad request
+      // If no profile, return not found
       if (!profile)
-         return res.status(400).json({error: 'Profile not found'});
+         return res.status(404).json({error: 'Profile not found'});
 
       // Else, return the profile
       res.json(profile);
    } catch (err) {
       console.log(err.message);
       if (err.kind === 'ObjectId') {
-         return res.status(400).json({msg: 'Profile not found'});
+         return res.status(404).json({msg: 'Profile not found'});
       }
       return res.status(500).send('Server Error');
    }
