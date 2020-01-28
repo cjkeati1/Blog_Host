@@ -9,11 +9,10 @@ const auth = require('../../middleware/auth');
 // @access Private
 profileRouter.get('/me', auth, async (req, res) => {
    try {
+      console.log(req.user);
       // Check if current user has a profile already
       const profile = await Profile.findOne({user: req.user})
-         .populate('user', ['name']);
-
-      console.log(profile.user);
+         .populate('user', ['name', 'email']);
 
       // If not, return bad request
       if (!profile) {
@@ -45,7 +44,6 @@ profileRouter.post('/', auth, async (req, res) => {
 
    // Build profile object
    const profileFields = {};
-   console.log(req.user.id);
    profileFields.user = req.user;
    if (company) profileFields.company = company;
    if (website) profileFields.website = website;
