@@ -1,8 +1,5 @@
 const express = require('express');
-const bcrypt = require('bcryptjs');
-const mongoose = require('mongoose');
 const connectDb = require('./config/db');
-const jwt = require('jsonwebtoken');
 require('dotenv/config');
 const app = express();
 
@@ -14,7 +11,6 @@ app.use('/api/login', require('./routes/api/loginRouter'));
 app.use('/api/profile', require('./routes/api/profileRouter'));
 app.use('/api/account', require('./routes/api/accountRouter'));
 app.use('/api/posts', require('./routes/api/postRouter'));
-
 
 
 app.listen(process.env.PORT, () => {

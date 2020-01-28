@@ -138,7 +138,7 @@ postRouter.put('/:id/unlike', auth, async (req, res) => {
          return res.status(404).json({msg: 'Post not found'});
 
       // Find index of the user's like if there is one
-      const removeIndex = post.likes.map(like => like.user.toString()).indexOf(req.user.id);
+      const removeIndex = post.likes.map(like => like.user.toString()).indexOf(req.user);
 
       // If user has not already liked the post
       if (removeIndex === -1) {
@@ -150,6 +150,42 @@ postRouter.put('/:id/unlike', auth, async (req, res) => {
       await post.save();
 
       res.send(post.likes);
+   } catch (err) {
+      if (err.kind === 'ObjectId') {
+         return res.status(404).json({msg: 'Post not found'});
+      }
+      return res.status(500).send('Server Error');
+   }
+});
+
+// @route POST api/posts/:id/comment
+// @desc Comment on a post
+// @access Private
+postRouter.post('/:id/comment', auth, async (req, res) => {
+   const {body} = req.body;
+   try {
+      // Get the post by ID
+      let post = await Post.findById(req.params.id);
+
+      // Get user by ID
+      let user = await User.findById(req.user);
+
+      // If it doesn't exist, send not found
+      if (!post)
+         return res.status(404).json({msg: 'Post not found'});
+
+      // Create a comment object
+      const newComment = {
+         user: req.user,
+         body,
+         name: user.name
+      };
+
+      // Add comment to comments array
+      post.comments.unshift(newComment);
+      await post.save();
+
+      res.send(post.comments);
    } catch (err) {
       if (err.kind === 'ObjectId') {
          return res.status(404).json({msg: 'Post not found'});
