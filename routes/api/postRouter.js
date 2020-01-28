@@ -194,4 +194,37 @@ postRouter.post('/:id/comment', auth, async (req, res) => {
    }
 });
 
+// @route POST api/posts/:postId/comment/:commentId
+// @desc Delete a comment
+// @access Private
+postRouter.delete('/:postId/comment/:commentId', auth, async (req, res) => {
+   try {
+      // Get the post by ID
+      let post = await Post.findById(req.params.postId);
+
+      // If post doesn't exist, send not found
+      if (!post)
+         return res.status(404).json({msg: 'Post not found'});
+
+      // Find index of the user's comment if there is one
+      const removeIndex = post.comments.map(comment => comment._id.toString()).indexOf(req.params.commentId);
+
+      // If comment does not exist, return not found
+      if (removeIndex === -1) {
+         return res.status(400).json({msg: 'Comment not found'});
+      }
+
+      // Remove the comment from the array
+      post.comments.splice(removeIndex, 1);
+      await post.save();
+
+      res.send(post.comments);
+   } catch (err) {
+      if (err.kind === 'ObjectId') {
+         return res.status(404).json({msg: 'Post not found'});
+      }
+      return res.status(500).send('Server Error');
+   }
+});
+
 module.exports = postRouter;
