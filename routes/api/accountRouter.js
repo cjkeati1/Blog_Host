@@ -5,7 +5,6 @@ const Profile = require('../../models/profile');
 const Post = require('../../models/post');
 const User = require('../../models/user');
 
-
 const auth = require('../../middleware/auth');
 
 // @route DELETE api/account

@@ -105,4 +105,24 @@ profileRouter.get('/:id', async (req, res) => {
    }
 });
 
+// @route DELETE api/profile
+// @desc Delete profile
+// @access Private
+profileRouter.delete('/', auth, async (req, res) => {
+   try {
+
+      // Remove profile
+      const profile = await Profile.findOneAndRemove({user: req.user});
+
+      if (!profile)
+         return res.json({msg: 'Profile already deleted'});
+
+      return res.json({msg: 'Profile deleted'});
+
+   } catch (err) {
+      console.log(err.message);
+      return res.status(500).send('Server Error');
+   }
+});
+
 module.exports = profileRouter;
