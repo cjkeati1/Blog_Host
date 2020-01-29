@@ -1,6 +1,5 @@
 import React from 'react';
 import {Link} from "react-router-dom";
-import 'react-bulma-components/dist/react-bulma-components.min.css';
 
 const Navbar = () => {
    const toggleHamburger = () => {
@@ -14,7 +13,7 @@ const Navbar = () => {
                <i className="fas fa-blog"/> <span className={'has-text-weight-bold'}>&nbsp;Blog Host</span>
             </Link>
 
-            <a id="button" role="button" className="navbar-burger burger is-active" aria-label="menu"
+            <a id="button" role="button" className="navbar-burger burger" aria-label="menu"
                aria-expanded="false"
                data-target="navbarBasicExample" onClick={() => toggleHamburger()}>
                <span aria-hidden="true"/>
@@ -23,12 +22,14 @@ const Navbar = () => {
             </a>
          </div>
 
-         <div id="navbarBasicExample" className="navbar-menu is-active">
+         <div id="navbarBasicExample" className="navbar-menu">
             <div className="navbar-start">
                <Link className="navbar-item">
                   Home
                </Link>
-
+               <Link className="navbar-item">
+                  Categories
+               </Link>
                <div className="navbar-item has-dropdown is-hoverable">
                   <Link className="navbar-link">
                      More
@@ -38,9 +39,7 @@ const Navbar = () => {
                      <Link className="navbar-item">
                         About
                      </Link>
-                     <Link className="navbar-item">
-                        Jobs
-                     </Link>
+
                      <Link className="navbar-item">
                         Contact
                      </Link>
@@ -54,7 +53,7 @@ const Navbar = () => {
                <Link className="navbar-item">
                   <div className="field has-addons">
                      <div className="control">
-                        <input className="input is-normal" type="text" placeholder="Find a post"/>
+                        <input className="input is-normal" type="text" placeholder="Find stories..."/>
                      </div>
                      <div className="control">
                         <a className="button is-info is-normal">
@@ -68,12 +67,12 @@ const Navbar = () => {
             <div className="navbar-end">
                <div className="navbar-item">
                   <div className="buttons">
-                     <a className="button is-primary">
+                     <Link className="button is-primary" to={'/register'}>
                         <strong>Sign up</strong>
-                     </a>
-                     <a className="button is-light">
+                     </Link>
+                     <Link className="button is-light" to={'/login'}>
                         Log in
-                     </a>
+                     </Link>
                   </div>
                </div>
             </div>
