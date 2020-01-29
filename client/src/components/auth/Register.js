@@ -128,14 +128,14 @@ const Register = () => {
          <div className="field">
             <div className="control">
                <label className="checkbox">
-                  <input type="checkbox"/> Email me about popular blogs from my favorite categories
+                  <input type="checkbox"/> Email me about popular stories from my favorite categories
                </label>
             </div>
          </div>
 
          <div className="field is-grouped" onClick={e => onSubmit(e)}>
             <div className="control">
-               <button className="button is-link">Submit</button>
+               <button className="button is-link">Sign Up</button>
             </div>
          </div>
       </Fragment>
