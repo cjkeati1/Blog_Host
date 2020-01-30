@@ -13,64 +13,64 @@ const Navbar = () => {
                <i className="fas fa-blog"/> <span className={'has-text-weight-bold'}>&nbsp;Blog Host</span>
             </Link>
 
-            <a id="button" role="button" className="navbar-burger burger" aria-label="menu"
-               aria-expanded="false"
-               data-target="navbarBasicExample" onClick={() => toggleHamburger()}>
+            <div id="button" role="button" className="navbar-burger burger" aria-label="menu"
+                 aria-expanded="false"
+                 data-target="navbarBasicExample" onClick={() => toggleHamburger()}>
                <span aria-hidden="true"/>
                <span aria-hidden="true"/>
                <span aria-hidden="true"/>
-            </a>
+            </div>
          </div>
 
          <div id="navbarBasicExample" className="navbar-menu">
             <div className="navbar-start">
-               <Link className="navbar-item">
+               <Link className="navbar-item" to={'/'} onClick={() => toggleHamburger()}>
                   Home
                </Link>
-               <Link className="navbar-item">
+               <Link className="navbar-item" to={'/categories'} onClick={() => toggleHamburger()}>
                   Categories
                </Link>
                <div className="navbar-item has-dropdown is-hoverable">
-                  <Link className="navbar-link">
+                  <div className="navbar-link">
                      More
-                  </Link>
+                  </div>
 
                   <div className="navbar-dropdown">
-                     <Link className="navbar-item">
+                     <Link className="navbar-item" to={'/about'} onClick={() => toggleHamburger()}>
                         About
                      </Link>
 
-                     <Link className="navbar-item">
+                     <Link className="navbar-item" to={'/contact'} onClick={() => toggleHamburger()}>
                         Contact
                      </Link>
                      <hr className="navbar-divider"/>
-                     <a className="navbar-item">
+                     <Link className="navbar-item" to={'/report-issue'} onClick={() => toggleHamburger()}>
                         Report an issue
-                     </a>
+                     </Link>
                   </div>
                </div>
 
-               <Link className="navbar-item">
+               <div className="navbar-item">
                   <div className="field has-addons">
                      <div className="control">
                         <input className="input is-normal" type="text" placeholder="Find stories..."/>
                      </div>
                      <div className="control">
-                        <a className="button is-info is-normal">
+                        <div className="button is-info is-normal" onClick={() => toggleHamburger()}>
                            <i className="fas fa-search"/>
-                        </a>
+                        </div>
                      </div>
                   </div>
-               </Link>
+               </div>
             </div>
 
             <div className="navbar-end">
                <div className="navbar-item">
                   <div className="buttons">
-                     <Link className="button is-primary" to={'/register'}>
+                     <Link className="button is-primary" to={'/register'} onClick={() => toggleHamburger()}>
                         <strong>Sign up</strong>
                      </Link>
-                     <Link className="button is-light" to={'/login'}>
+                     <Link className="button is-light" to={'/login'} onClick={() => toggleHamburger()}>
                         Log in
                      </Link>
                   </div>

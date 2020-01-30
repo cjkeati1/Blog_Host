@@ -1,7 +1,10 @@
 import React, {Fragment, useState, useEffect} from 'react';
 import {Link, Redirect} from "react-router-dom";
+import {register} from "../../actions/auth";
+import {connect} from "react-redux";
+import PropTypes from 'prop-types'
 
-const Register = () => {
+const Register = ({register, isAuthenticated}) => {
    const [formData, setFormData] = useState({
       name: '',
       email: '',
@@ -40,11 +43,12 @@ const Register = () => {
 
    const onSubmit = async e => {
       e.preventDefault();
-      console.log(passwordError);
-      // register(name, email, password);
+      register(formData);
 
    };
-
+   if (isAuthenticated) {
+      return <Redirect to={'/dashboard'}/>
+   }
    return (
       <Fragment>
          <div className={'title'}>
@@ -141,6 +145,14 @@ const Register = () => {
       </Fragment>
    );
 };
+const mapStateToProps = state => ({
+   isAuthenticated: state.auth.isAuthenticated,
+   register
+});
 
+Register.propTypes = {
+   register: PropTypes.func.isRequired,
+   isAuthenticated: PropTypes.bool.isRequired
+};
 
-export default Register;
+export default connect(mapStateToProps, {register})(Register);
