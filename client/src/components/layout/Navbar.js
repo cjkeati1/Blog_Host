@@ -30,6 +30,9 @@ const Navbar = ({auth: {isAuthenticated, loading}, logout}) => {
                <Link className="navbar-item" to={'/'} onClick={() => toggleHamburger()}>
                   Home
                </Link>
+               <Link className="navbar-item" to={'/posts'} onClick={() => toggleHamburger()}>
+                  Posts
+               </Link>
                <Link className="navbar-item" to={'/categories'} onClick={() => toggleHamburger()}>
                   Categories
                </Link>
@@ -42,7 +45,6 @@ const Navbar = ({auth: {isAuthenticated, loading}, logout}) => {
                      <Link className="navbar-item" to={'/about'} onClick={() => toggleHamburger()}>
                         About
                      </Link>
-
                      <Link className="navbar-item" to={'/contact'} onClick={() => toggleHamburger()}>
                         Contact
                      </Link>
@@ -56,7 +58,7 @@ const Navbar = ({auth: {isAuthenticated, loading}, logout}) => {
                <div className="navbar-item">
                   <div className="field has-addons">
                      <div className="control">
-                        <input className="input is-normal" type="text" placeholder="Find stories..."/>
+                        <input className="input is-normal" type="text" placeholder="Search"/>
                      </div>
                      <div className="control">
                         <div className="button is-info is-normal" onClick={() => toggleHamburger()}>
@@ -74,7 +76,7 @@ const Navbar = ({auth: {isAuthenticated, loading}, logout}) => {
                         logout();
                         toggleHamburger();
                      }}>
-                        Logout
+                        Log Out
                      </a>
                   </div>
                </div>
@@ -82,10 +84,10 @@ const Navbar = ({auth: {isAuthenticated, loading}, logout}) => {
                <div className="navbar-item">
                   <div className="buttons">
                      <Link className="button is-primary is-inverted" to={'/register'} onClick={() => toggleHamburger()}>
-                        <strong>Sign up</strong>
+                        Sign Up
                      </Link>
-                     <Link className="button is-light is-inverted" to={'/login'} onClick={() => toggleHamburger()}>
-                        Log in
+                     <Link className="button is-inverted is-info" to={'/login'} onClick={() => toggleHamburger()}>
+                        Log In
                      </Link>
                   </div>
                </div>

@@ -32,7 +32,7 @@ const Login = ({isAuthenticated, login}) => {
       <Fragment>
          <form onSubmit={e => onSubmit(e)} onChange={(e) => onChange(e)}>
             <div className={'title'}>
-               <h1 className="title is-1 has-text-centered">Login!</h1>
+               <h1 className="title is-1 has-text-centered">Log In</h1>
             </div>
 
             <div className="field">
@@ -72,7 +72,7 @@ const Login = ({isAuthenticated, login}) => {
 
             <div className="field is-grouped">
                <div className="control">
-                  <button className="button is-link">Login</button>
+                  <button className="button is-link">Log In</button>
                </div>
             </div>
          </form>
