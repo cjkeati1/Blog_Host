@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {Fragment, useEffect} from 'react';
 import './App.css';
 import Navbar from "./components/layout/Navbar";
 import 'bulma/css/bulma.css'
@@ -11,6 +11,8 @@ import setAuthToken from "./utils/setAuthToken";
 // Redux
 import {Provider} from 'react-redux';
 import store from "./store";
+import Home from "./components/home/Home";
+import Footer from "./components/layout/Footer";
 
 if (localStorage.token) {
    setAuthToken(localStorage.token);
@@ -26,9 +28,11 @@ function App() {
          <Router>
             <Navbar/>
             <div className={'container'}>
+               <Route exact path={'/'} component={Home}/>
                <Route exact path={'/register'} component={Register}/>
                <Route exact path={'/login'} component={Login}/>
             </div>
+            <Footer/>
          </Router>
       </Provider>
    );

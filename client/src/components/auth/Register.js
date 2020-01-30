@@ -3,6 +3,7 @@ import {Link, Redirect} from "react-router-dom";
 import {register} from "../../actions/auth";
 import {connect} from "react-redux";
 import PropTypes from 'prop-types'
+import Footer from "../layout/Footer";
 
 const Register = ({register, isAuthenticated}) => {
    const [formData, setFormData] = useState({
@@ -53,7 +54,7 @@ const Register = ({register, isAuthenticated}) => {
 
    };
    if (isAuthenticated) {
-      return <Redirect to={'/dashboard'}/>
+      return <Redirect to={'/'}/>
    }
    return (
       <Fragment>
@@ -93,7 +94,8 @@ const Register = ({register, isAuthenticated}) => {
                   <span className="icon is-small is-left"><i className="fas fa-envelope"/></span>
                   <span className="icon is-small is-right"><i className="fas fa-exclamation-triangle"/></span>
                </div>
-               {emailTaken && <p className="help is-danger">{'This email has been taken or is invalid. Choose another'}</p>}
+               {emailTaken &&
+               <p className="help is-danger">{'This email has been taken or is invalid. Choose another'}</p>}
             </div>
             <div className="field">
                <label className="label">Password</label>

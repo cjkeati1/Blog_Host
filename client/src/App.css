@@ -1,9 +1,32 @@
-.container{
+.container {
    padding-left: 25px;
    padding-right: 25px;
 }
 
-.title{
+.title {
    margin-top: 20px;
 }
 
+#root > div > form > div.title > p{
+   padding-top: 15px;
+}
+html {
+   position: relative;
+   min-height: 100%;
+}
+
+body {
+   margin: 0 0 100px;
+   /* bottom = footer height */
+   padding: 25px;
+}
+
+footer {
+   margin-top: 25vh;
+   position: relative;
+   bottom: 0;
+   left: 0;
+   height: 100px;
+   width: 100%;
+   overflow: hidden;
+}

@@ -73,10 +73,10 @@ const Navbar = ({auth: {isAuthenticated, loading}}) => {
             </div> : <div className="navbar-end">
                <div className="navbar-item">
                   <div className="buttons">
-                     <Link className="button is-primary" to={'/register'} onClick={() => toggleHamburger()}>
+                     <Link className="button is-primary is-inverted" to={'/register'} onClick={() => toggleHamburger()}>
                         <strong>Sign up</strong>
                      </Link>
-                     <Link className="button is-light" to={'/login'} onClick={() => toggleHamburger()}>
+                     <Link className="button is-light is-inverted" to={'/login'} onClick={() => toggleHamburger()}>
                         Log in
                      </Link>
                   </div>
