@@ -2,7 +2,10 @@ import axios from 'axios';
 
 import {
    REGISTER_SUCCESS,
-   REGISTER_FAIL
+   REGISTER_FAIL,
+   USER_LOADED,
+   LOGIN_SUCCESS,
+   LOGIN_FAIL,
 } from "./types";
 
 // Register User
@@ -13,7 +16,6 @@ export const register = ({name, email, password}) => async dispatch => {
       }
    };
    const body = JSON.stringify({name, email, password});
-   console.log(body);
    try {
       const res = await axios.post('/api/register', body, config);
       dispatch({
@@ -28,5 +30,6 @@ export const register = ({name, email, password}) => async dispatch => {
          type: REGISTER_FAIL,
       })
    }
-
 };
+
+
