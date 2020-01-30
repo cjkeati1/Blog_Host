@@ -3,7 +3,10 @@ import {
    REGISTER_SUCCESS,
    REGISTER_FAIL,
    USER_LOADED,
-   AUTH_ERROR, LOGIN_SUCCESS, LOGIN_FAIL
+   AUTH_ERROR,
+   LOGIN_SUCCESS,
+   LOGIN_FAIL,
+   LOGOUT
 } from "./types";
 import setAuthToken from "../utils/setAuthToken";
 
@@ -60,8 +63,6 @@ export const login = ({email, password}) => async dispatch => {
    const body = JSON.stringify({email, password});
 
    try {
-      console.log('hit');
-
       const res = await axios.post('/api/login', body, config); // Returns the user's jwt if successful
       dispatch({
          type: LOGIN_SUCCESS,
@@ -74,4 +75,12 @@ export const login = ({email, password}) => async dispatch => {
          type: LOGIN_FAIL
       });
    }
+};
+
+// Logout User
+export const logout = () => async dispatch => {
+   dispatch({
+      type: LOGOUT
+   });
+
 };

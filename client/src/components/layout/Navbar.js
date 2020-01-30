@@ -2,8 +2,9 @@ import React from 'react';
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import PropTypes from 'prop-types'
+import {logout} from "../../actions/auth";
 
-const Navbar = ({auth: {isAuthenticated, loading}}) => {
+const Navbar = ({auth: {isAuthenticated, loading}, logout}) => {
    const toggleHamburger = () => {
       document.getElementById("navbarBasicExample").classList.toggle('is-active');
       document.getElementById("button").classList.toggle('is-active');
@@ -66,10 +67,17 @@ const Navbar = ({auth: {isAuthenticated, loading}}) => {
                </div>
             </div>
 
-            {isAuthenticated ? <div className="buttons">
-               <Link className="button is-danger" to={'/logout'} onClick={() => toggleHamburger()}>
-                  Log out
-               </Link>
+            {isAuthenticated ? <div className="navbar-end">
+               <div className="navbar-item">
+                  <div className="buttons">
+                     <a className="button is-danger is-inverted" onClick={() => {
+                        logout();
+                        toggleHamburger();
+                     }}>
+                        Logout
+                     </a>
+                  </div>
+               </div>
             </div> : <div className="navbar-end">
                <div className="navbar-item">
                   <div className="buttons">
@@ -87,7 +95,8 @@ const Navbar = ({auth: {isAuthenticated, loading}}) => {
    )
 };
 const mapStateToProps = state => ({
-   auth: state.auth
+   auth: state.auth,
+   logout: PropTypes.func.isRequired
 });
 
-export default connect(mapStateToProps)(Navbar);
+export default connect(mapStateToProps, {logout})(Navbar);
