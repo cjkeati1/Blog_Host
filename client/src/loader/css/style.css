@@ -1,57 +1,13 @@
-.container {
-   padding-left: 25px;
-   padding-right: 25px;
-}
-
-.title {
-   margin-top: 20px;
-}
-
-#root > div > form > div.title > p{
-   padding-top: 15px;
-}
-html {
-   position: relative;
-   min-height: 100%;
-}
-
-body {
-   margin: 0 0 100px;
-   /* bottom = footer height */
-   padding: 25px;
-}
-
-footer {
-   margin-top: 25vh;
-   position: relative;
-   bottom: 0;
-   left: 0;
-   height: 100px;
-   width: 100%;
-   overflow: hidden;
-}
-
 .indicator {
    position: absolute;
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%) scale(2);
 }
-
-
-.indicator svg polyline {
-   fill: none;
-   stroke-width: 2;
-   stroke-linecap: round;
-   stroke-linejoin: round;
-}
-
-.indicator svg polyline#back {
-   stroke: rgba(59, 211, 171, 0.3);
-}
 .indicator{
-   margin-top: 40vh;
+  margin-top: 50px;
 }
+
 .indicator svg polyline#front {
    stroke: #3bd3ab;
    stroke-dasharray: 12, 36;

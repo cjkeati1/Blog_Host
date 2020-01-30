@@ -58,7 +58,7 @@ const Register = ({register, isAuthenticated}) => {
    }
    return (
       <Fragment>
-         <form onSubmit={e => onSubmit(e)}>
+         <form onSubmit={e => onSubmit(e)} onChange={(e) => onChange(e)}>
             <div className={'title'}>
                <h1 className="title is-1 has-text-centered">Sign Up!</h1>
                <p className="subtitle is-6 has-text-centered">Join to create stories and follow your favorite authors
@@ -70,7 +70,6 @@ const Register = ({register, isAuthenticated}) => {
                <label className="label">Name</label>
                <div className="control">
                   <input
-                     onChange={(e) => onChange(e)}
                      name={'name'}
                      className="input"
                      type="text"
@@ -84,7 +83,6 @@ const Register = ({register, isAuthenticated}) => {
                <label className="label">Email</label>
                <div className="control has-icons-left has-icons-right">
                   <input
-                     onChange={(e) => onChange(e)}
                      name={'email'}
                      className={"input " + (emailTaken ? 'is-danger' : '')}
                      type="email"
@@ -107,7 +105,6 @@ const Register = ({register, isAuthenticated}) => {
                      name="password"
                      minLength="6"
                      value={password}
-                     onChange={e => onChange(e)}
                      required
                   />
                   <span className="icon is-small is-left"><i className="fas fa-lock"/></span>
@@ -127,7 +124,6 @@ const Register = ({register, isAuthenticated}) => {
                         name="password2"
                         minLength="6"
                         value={password2}
-                        onChange={e => onChange(e)}
                         required
                      />
                   </div>
