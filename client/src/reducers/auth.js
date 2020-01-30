@@ -1,19 +1,18 @@
 import {
    REGISTER_SUCCESS,
    REGISTER_FAIL,
+   USER_LOADED,
+   AUTH_ERROR,
    LOGIN_SUCCESS,
-   LOGIN_FAIL,
-   USER_LOADED
-} from "../actions/types";
+   LOGIN_FAIL
+} from '../actions/types';
 
 const initialState = {
-   // TODO Eventually store in cookie
    token: localStorage.getItem('token'),
-   isAuthenticated: false,
+   isAuthenticated: null,
    loading: true,
    user: null
 };
-
 
 export default function (state = initialState, action) {
    const {type, payload} = action;
@@ -36,6 +35,7 @@ export default function (state = initialState, action) {
             loading: false
          };
       case REGISTER_FAIL:
+      case AUTH_ERROR:
       case LOGIN_FAIL:
          localStorage.removeItem('token');
          return {

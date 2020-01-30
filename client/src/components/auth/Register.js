@@ -41,9 +41,9 @@ const Register = ({register, isAuthenticated}) => {
 
    const onSubmit = async e => {
       setEmailTaken(false);
+      e.preventDefault();
 
-      if (password.length > 0 || passwordError.length > 0) {
-         e.preventDefault();
+      if (password.length > 0 && passwordError.length < 1) {
          await register(formData);
 
          if (!isAuthenticated) {

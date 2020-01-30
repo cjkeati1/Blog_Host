@@ -1,12 +1,30 @@
 import axios from 'axios';
-
 import {
    REGISTER_SUCCESS,
    REGISTER_FAIL,
    USER_LOADED,
-   LOGIN_SUCCESS,
-   LOGIN_FAIL,
+   AUTH_ERROR
 } from "./types";
+import setAuthToken from "../utils/setAuthToken";
+
+// Load User --- Need to call this every request to keep the token in the header since jwt is stateless
+export const loadUser = () => async dispatch => {
+   if (localStorage.token) {
+      setAuthToken(localStorage.token);
+   }
+   try {
+      const res = await axios.get('/api/auth');
+
+      dispatch({
+         type: USER_LOADED,
+         payload: res.data
+      });
+   } catch (err) {
+      dispatch({
+         type: AUTH_ERROR
+      });
+   }
+};
 
 // Register User
 export const register = ({name, email, password}) => async dispatch => {
@@ -16,20 +34,18 @@ export const register = ({name, email, password}) => async dispatch => {
       }
    };
    const body = JSON.stringify({name, email, password});
+
    try {
-      const res = await axios.post('/api/register', body, config);
+      const res = await axios.post('/api/register', body, config); // Returns the user's jwt if successful
       dispatch({
          type: REGISTER_SUCCESS,
          payload: res.data
-      })
-   } catch (e) {
-      const errors = e.response.data.errors;
-      console.log(errors);
+      });
 
+      dispatch(loadUser());
+   } catch (e) {
       dispatch({
-         type: REGISTER_FAIL,
-      })
+         type: REGISTER_FAIL
+      });
    }
 };
-
-
