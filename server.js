@@ -14,6 +14,8 @@ app.use('/api/profile', require('./routes/api/profileRouter'));
 app.use('/api/account', require('./routes/api/accountRouter'));
 app.use('/api/posts', require('./routes/api/postRouter'));
 app.use('/api/users', require('./routes/api/userRouter'));
+app.use('/api/auth', require('./routes/api/authRouter'));
+
 
 
 app.listen(process.env.PORT, () => {
