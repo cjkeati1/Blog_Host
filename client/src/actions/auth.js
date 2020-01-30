@@ -60,6 +60,8 @@ export const login = ({email, password}) => async dispatch => {
    const body = JSON.stringify({email, password});
 
    try {
+      console.log('hit');
+
       const res = await axios.post('/api/login', body, config); // Returns the user's jwt if successful
       dispatch({
          type: LOGIN_SUCCESS,
