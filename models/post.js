@@ -15,6 +15,13 @@ const PostSchema = new Schema({
       required: true
    },
    user: {type: Schema.Types.ObjectId, ref: 'User'},
+   category: {type: String, required: true},
+   tags: [
+      {
+         type: String,
+         required: false
+      }
+   ],
    likes: [
       {
          user: {

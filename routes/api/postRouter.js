@@ -26,14 +26,20 @@ postRouter.get('/', async (req, res) => {
 // @desc Create a post
 // @access Private
 postRouter.post('/', auth, async (req, res) => {
-   const {title, body} = req.body;
+   const {title, body, category, tags} = req.body;
 
    try {
       // Get user, leave out the password
       const user = await User.findById(req.user).select('-password');
 
+      // Extract tags, if any, (Which should be comma separated) and insert into an array
+      let postTags = [];
+      if (tags) {
+         postTags = tags.split(',').map(tag => tag.trim());
+      }
+
       // Make new post and save to db
-      let newPost = await Post.create({title, body, name: user.name, user});
+      let newPost = await Post.create({title, body, name: user.name, tags: postTags, category, user,});
 
       return res.json(newPost);
 
@@ -43,7 +49,7 @@ postRouter.post('/', auth, async (req, res) => {
    }
 });
 
-// @route POST api/posts
+// @route GET api/posts
 // @desc Show an individual post
 // @access Public
 postRouter.get('/:id', async (req, res) => {
