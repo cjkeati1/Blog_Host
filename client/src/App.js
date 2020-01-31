@@ -13,6 +13,7 @@ import {Provider} from 'react-redux';
 import store from "./store";
 import Home from "./components/home/Home";
 import Footer from "./components/layout/Footer";
+import Posts from "./components/posts/Posts";
 
 if (localStorage.token) {
    setAuthToken(localStorage.token);
@@ -28,9 +29,13 @@ function App() {
          <Router>
             <Navbar/>
             <div className={'container'}>
-               <Route exact path={'/'} component={Home}/>
-               <Route exact path={'/register'} component={Register}/>
-               <Route exact path={'/login'} component={Login}/>
+               <Switch>
+                  <Route exact path={'/'} component={Home}/>
+                  <Route exact path={'/register'} component={Register}/>
+                  <Route exact path={'/login'} component={Login}/>
+                  <Route exact path={'/posts'} component={Posts}/>
+
+               </Switch>
             </div>
          </Router>
       </Provider>
