@@ -7,12 +7,14 @@
    margin-top: 20px;
 }
 
-#root > div > form > div.title > p{
+#root > div > form > div.title > p {
    padding-top: 15px;
 }
+
 html {
    position: relative;
    min-height: 100%;
+   background-color: #3bd3ab;
 }
 
 body {
@@ -21,6 +23,9 @@ body {
    padding: 25px;
 }
 
+.card {
+   margin-bottom: 75px;
+}
 
 .indicator {
    position: absolute;
@@ -29,6 +34,14 @@ body {
    transform: translate(-50%, -50%) scale(2);
 }
 
+.category {
+   cursor: pointer;
+}
+
+.category:hover {
+   transform: translateY(-1px);
+
+}
 
 .indicator svg polyline {
    fill: none;
@@ -40,9 +53,11 @@ body {
 .indicator svg polyline#back {
    stroke: rgba(59, 211, 171, 0.3);
 }
-.indicator{
+
+.indicator {
    margin-top: 40vh;
 }
+
 .indicator svg polyline#front {
    stroke: #3bd3ab;
    stroke-dasharray: 12, 36;

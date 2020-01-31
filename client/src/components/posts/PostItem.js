@@ -11,21 +11,20 @@ const PostItem = ({
       <div className="card">
          <header className="card-header">
             <p className="card-header-title">
-               {title}
+               {title} by {name}
             </p>
          </header>
          <div className="card-content">
             <div className="content">
-               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-               <a href="#">@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
+               {body}
                <br/>
                Posted on <Moment format={'l'}>{date}</Moment> at <Moment format={'h:mm:ss a'}>{date}</Moment>
             </div>
          </div>
          <footer className="card-footer">
             <span className="card-footer-item">{comments.length} comments</span>
-            <span  className="card-footer-item">{likes.length} likes</span>
-            <span  className="card-footer-item">View</span>
+            <span className="card-footer-item">{likes.length} likes</span>
+            <span className="card-footer-item">View</span>
          </footer>
       </div>
    </Fragment>

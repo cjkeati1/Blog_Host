@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from 'react';
+import React, { useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {addPost} from "../../actions/post";
@@ -19,8 +19,6 @@ const PostModalForm = ({addPost}) => {
 
    const onChange = e => {
       setFormData({...formData, [e.target.name]: e.target.value});
-      console.log('999999 ----' + formData);
-
    };
 
    const onFormSubmit = async e => {
