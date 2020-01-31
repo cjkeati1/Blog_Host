@@ -12,10 +12,10 @@ const User = require('../../models/user');
 postRouter.get('/', async (req, res) => {
    try {
       // Get all posts in the DB
-      const posts = await Post.find();
+      const posts = await Post.find().sort({date: -1});
 
       // Return them all
-      res.json({posts});
+      res.json(posts);
    } catch (err) {
       console.error(err);
       return res.status(500).send('Server Error');
