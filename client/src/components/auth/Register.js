@@ -21,7 +21,6 @@ const Register = ({register, isAuthenticated}) => {
 
    // Verify passwords on every input
    useEffect(() => {
-
       if (password.length > 0 || password2.length > 0)
          if (password.length < 6) {
             setPasswordsVerified(false);

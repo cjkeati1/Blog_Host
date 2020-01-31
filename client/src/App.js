@@ -14,6 +14,8 @@ import store from "./store";
 import Home from "./components/home/Home";
 import Footer from "./components/layout/Footer";
 import Posts from "./components/posts/Posts";
+import PostForm from "./components/posts/PostModalForm";
+import PrivateRoute from "./components/routing/PrivateRoute";
 
 if (localStorage.token) {
    setAuthToken(localStorage.token);
@@ -28,8 +30,11 @@ function App() {
       <Provider store={store}>
          <Router>
             <Navbar/>
+            <PrivateRoute exact path={'/create-post'} component={PostForm}/>
+
             <div className={'container'}>
                <Switch>
+
                   <Route exact path={'/'} component={Home}/>
                   <Route exact path={'/register'} component={Register}/>
                   <Route exact path={'/login'} component={Login}/>

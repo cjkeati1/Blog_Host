@@ -41,5 +41,6 @@ export const addPost = formData => async dispatch => {
          type: POST_ERROR,
          payload: {msg: e.response.statusText, status: e.response.status}
       });
+      throw e;
    }
 };

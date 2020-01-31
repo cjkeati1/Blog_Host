@@ -21,15 +21,6 @@ body {
    padding: 25px;
 }
 
-footer {
-   margin-top: 25vh;
-   position: relative;
-   bottom: 0;
-   left: 0;
-   height: 100px;
-   width: 100%;
-   overflow: hidden;
-}
 
 .indicator {
    position: absolute;
