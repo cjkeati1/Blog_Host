@@ -7,12 +7,19 @@ const PostItem = ({
                      post: {_id, title, body, name, category, user, likes, comments, date, tags},
                      auth
                   }) => {
+
+   // TODO Delete post when user presses on delete icon
    return <Fragment>
       <div className="card">
          <header className="card-header">
             <p className="card-header-title">
                {title} by {name}
             </p>
+            <a href="#" className="card-header-icon" aria-label="more options">
+               {auth && auth.isAuthenticated && user === auth.user._id && <span className="icon">
+       <i className="far fa-trash-alt" style={{color: 'red'}}/>
+      </span>}
+            </a>
          </header>
          <div className="card-content">
             <div className="content">

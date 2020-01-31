@@ -20,7 +20,7 @@ const Posts = ({getPosts, post: {posts, loading}, auth}) => {
 
       {auth.isAuthenticated ? <button
          onClick={() => toggleModal()}
-         className="button is-success is-inverted is-large">
+         className="button is-success is-inverted is-large is-paddingless	">
          Create a Post
       </button> : <p>Log in to create a post</p>}
       <PostForm/>
