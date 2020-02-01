@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Moment from "react-moment";
 import {connect} from "react-redux";
 import {deletePost} from "../../actions/post";
+import uuid from 'uuid/v4'
 
 const PostItem = ({
                      post: {_id, title, body, name, category, user, likes, comments, date, tags},
@@ -44,7 +45,7 @@ const PostItem = ({
                {body}
                {tags && <br/>}
                {tags && (tags.map(tag => (
-                  <a href="#">#{tag} </a>
+                  <a key={uuid()} href="#">#{tag} </a>
                )))}
                <br/>
                {postedDate}

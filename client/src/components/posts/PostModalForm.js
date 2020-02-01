@@ -1,4 +1,4 @@
-import React, { useState} from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {addPost} from "../../actions/post";
@@ -15,7 +15,8 @@ const PostModalForm = ({addPost}) => {
       category: '',
    });
 
-   const [postError, setPostError] = useState(false);
+   // TODO Display error alert on a post error
+   //const [postError, setPostError] = useState(false);
 
    const onChange = e => {
       setFormData({...formData, [e.target.name]: e.target.value});
@@ -34,7 +35,7 @@ const PostModalForm = ({addPost}) => {
          toggleModal();
 
       } catch (err) {
-         setPostError(true);
+         //setPostError(true);
       }
 
    };
@@ -47,32 +48,36 @@ const PostModalForm = ({addPost}) => {
                <button onClick={() => toggleModal()} className="delete" aria-label="close"/>
             </header>
             <section className="modal-card-body">
-               <form onChange={(e) => onChange(e)} onSubmit={(e) => onFormSubmit(e)}>
+               <form onSubmit={(e) => onFormSubmit(e)}>
                   <div className="field">
                      <label className="label">Title</label>
                      <div className="control">
-                        <input className="input" value={formData.title} type="text" placeholder="Text input"
+                        <input onChange={(e) => onChange(e)} className="input" value={formData.title} type="text"
+                               placeholder="Text input"
                                name={'title'} required/>
                      </div>
                   </div>
                   <div className="field">
                      <label className="label">Write a Post</label>
                      <div className="control">
-                        <textarea className="textarea" value={formData.body} placeholder="What's on your mind?"
+                        <textarea onChange={(e) => onChange(e)} className="textarea" value={formData.body}
+                                  placeholder="What's on your mind?"
                                   name={'body'} required/>
                      </div>
                   </div>
                   <div className="field">
                      <label className="label">Category</label>
                      <div className="control">
-                        <input className="input" type="text" value={formData.category} placeholder="Text input"
+                        <input onChange={(e) => onChange(e)} className="input" type="text" value={formData.category}
+                               placeholder="Text input"
                                name={'category'} required/>
                      </div>
                   </div>
                   <div className="field">
                      <label className="label">Tags</label>
                      <div className="control">
-                        <input className="input" type="text" value={formData.tags} name={'tags'}
+                        <input onChange={(e) => onChange(e)} className="input" type="text" value={formData.tags}
+                               name={'tags'}
                                placeholder="Text input"/>
                      </div>
                      <p className="help">Enter tags as comma separated values (e.g. food,bacon,breakfast)</p>

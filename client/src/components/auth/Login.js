@@ -1,5 +1,5 @@
 import React, {Fragment, useState} from 'react';
-import {Link, Redirect} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {login} from "../../actions/auth";
@@ -30,7 +30,7 @@ const Login = ({isAuthenticated, login}) => {
    }
    return (
       <Fragment>
-         <form onSubmit={e => onSubmit(e)} onChange={(e) => onChange(e)}>
+         <form onSubmit={e => onSubmit(e)}>
             <div className={'title'}>
                <h1 className="title is-1 has-text-centered">Log In</h1>
             </div>
@@ -39,6 +39,7 @@ const Login = ({isAuthenticated, login}) => {
                <label className="label">Email</label>
                <div className="control has-icons-left has-icons-right">
                   <input
+                     onChange={(e) => onChange(e)}
                      name={'email'}
                      className={"input " + (loginError ? 'is-danger' : '')}
                      type="email"
@@ -55,6 +56,7 @@ const Login = ({isAuthenticated, login}) => {
                <label className="label">Password</label>
                <div className="control has-icons-left has-icons-right">
                   <input
+                     onChange={(e) => onChange(e)}
                      className={"input " + (loginError ? 'is-danger' : '')}
                      type="password"
                      placeholder="Password"

@@ -5,6 +5,7 @@ import Loader from "../../loader/Loader";
 import {getPosts} from "../../actions/post";
 import PostItem from "./PostItem";
 import PostForm from "./PostModalForm";
+import {Link} from "react-router-dom";
 
 const toggleModal = () => {
    document.getElementById("modal").classList.toggle('is-active');
@@ -22,7 +23,7 @@ const Posts = ({getPosts, post: {posts, loading}, auth}) => {
          onClick={() => toggleModal()}
          className="button is-success is-inverted is-large is-paddingless	">
          Create a Post
-      </button> : <p>Log in to create a post</p>}
+      </button> : <p><Link to={'/login'}>Log in</Link> to create a post</p>}
       <PostForm/>
       {posts.length > 0 ? posts.map(post => (
          <PostItem key={post._id} post={post}/>

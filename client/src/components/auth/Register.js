@@ -1,9 +1,8 @@
 import React, {Fragment, useState, useEffect} from 'react';
-import {Link, Redirect} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 import {register} from "../../actions/auth";
 import {connect} from "react-redux";
 import PropTypes from 'prop-types'
-import Footer from "../layout/Footer";
 
 const Register = ({register, isAuthenticated}) => {
    const [formData, setFormData] = useState({
@@ -17,7 +16,7 @@ const Register = ({register, isAuthenticated}) => {
    const [passwordsVerified, setPasswordsVerified] = useState(false);
    const [emailTaken, setEmailTaken] = useState(false);
 
-   const {name, email, password, password2} = formData;
+   const {email, password, password2} = formData;
 
    // Verify passwords on every input
    useEffect(() => {
@@ -32,7 +31,7 @@ const Register = ({register, isAuthenticated}) => {
             setPasswordsVerified(true);
             setPasswordError('');
          }
-   }, [formData.password, formData.password2, formData.email]);
+   }, [formData.password, formData.password2, formData.email, password, password2]);
 
 
    const onChange = async e => {
@@ -57,7 +56,7 @@ const Register = ({register, isAuthenticated}) => {
    }
    return (
       <Fragment>
-         <form onSubmit={e => onSubmit(e)} onChange={(e) => onChange(e)}>
+         <form onSubmit={e => onSubmit(e)}>
             <div className={'title'}>
                <h1 className="title is-1 has-text-centered">Sign Up!</h1>
                <p className="subtitle is-6 has-text-centered">Join to create stories and follow your favorite authors
@@ -69,6 +68,7 @@ const Register = ({register, isAuthenticated}) => {
                <label className="label">Name</label>
                <div className="control">
                   <input
+                     onChange={(e) => onChange(e)}
                      name={'name'}
                      className="input"
                      type="text"
@@ -82,6 +82,7 @@ const Register = ({register, isAuthenticated}) => {
                <label className="label">Email</label>
                <div className="control has-icons-left has-icons-right">
                   <input
+                     onChange={(e) => onChange(e)}
                      name={'email'}
                      className={"input " + (emailTaken ? 'is-danger' : '')}
                      type="email"
@@ -98,6 +99,7 @@ const Register = ({register, isAuthenticated}) => {
                <label className="label">Password</label>
                <div className="control has-icons-left has-icons-right">
                   <input
+                     onChange={(e) => onChange(e)}
                      className={"input " + (passwordError ? 'is-danger' : passwordsVerified ? 'is-primary' : '')}
                      type="password"
                      placeholder="Password"
@@ -117,6 +119,7 @@ const Register = ({register, isAuthenticated}) => {
                <div className="control has-icons-left has-icons-right">
                   <div className="form-group">
                      <input
+                        onChange={(e) => onChange(e)}
                         className={"input " + (passwordError ? 'is-danger' : passwordsVerified ? 'is-primary' : '')}
                         type="password"
                         placeholder="Confirm Password"
@@ -137,7 +140,8 @@ const Register = ({register, isAuthenticated}) => {
             <div className="field">
                <div className="control">
                   <label className="checkbox">
-                     <input type="checkbox"/> Email me about popular stories from my favorite categories
+                     <input onChange={(e) => onChange(e)} type="checkbox"/> Email me about popular stories from my
+                     favorite categories
                   </label>
                </div>
             </div>

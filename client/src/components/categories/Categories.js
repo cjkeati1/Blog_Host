@@ -1,6 +1,5 @@
-import React, {Fragment, useEffect} from 'react';
+import React, {Fragment} from 'react';
 import CategoryItem from "./CategoryItem";
-import {BrowserRouter as Router} from "react-router-dom";
 
 
 const Categories = () => {
