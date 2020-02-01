@@ -14,7 +14,7 @@ const toggleModal = () => {
 const Posts = ({getPosts, post: {posts, loading}, auth}) => {
    useEffect(() => {
       getPosts();
-   }, [getPosts, posts]);
+   }, [getPosts]);
    return loading || auth.loading ? <Loader/> : <Fragment>
       <p className="title  is-1">Posts</p>
       <p className=" subtitle is-4">Explore fascinating stories...</p>

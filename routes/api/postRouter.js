@@ -49,7 +49,7 @@ postRouter.post('/', auth, async (req, res) => {
    }
 });
 
-// @route GET api/posts
+// @route GET api/posts/:id
 // @desc Show an individual post
 // @access Public
 postRouter.get('/:id', async (req, res) => {
@@ -61,7 +61,7 @@ postRouter.get('/:id', async (req, res) => {
       if (!post)
          return res.status(404).json({msg: 'Post not found'});
 
-      res.json({post});
+      res.json(post);
    } catch (err) {
       if (err.kind === 'ObjectId') {
          return res.status(404).json({msg: 'Post not found'});

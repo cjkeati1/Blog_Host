@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {
    GET_POSTS,
+   GET_POST,
    ADD_POST,
    DELETE_POST,
    POST_ERROR
@@ -13,6 +14,25 @@ export const getPosts = () => async dispatch => {
 
       dispatch({
          type: GET_POSTS,
+         payload: res.data
+      });
+
+   } catch (e) {
+      dispatch({
+         type: POST_ERROR,
+         payload: {msg: e.response.statusText, status: e.response.status}
+      });
+   }
+};
+
+// Get Post
+export const getPost = postId => async dispatch => {
+   try {
+      console.log('hit');
+      const res = await axios.get(`/api/posts/${postId}`);
+
+      dispatch({
+         type: GET_POST,
          payload: res.data
       });
 

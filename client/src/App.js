@@ -16,6 +16,7 @@ import Navbar from "./components/layout/Navbar";
 import {loadUser} from "./actions/auth";
 import {Provider} from 'react-redux';
 import store from "./store";
+import Post from "./components/post/Post";
 
 if (localStorage.token) {
    setAuthToken(localStorage.token);
@@ -35,6 +36,7 @@ function App() {
 
             <div className={'container'}>
                <Switch>
+                  <Route exact path={'/posts/:id'} component={Post}/>
 
                   <Route exact path={'/register'} component={Register}/>
                   <Route exact path={'/login'} component={Login}/>
