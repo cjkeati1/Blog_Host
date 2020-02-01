@@ -20,7 +20,10 @@ const PostItem = ({
       <div className="card">
          <header className="card-header">
             <p className="card-header-title">
-               {title} by {name}
+               <div className="content">
+                  <strong>{title}</strong> <Link to={`/profile/${user}`}><small
+                  className={'has-text-weight-normal is-italic has-text-black'}>@{name}</small></Link>
+               </div>
             </p>
             <a href="#" className="card-header-icon" aria-label="more options">
                {auth && auth.isAuthenticated && user === auth.user._id && <span className="icon">
