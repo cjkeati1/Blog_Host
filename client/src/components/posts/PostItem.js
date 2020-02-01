@@ -44,12 +44,17 @@ const PostItem = ({
          </header>
          <div className="card-content">
             <div className="content">
-               {body}
-               {tags && <br/>}
-               {tags && (tags.map(tag => (
-                  <a key={uuid()} href="#">#{tag} </a>
-               )))}
+               {body.length > 100 ? body.substring(0, 50) + '...' : body}
+               {tags && <Fragment>
+                  <br/><br/>
+                  {
+                     (tags.map(tag => (
+                        <span className="tag">#{tag}</span>
+                     )))
+                  }
+               </Fragment>}
                <br/>
+
                {postedDate}
             </div>
          </div>

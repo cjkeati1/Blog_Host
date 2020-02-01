@@ -5,6 +5,8 @@ import {connect} from "react-redux";
 import Loader from "../../loader/Loader";
 import Moment from "react-moment";
 import {body} from "express-validator";
+import CommentItem from "./CommentItem";
+import PostItem from "../posts/PostItem";
 
 const Post = ({post: {loading, post}, match, auth, getPost}) => {
    useEffect(() => {
@@ -27,6 +29,10 @@ const Post = ({post: {loading, post}, match, auth, getPost}) => {
                {post.body}
             </div>
          </section>
+         {post.comments.length > 0 ? post.comments.map(comment => (
+            <CommentItem key={comment._id} comment={comment}/>
+         )) : <p>There are currently no comments on this post.</p>}
+
       </Fragment>
 };
 

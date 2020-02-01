@@ -43,6 +43,14 @@ body {
 
 }
 
+.tag{
+   cursor: pointer;
+   margin-right: 2px;
+}
+
+.tag:hover{
+   filter: brightness(90%);
+}
 .indicator svg polyline {
    fill: none;
    stroke-width: 2;
