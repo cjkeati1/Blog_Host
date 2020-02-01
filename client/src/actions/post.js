@@ -4,7 +4,7 @@ import {
    GET_POST,
    ADD_POST,
    DELETE_POST,
-   POST_ERROR
+   POST_ERROR, ADD_COMMENT
 } from "./types";
 
 // Get Posts
@@ -72,6 +72,24 @@ export const deletePost = postId => async dispatch => {
       dispatch({
          type: DELETE_POST,
          payload: {postId}
+      });
+
+   } catch (e) {
+      dispatch({
+         type: POST_ERROR,
+         payload: {msg: e.response.statusText, status: e.response.status}
+      });
+      throw e;
+   }
+};
+
+// Add a Comment
+export const addComment = postId => async dispatch => {
+   try {
+      const res = await axios.post(`/api/posts/${postId}/comment`);
+      dispatch({
+         type: ADD_COMMENT,
+         payload: res.data
       });
 
    } catch (e) {

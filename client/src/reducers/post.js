@@ -3,7 +3,7 @@ import {
    GET_POST,
    POST_ERROR,
    ADD_POST,
-   DELETE_POST
+   DELETE_POST, ADD_COMMENT
 } from '../actions/types'
 
 const initialState = {
@@ -39,6 +39,12 @@ export default function (state = initialState, action) {
          return {
             ...state,
             posts: state.posts.filter(post => post._id !== payload.postId),
+            loading: false
+         };
+      case ADD_COMMENT:
+         return {
+            ...state,
+            posts: {...state.post, comments: payload},
             loading: false
          };
       case POST_ERROR:
