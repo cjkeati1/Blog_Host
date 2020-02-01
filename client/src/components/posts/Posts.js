@@ -1,7 +1,7 @@
 import React, {Fragment, useEffect} from 'react';
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types';
-import Loader from "../../loader/Loader";
+import Loader from "../loader/Loader";
 import {getPosts} from "../../actions/post";
 import PostItem from "./PostItem";
 import PostForm from "./PostModalForm";

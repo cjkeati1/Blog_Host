@@ -35,7 +35,7 @@ postRouter.post('/', auth, async (req, res) => {
       // Extract tags, if any, (Which should be comma separated) and insert into an array
       let postTags = [];
       if (tags) {
-         postTags = tags.split(',').map(tag => tag.trim());
+         postTags = tags.split(',').map(tag => tag.trim()).filter(tag => tag !== '');
       }
 
       // Make new post and save to db

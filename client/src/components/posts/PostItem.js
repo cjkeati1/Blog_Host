@@ -21,8 +21,8 @@ const PostItem = ({
          <header className="card-header">
             <p className="card-header-title">
                <div className="content">
-                  <strong>{title}</strong> <Link to={`/profile/${user}`}><small
-                  className={'has-text-weight-normal is-italic has-text-black'}>@{name}</small></Link>
+                  <strong>{title}</strong> <span className={'is-size-7'}>&bull;</span> <Link to={`/profile/${user}`}><small
+                  className={'author-name has-text-weight-normal is-italic has-text-black'}>{name}</small></Link>
                </div>
             </p>
             <a href="#" className="card-header-icon" aria-label="more options">

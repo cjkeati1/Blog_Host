@@ -2,11 +2,9 @@ import React, {Fragment, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {getPost} from "../../actions/post";
 import {connect} from "react-redux";
-import Loader from "../../loader/Loader";
+import Loader from "../loader/Loader";
 import Moment from "react-moment";
-import {body} from "express-validator";
 import CommentItem from "./CommentItem";
-import PostItem from "../posts/PostItem";
 
 const Post = ({post: {loading, post}, match, auth, getPost}) => {
    useEffect(() => {

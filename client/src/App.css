@@ -11,10 +11,10 @@
    padding-top: 15px;
 }
 
+
 html {
    position: relative;
    min-height: 100%;
-   background-color: #3bd3ab;
 }
 
 body {
@@ -43,14 +43,20 @@ body {
 
 }
 
-.tag{
+.tag {
    cursor: pointer;
    margin-right: 2px;
 }
 
-.tag:hover{
-   filter: brightness(90%);
+.author-name:hover {
+   text-decoration: underline;
 }
+
+.tag:hover {
+   filter: brightness(90%);
+
+}
+
 .indicator svg polyline {
    fill: none;
    stroke-width: 2;
