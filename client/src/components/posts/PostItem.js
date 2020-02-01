@@ -2,10 +2,12 @@ import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import Moment from "react-moment";
 import {connect} from "react-redux";
+import {deletePost} from "../../actions/post";
 
 const PostItem = ({
                      post: {_id, title, body, name, category, user, likes, comments, date, tags},
-                     auth
+                     auth,
+                     deletePost
                   }) => {
 
    // TODO Delete post when user presses on delete icon
@@ -17,7 +19,7 @@ const PostItem = ({
             </p>
             <a href="#" className="card-header-icon" aria-label="more options">
                {auth && auth.isAuthenticated && user === auth.user._id && <span className="icon">
-       <i className="far fa-trash-alt" style={{color: 'red'}}/>
+       <i className="far fa-trash-alt" style={{color: 'red'}} onClick={() => deletePost(_id)}/>
       </span>}
             </a>
          </header>
@@ -45,10 +47,11 @@ PostItem.defaultProps = {
 PostItem.propTypes = {
    post: PropTypes.object.isRequired,
    auth: PropTypes.object.isRequired,
+   deletePost: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
    auth: state.auth
 });
 
-export default connect(mapStateToProps)(PostItem);
+export default connect(mapStateToProps, {deletePost})(PostItem);

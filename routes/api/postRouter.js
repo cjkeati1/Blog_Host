@@ -82,8 +82,7 @@ postRouter.delete('/:id', auth, async (req, res) => {
       if (!post)
          return res.status(404).json({msg: 'Post not found'});
 
-      // If the current user is the author of the post, return unauthorized
-
+      // If the current user is not the author of the post, return unauthorized
       if (req.user !== post.user.toString())
          return res.status(401).json({msg: 'You cannot delete a post that is not yours'});
 
