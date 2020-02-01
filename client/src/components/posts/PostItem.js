@@ -4,6 +4,7 @@ import Moment from "react-moment";
 import {connect} from "react-redux";
 import {deletePost} from "../../actions/post";
 import uuid from 'uuid/v4'
+import {Link} from "react-router-dom";
 
 const PostItem = ({
                      post: {_id, title, body, name, category, user, likes, comments, date, tags},
@@ -23,7 +24,8 @@ const PostItem = ({
       }
       // If not posted today
       else {
-         return <Moment format={`MMM ${(postedDate.getFullYear() === now.getFullYear()) ? 'D' : 'D, YYYY'}`}>{now}</Moment>;
+         return <Moment
+            format={`MMM ${(postedDate.getFullYear() === now.getFullYear()) ? 'D' : 'D, YYYY'}`}>{now}</Moment>;
       }
    };
    const postedDate = getDatePosted(date);
@@ -53,8 +55,8 @@ const PostItem = ({
          </div>
          <footer className="card-footer">
             <span className="card-footer-item">{comments.length} comments</span>
-            <span className="card-footer-item">{likes.length} likes</span>
-            <span className="card-footer-item">View</span>
+            <span className="card-footer-item">{likes.length} like{likes.length === 1 ? null : 's'}</span>
+            <Link to={`/posts/${_id}`} className="card-footer-item">View</Link>
          </footer>
       </div>
    </Fragment>
