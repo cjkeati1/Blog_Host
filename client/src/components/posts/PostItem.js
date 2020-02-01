@@ -10,7 +10,23 @@ const PostItem = ({
                      deletePost
                   }) => {
 
-   // TODO Delete post when user presses on delete icon
+   const getDatePosted = () => {
+      const postedDate = new Date(date);
+      const now = new Date();
+
+      // If posted today
+      if (postedDate.getDate() === now.getDate() &&
+         postedDate.getMonth() === now.getMonth() &&
+         postedDate.getFullYear() === now.getFullYear()) {
+         return <Moment fromNow>{date}</Moment>;
+      }
+      // If not posted today
+      else {
+         return <Moment format={`MMM ${(postedDate.getFullYear() === now.getFullYear()) ? 'D' : 'D, YYYY'}`}>{now}</Moment>;
+      }
+   };
+   const postedDate = getDatePosted(date);
+
    return <Fragment>
       <div className="card">
          <header className="card-header">
@@ -26,8 +42,12 @@ const PostItem = ({
          <div className="card-content">
             <div className="content">
                {body}
+               {tags && <br/>}
+               {tags && (tags.map(tag => (
+                  <a href="#">#{tag} </a>
+               )))}
                <br/>
-               Posted on <Moment format={'l'}>{date}</Moment> at <Moment format={'h:mm:ss a'}>{date}</Moment>
+               {postedDate}
             </div>
          </div>
          <footer className="card-footer">
@@ -55,3 +75,4 @@ const mapStateToProps = state => ({
 });
 
 export default connect(mapStateToProps, {deletePost})(PostItem);
+
