@@ -19,12 +19,12 @@ const PostItem = ({
    return <Fragment>
       <div className="card">
          <header className="card-header">
-            <p className="card-header-title">
+            <div className="card-header-title">
                <div className="content">
                   <strong>{title}</strong> <span className={'is-size-7'}>&bull;</span> <Link to={`/profile/${user}`}><small
                   className={'author-name has-text-weight-normal is-italic has-text-black'}>{name}</small></Link>
                </div>
-            </p>
+            </div>
             <a href="#" className="card-header-icon" aria-label="more options">
                {auth && auth.isAuthenticated && user === auth.user._id && <span className="icon">
        <i className="far fa-trash-alt" style={{color: 'red'}} onClick={() => deletePost(_id)}/>
@@ -43,7 +43,6 @@ const PostItem = ({
                   }
                </Fragment>}
                <br/>
-
                {postedDate}
             </div>
          </div>

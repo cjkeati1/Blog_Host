@@ -6,6 +6,7 @@ import Loader from "../loader/Loader";
 import Moment from "react-moment";
 import CommentItem from "./CommentItem";
 import CommentForm from "./CommentForm";
+import {Link} from "react-router-dom";
 
 const Post = ({post: {loading, post}, match, auth, getPost}) => {
    useEffect(() => {
@@ -16,8 +17,8 @@ const Post = ({post: {loading, post}, match, auth, getPost}) => {
       <Fragment>
          <p className="title is-1 is-spaced has-text-centered has-text-left-mobile">{post.title}</p>
          <section className="has-text-centered has-text-left-mobile">
-            <p className="subtitle ">{post.name}</p>
-            <h2 className="subtitle">
+            <p className="subtitle">{post.name}</p>
+            <h2 className="subtitle is-size-6">
                <Moment format={'MMMM DD, YYYY'}>{post.date}</Moment>
             </h2>
          </section>
@@ -27,7 +28,10 @@ const Post = ({post: {loading, post}, match, auth, getPost}) => {
                {post.body}
             </div>
          </section>
-         <CommentForm postId={post._id}/>
+         {auth.isAuthenticated ? <CommentForm postId={post._id}/>
+            : <div><p>You must be <Link to={'/login'}>logged in</Link> to reply</p><br/></div>}
+         <p className="title is-5 is-spaced has-text-centered has-text-left-mobile is-marginless">Replies</p>
+         <hr className={'style10'}/>
          {post.comments.length > 0 ? post.comments.map(comment => (
             <CommentItem key={comment._id} comment={comment}/>
          )) : <p>There are currently no comments on this post.</p>}

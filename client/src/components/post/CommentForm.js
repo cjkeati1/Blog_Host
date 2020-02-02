@@ -28,9 +28,9 @@ const CommentForm = ({addComment, postId}) => {
                placeholder="Add a comment"
                value={body}/>
          </div>
-         <div className="field is-grouped">
+         <div className="field">
             <div className="control">
-               <button className="button is-link">Submit</button>
+               <button className="button is-primary is-outlined" style={{marginTop: '5px'}}>Publish</button>
             </div>
          </div>
       </form>

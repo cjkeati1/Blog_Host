@@ -1,6 +1,6 @@
 .container {
-   padding-left: 25px;
-   padding-right: 25px;
+   padding-left: 50px;
+   padding-right: 50px;
 }
 
 .title {
@@ -15,6 +15,13 @@
 html {
    position: relative;
    min-height: 100%;
+}
+
+
+hr.style10 {
+   margin-top: 5px;
+   border-top: 1px dotted #8c8b8b;
+   border-bottom: 1px dotted #fff;
 }
 
 body {
