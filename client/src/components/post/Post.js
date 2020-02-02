@@ -5,12 +5,12 @@ import {connect} from "react-redux";
 import Loader from "../loader/Loader";
 import Moment from "react-moment";
 import CommentItem from "./CommentItem";
+import CommentForm from "./CommentForm";
 
 const Post = ({post: {loading, post}, match, auth, getPost}) => {
    useEffect(() => {
-      console.log(match.params.id);
       getPost(match.params.id);
-   }, []);
+   }, [getPost, match.params.id]);
 
    return loading || auth.loading || post === null ? <Loader/> :
       <Fragment>
@@ -27,6 +27,7 @@ const Post = ({post: {loading, post}, match, auth, getPost}) => {
                {post.body}
             </div>
          </section>
+         <CommentForm postId={post._id}/>
          {post.comments.length > 0 ? post.comments.map(comment => (
             <CommentItem key={comment._id} comment={comment}/>
          )) : <p>There are currently no comments on this post.</p>}

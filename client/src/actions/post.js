@@ -28,7 +28,6 @@ export const getPosts = () => async dispatch => {
 // Get Post
 export const getPost = postId => async dispatch => {
    try {
-      console.log('hit');
       const res = await axios.get(`/api/posts/${postId}`);
 
       dispatch({
@@ -47,10 +46,7 @@ export const getPost = postId => async dispatch => {
 // Add Post
 export const addPost = formData => async dispatch => {
    try {
-      const config = {
-         headers: {'Content-Type': 'application/json'}
-      };
-      const res = await axios.post('/api/posts', formData, config);
+      const res = await axios.post('/api/posts', formData);
       dispatch({
          type: ADD_POST,
          payload: res.data
@@ -84,9 +80,9 @@ export const deletePost = postId => async dispatch => {
 };
 
 // Add a Comment
-export const addComment = postId => async dispatch => {
+export const addComment = (comment, postId) => async dispatch => {
    try {
-      const res = await axios.post(`/api/posts/${postId}/comment`);
+      const res = await axios.post(`/api/posts/${postId}/comment`, comment);
       dispatch({
          type: ADD_COMMENT,
          payload: res.data

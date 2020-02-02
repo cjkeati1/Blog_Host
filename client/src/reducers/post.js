@@ -44,7 +44,7 @@ export default function (state = initialState, action) {
       case ADD_COMMENT:
          return {
             ...state,
-            posts: {...state.post, comments: payload},
+            post: {...state.post, comments: payload},
             loading: false
          };
       case POST_ERROR:
