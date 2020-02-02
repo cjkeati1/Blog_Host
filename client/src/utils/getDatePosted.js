@@ -14,6 +14,6 @@ export default date => {
    // If not posted today
    else {
       return <Moment
-         format={`MMM ${(postedDate.getFullYear() === now.getFullYear()) ? 'D' : 'D, YYYY'}`}>{now}</Moment>;
+         format={`MMM ${(postedDate.getFullYear() === now.getFullYear()) ? 'D' : 'D, YYYY'}`}>{postedDate}</Moment>;
    }
 };

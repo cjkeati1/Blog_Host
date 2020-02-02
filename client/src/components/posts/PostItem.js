@@ -21,7 +21,8 @@ const PostItem = ({
          <header className="card-header">
             <div className="card-header-title">
                <div className="content">
-                  <strong>{title}</strong> <span className={'is-size-7'}>&bull;</span> <Link to={`/profile/${user}`}><small
+                  <strong>{title}</strong> <span className={'is-size-7'}>&bull;</span> <Link
+                  to={`/profile/${user}`}><small
                   className={'author-name has-text-weight-normal is-italic has-text-black'}>{name}</small></Link>
                </div>
             </div>
@@ -47,8 +48,10 @@ const PostItem = ({
             </div>
          </div>
          <footer className="card-footer">
-            <span className="card-footer-item">{comments.length} comments</span>
-            <span className="card-footer-item">{likes.length} like{likes.length === 1 ? null : 's'}</span>
+            <span className="card-footer-item"><i
+               className={'far fa-comment has-text-grey fa-fw'}/>{` ${comments.length}`}</span>
+            <span className="card-footer-item">
+               <i className="far fa-thumbs-up has-text-grey fa-fw"/>{ likes.length}</span>
             <Link to={`/posts/${_id}`} className="card-footer-item">View</Link>
          </footer>
       </div>

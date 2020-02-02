@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import PropTypes from 'prop-types'
 import {logout} from "../../actions/auth";
 
+// TODO add login, signup, and logout icons
 const Navbar = ({auth: {isAuthenticated, loading}, logout}) => {
    const toggleHamburger = () => {
       document.getElementById("navbarBasicExample").classList.toggle('is-active');

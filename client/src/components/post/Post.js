@@ -28,6 +28,23 @@ const Post = ({post: {loading, post}, match, auth, getPost}) => {
                {post.body}
             </div>
          </section>
+
+         <div className="field is-grouped is-grouped-multiline">
+            <div className="control">
+               <div className="tags has-addons">
+                  <span className="tag is-white">
+                     <i className="far fa-thumbs-up has-text-grey fa-fw control"/>
+                  </span>
+                  <span className="tag is-white">
+               <i className={'control'}>{post.likes.length}</i>
+                  </span>
+                  <span className="tag is-white">
+               <i className="far fa-thumbs-down has-text-grey fa-fw control"/>
+                  </span>
+               </div>
+            </div>
+
+         </div>
          {auth.isAuthenticated ? <CommentForm postId={post._id}/>
             : <div><p>You must be <Link to={'/login'}>logged in</Link> to reply</p><br/></div>}
          <p className="title is-5 is-spaced has-text-centered has-text-left-mobile is-marginless">Replies</p>
