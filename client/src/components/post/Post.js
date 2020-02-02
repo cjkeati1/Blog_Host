@@ -50,7 +50,7 @@ const Post = ({post: {loading, post}, match, auth, getPost}) => {
          <p className="title is-5 is-spaced has-text-centered has-text-left-mobile is-marginless">Replies</p>
          <hr className={'style10'}/>
          {post.comments.length > 0 ? post.comments.map(comment => (
-            <CommentItem key={comment._id} comment={comment}/>
+            <CommentItem postId={post._id} currentUser={auth.user._id} key={comment._id} comment={comment}/>
          )) : <p>There are currently no comments on this post.</p>}
 
       </Fragment>
