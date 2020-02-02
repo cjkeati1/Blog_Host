@@ -120,13 +120,13 @@ export const deleteComment = (postId, commentId) => async dispatch => {
 };
 
 
-// Like a Comment
-export const likePost = (postId, currentUserId) => async dispatch => {
+// Like a Post
+export const likePost = postId => async dispatch => {
    try {
-      await axios.put(`/api/posts/${postId}/like`);
+      const res = await axios.put(`/api/posts/${postId}/like`);
       dispatch({
          type: LIKE_POST,
-         payload: {postId, currentUserId}
+         payload: {likes: res.data}
       });
 
    } catch (e) {
@@ -139,12 +139,12 @@ export const likePost = (postId, currentUserId) => async dispatch => {
 };
 
 // Unlike a Comment
-export const unlikePost = (postId, currentUserId) => async dispatch => {
+export const unlikePost = postId => async dispatch => {
    try {
-      await axios.put(`/api/posts/${postId}/unlike`);
+      const res = await axios.put(`/api/posts/${postId}/unlike`);
       dispatch({
          type: UNLIKE_POST,
-         payload: {postId, currentUserId}
+         payload: {likes: res.data}
       });
 
    } catch (e) {

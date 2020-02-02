@@ -60,16 +60,14 @@ export default function (state = initialState, action) {
       case LIKE_POST:
          return {
             ...state,
-            post: {...state.post, likes: [...state.post.likes, payload.currentUserId]},
+            post: {...state.post, likes: payload.likes},
             loading: false
          };
       case UNLIKE_POST:
          return {
             ...state,
-            post: {
-               ...state.post, likes: state.post.likes.filter(like => like !== payload.currentUserId),
-               loading: false
-            }
+            post: {...state.post, likes: payload.likes},
+            loading: false
          };
       case POST_ERROR:
          return {

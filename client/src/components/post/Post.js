@@ -33,15 +33,18 @@ const Post = ({post: {loading, post}, match, auth, getPost, likePost, unlikePost
             <div className="control">
                <div className="tags has-addons">
                   <span className="tag is-white">
-                     <i onClick={() => likePost(post._id, auth.user._id)}
-                        className="far fa-thumbs-up has-text-grey fa-fw control"/>
+                     <i onClick={() => auth.user ? likePost(post._id) : null}
+                        className={`far fa-thumbs-up has-text-${
+                           post.likes.find(like =>
+                              auth.user && like.user === auth.user._id) !== undefined ?
+                              'primary' : 'grey'} fa-fw control`}/>
                   </span>
                   <span className="tag is-white">
                <i className={'control'}>{post.likes.length}</i>
                   </span>
                   <span className="tag is-white">
                <i className="far fa-thumbs-down has-text-grey fa-fw control"
-                  onClick={() => unlikePost(post._id, auth.user._id)}/>
+                  onClick={() => auth.user ? unlikePost(post._id) : null}/>
                   </span>
                </div>
             </div>
@@ -52,7 +55,8 @@ const Post = ({post: {loading, post}, match, auth, getPost, likePost, unlikePost
          <p className="title is-5 is-spaced has-text-centered has-text-left-mobile is-marginless">Replies</p>
          <hr className={'style10'}/>
          {post.comments.length > 0 ? post.comments.map(comment => (
-            <CommentItem postId={post._id} currentUser={auth.user ? auth.user._id : null} key={comment._id} comment={comment}/>
+            <CommentItem postId={post._id} currentUser={auth.user ? auth.user._id : null} key={comment._id}
+                         comment={comment}/>
          )) : <p>There are currently no comments on this post.</p>}
 
       </Fragment>
