@@ -38,7 +38,7 @@ function App() {
 
             <div className={'container'}>
                <Switch>
-                  <Route exact path={'/profile/:id'} component={Profile}/>
+                  <Route exact path={'/profile/user/:id'} component={Profile}/>
                   <Route exact path={'/posts/:id'} component={Post}/>
                   <Route exact path={'/register'} component={Register}/>
                   <Route exact path={'/login'} component={Login}/>

@@ -22,7 +22,7 @@ const PostItem = ({
             <div className="card-header-title">
                <div className="content">
                   <strong>{title}</strong> <span className={'is-size-7'}>&bull;</span> <Link
-                  to={`/profile/${user}`}><small
+                  to={`/profile/user/${user}`}><small
                   className={'author-name has-text-weight-normal is-italic has-text-black'}>{name}</small></Link>
                </div>
             </div>

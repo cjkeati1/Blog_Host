@@ -97,7 +97,7 @@ const Profile = props => {
                         <br/>
                      </p>
                      <p className='tagline'>
-                        {bio}
+                        {/*{bio}*/}
                      </p>
                   </div>
                   <div className='column is-2-tablet is-4-mobile has-text-centered'>

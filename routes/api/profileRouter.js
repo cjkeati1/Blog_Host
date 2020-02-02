@@ -80,10 +80,10 @@ profileRouter.post('/', auth, async (req, res) => {
    }
 });
 
-// @route GET api/profile/:id
+// @route GET api/profile/user/:id
 // @desc Get another user's profile
 // @access Public
-profileRouter.get('/:id', async (req, res) => {
+profileRouter.get('/user/:id', async (req, res) => {
    try {
       // Find the corresponding Profile (to :id) in the database
       const profile = await Profile.findById(req.params.id)
