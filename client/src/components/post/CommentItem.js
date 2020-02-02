@@ -4,6 +4,7 @@ import getDatePosted from "../../utils/getDatePosted";
 import {deleteComment} from "../../actions/post";
 import {connect} from 'react-redux'
 
+// TODO, add a modal confirmation when deleting comments
 const CommentItem = ({postId, comment, currentUser, deleteComment}) => {
    const datePosted = getDatePosted(comment.date);
    return (

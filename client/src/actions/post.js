@@ -6,7 +6,9 @@ import {
    DELETE_POST,
    POST_ERROR,
    ADD_COMMENT,
-   DELETE_COMMENT
+   DELETE_COMMENT,
+   LIKE_POST,
+   UNLIKE_POST
 } from "./types";
 
 // Get Posts
@@ -100,12 +102,49 @@ export const addComment = (comment, postId) => async dispatch => {
 };
 
 // Delete a Comment
-export const deleteComment = (postId,commentId) => async dispatch => {
+export const deleteComment = (postId, commentId) => async dispatch => {
    try {
       await axios.delete(`/api/posts/${postId}/comment/${commentId}`);
       dispatch({
          type: DELETE_COMMENT,
          payload: {commentId}
+      });
+
+   } catch (e) {
+      dispatch({
+         type: POST_ERROR,
+         payload: {msg: e.response.statusText, status: e.response.status}
+      });
+      throw e;
+   }
+};
+
+
+// Like a Comment
+export const likePost = (postId, currentUserId) => async dispatch => {
+   try {
+      await axios.put(`/api/posts/${postId}/like`);
+      dispatch({
+         type: LIKE_POST,
+         payload: {postId, currentUserId}
+      });
+
+   } catch (e) {
+      dispatch({
+         type: POST_ERROR,
+         payload: {msg: e.response.statusText, status: e.response.status}
+      });
+      throw e;
+   }
+};
+
+// Unlike a Comment
+export const unlikePost = (postId, currentUserId) => async dispatch => {
+   try {
+      await axios.put(`/api/posts/${postId}/unlike`);
+      dispatch({
+         type: UNLIKE_POST,
+         payload: {postId, currentUserId}
       });
 
    } catch (e) {

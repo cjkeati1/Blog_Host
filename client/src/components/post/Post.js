@@ -1,6 +1,6 @@
 import React, {Fragment, useEffect} from 'react';
 import PropTypes from 'prop-types';
-import {getPost} from "../../actions/post";
+import {getPost, likePost, unlikePost} from "../../actions/post";
 import {connect} from "react-redux";
 import Loader from "../loader/Loader";
 import Moment from "react-moment";
@@ -8,7 +8,7 @@ import CommentItem from "./CommentItem";
 import CommentForm from "./CommentForm";
 import {Link} from "react-router-dom";
 
-const Post = ({post: {loading, post}, match, auth, getPost}) => {
+const Post = ({post: {loading, post}, match, auth, getPost, likePost, unlikePost}) => {
    useEffect(() => {
       getPost(match.params.id);
    }, [getPost, match.params.id]);
@@ -33,13 +33,15 @@ const Post = ({post: {loading, post}, match, auth, getPost}) => {
             <div className="control">
                <div className="tags has-addons">
                   <span className="tag is-white">
-                     <i className="far fa-thumbs-up has-text-grey fa-fw control"/>
+                     <i onClick={() => likePost(post._id, auth.user._id)}
+                        className="far fa-thumbs-up has-text-grey fa-fw control"/>
                   </span>
                   <span className="tag is-white">
                <i className={'control'}>{post.likes.length}</i>
                   </span>
                   <span className="tag is-white">
-               <i className="far fa-thumbs-down has-text-grey fa-fw control"/>
+               <i className="far fa-thumbs-down has-text-grey fa-fw control"
+                  onClick={() => unlikePost(post._id, auth.user._id)}/>
                   </span>
                </div>
             </div>
@@ -59,7 +61,9 @@ const Post = ({post: {loading, post}, match, auth, getPost}) => {
 Post.propTypes = {
    getPost: PropTypes.func.isRequired,
    auth: PropTypes.object.isRequired,
-   post: PropTypes.object.isRequired
+   post: PropTypes.object.isRequired,
+   likePost: PropTypes.func.isRequired,
+   unlikePost: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -67,4 +71,4 @@ const mapStateToProps = state => ({
    auth: state.auth
 });
 
-export default connect(mapStateToProps, {getPost})(Post);
+export default connect(mapStateToProps, {getPost, likePost, unlikePost})(Post);

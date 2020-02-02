@@ -3,7 +3,9 @@ import {
    GET_POST,
    POST_ERROR,
    ADD_POST,
-   DELETE_POST, ADD_COMMENT, DELETE_COMMENT
+   DELETE_POST,
+   ADD_COMMENT,
+   DELETE_COMMENT, LIKE_POST, UNLIKE_POST
 } from '../actions/types'
 
 const initialState = {
@@ -52,6 +54,20 @@ export default function (state = initialState, action) {
             ...state,
             post: {
                ...state.post, comments: state.post.comments.filter(comment => comment._id !== payload.commentId),
+               loading: false
+            }
+         };
+      case LIKE_POST:
+         return {
+            ...state,
+            post: {...state.post, likes: [...state.post.likes, payload.currentUserId]},
+            loading: false
+         };
+      case UNLIKE_POST:
+         return {
+            ...state,
+            post: {
+               ...state.post, likes: state.post.likes.filter(like => like !== payload.currentUserId),
                loading: false
             }
          };

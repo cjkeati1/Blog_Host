@@ -12,6 +12,9 @@ export const DELETE_POST = 'DELETE_POST';
 export const POST_ERROR = 'POST_ERROR';
 export const ADD_COMMENT = 'ADD_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
+export const LIKE_POST = 'LIKE_POST';
+export const UNLIKE_POST = 'UNLIKE_POST';
+
 
 
 
