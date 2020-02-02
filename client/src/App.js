@@ -11,12 +11,14 @@ import Categories from "./components/categories/Categories";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Navbar from "./components/layout/Navbar";
+import Post from "./components/post/Post";
+import Profile from "./components/profile/Profile";
 
 // Redux
 import {loadUser} from "./actions/auth";
 import {Provider} from 'react-redux';
 import store from "./store";
-import Post from "./components/post/Post";
+
 
 if (localStorage.token) {
    setAuthToken(localStorage.token);
@@ -36,6 +38,7 @@ function App() {
 
             <div className={'container'}>
                <Switch>
+                  <Route exact path={'/profile/:id'} component={Profile}/>
                   <Route exact path={'/posts/:id'} component={Post}/>
                   <Route exact path={'/register'} component={Register}/>
                   <Route exact path={'/login'} component={Login}/>

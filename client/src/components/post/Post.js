@@ -24,9 +24,7 @@ const Post = ({post: {loading, post}, match, auth, getPost, likePost, unlikePost
          </section>
 
          <section className="section">
-            <div className="container">
-               {post.body}
-            </div>
+            {post.body}
          </section>
 
          <div className="field is-grouped is-grouped-multiline">

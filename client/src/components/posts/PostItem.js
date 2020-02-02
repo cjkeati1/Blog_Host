@@ -51,7 +51,7 @@ const PostItem = ({
             <span className="card-footer-item"><i
                className={'far fa-comment has-text-grey fa-fw'}/>{` ${comments.length}`}</span>
             <span className="card-footer-item">
-               <i className="far fa-thumbs-up has-text-grey fa-fw"/>{ likes.length}</span>
+               <i className="far fa-thumbs-up has-text-grey fa-fw"/>{likes.length}</span>
             <Link to={`/posts/${_id}`} className="card-footer-item">View</Link>
          </footer>
       </div>
