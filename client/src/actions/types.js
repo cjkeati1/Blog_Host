@@ -14,6 +14,11 @@ export const ADD_COMMENT = 'ADD_COMMENT';
 export const DELETE_COMMENT = 'DELETE_COMMENT';
 export const LIKE_POST = 'LIKE_POST';
 export const UNLIKE_POST = 'UNLIKE_POST';
+export const GET_PROFILE = 'GET_PROFILE';
+export const CLEAR_PROFILE = 'CLEAR_PROFILE';
+export const PROFILE_ERROR = 'PROFILE_ERROR';
+
+
 
 
 

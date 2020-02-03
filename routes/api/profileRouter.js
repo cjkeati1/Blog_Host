@@ -12,7 +12,7 @@ profileRouter.get('/me', auth, async (req, res) => {
    try {
       // Check if current user has a profile already
       const profile = await Profile.findOne({user: req.user})
-         .populate('user', ['name', 'email']);
+         .populate('user', ['name', 'email', 'followers', 'following']);
 
       // If not, return bad request
       if (!profile) {
@@ -71,7 +71,7 @@ profileRouter.post('/', auth, async (req, res) => {
    }
 });
 
-// @route GET api/profile/user/:id
+// @route GET api/profile/user/:user_id
 // @desc Get another user's profile
 // @access Public
 profileRouter.get('/user/:user_id', async (req, res) => {
