@@ -5,7 +5,8 @@ import {
    ADD_POST,
    DELETE_POST,
    ADD_COMMENT,
-   DELETE_COMMENT, LIKE_POST, UNLIKE_POST
+   DELETE_COMMENT,
+   UPDATE_LIKES
 } from '../actions/types'
 
 const initialState = {
@@ -57,13 +58,7 @@ export default function (state = initialState, action) {
                loading: false
             }
          };
-      case LIKE_POST:
-         return {
-            ...state,
-            post: {...state.post, likes: payload.likes},
-            loading: false
-         };
-      case UNLIKE_POST:
+      case UPDATE_LIKES:
          return {
             ...state,
             post: {...state.post, likes: payload.likes},

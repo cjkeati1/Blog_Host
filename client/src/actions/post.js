@@ -7,9 +7,9 @@ import {
    POST_ERROR,
    ADD_COMMENT,
    DELETE_COMMENT,
-   LIKE_POST,
-   UNLIKE_POST
+   UPDATE_LIKES
 } from "./types";
+import {UNLIKE} from "../utils/enums";
 
 // Get Posts
 export const getPosts = () => async dispatch => {
@@ -120,12 +120,12 @@ export const deleteComment = (postId, commentId) => async dispatch => {
 };
 
 
-// Like a Post
-export const likePost = postId => async dispatch => {
+// Like/unlike a Post
+export const updateLikes = (postId, type) => async dispatch => {
    try {
-      const res = await axios.put(`/api/posts/${postId}/like`);
+      const res = await axios.put(`/api/posts/${postId}/${type === UNLIKE ? 'un' : ''}like`);
       dispatch({
-         type: LIKE_POST,
+         type: UPDATE_LIKES,
          payload: {likes: res.data}
       });
 
@@ -138,20 +138,4 @@ export const likePost = postId => async dispatch => {
    }
 };
 
-// Unlike a Post
-export const unlikePost = postId => async dispatch => {
-   try {
-      const res = await axios.put(`/api/posts/${postId}/unlike`);
-      dispatch({
-         type: UNLIKE_POST,
-         payload: {likes: res.data}
-      });
 
-   } catch (e) {
-      dispatch({
-         type: POST_ERROR,
-         payload: {msg: e.response.statusText, status: e.response.status}
-      });
-      throw e;
-   }
-};

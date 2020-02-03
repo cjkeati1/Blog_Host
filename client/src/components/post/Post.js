@@ -1,14 +1,15 @@
 import React, {Fragment, useEffect} from 'react';
 import PropTypes from 'prop-types';
-import {getPost, likePost, unlikePost} from "../../actions/post";
+import {getPost, updateLikes} from "../../actions/post";
 import {connect} from "react-redux";
 import Loader from "../loader/Loader";
 import Moment from "react-moment";
 import CommentItem from "./CommentItem";
 import CommentForm from "./CommentForm";
 import {Link} from "react-router-dom";
+import {LIKE, UNLIKE} from "../../utils/enums";
 
-const Post = ({post: {loading, post}, match, auth, getPost, likePost, unlikePost}) => {
+const Post = ({post: {loading, post}, match, auth, getPost, updateLikes}) => {
    useEffect(() => {
       getPost(match.params.id);
    }, [getPost, match.params.id]);
@@ -31,7 +32,7 @@ const Post = ({post: {loading, post}, match, auth, getPost, likePost, unlikePost
             <div className="control">
                <div className="tags has-addons">
                   <span className="tag is-white">
-                     <i onClick={() => auth.user ? likePost(post._id) : null}
+                     <i onClick={() => auth.user ? updateLikes(post._id, LIKE) : null}
                         className={`far fa-thumbs-up has-text-${
                            post.likes.find(like =>
                               auth.user && like.user === auth.user._id) !== undefined ?
@@ -42,7 +43,7 @@ const Post = ({post: {loading, post}, match, auth, getPost, likePost, unlikePost
                   </span>
                   <span className="tag is-white">
                <i className="far fa-thumbs-down has-text-grey fa-fw control"
-                  onClick={() => auth.user ? unlikePost(post._id) : null}/>
+                  onClick={() => auth.user ? updateLikes(post._id, UNLIKE) : null}/>
                   </span>
                </div>
             </div>
@@ -64,8 +65,7 @@ Post.propTypes = {
    getPost: PropTypes.func.isRequired,
    auth: PropTypes.object.isRequired,
    post: PropTypes.object.isRequired,
-   likePost: PropTypes.func.isRequired,
-   unlikePost: PropTypes.func.isRequired
+   updateLikes: PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
@@ -73,4 +73,4 @@ const mapStateToProps = state => ({
    auth: state.auth
 });
 
-export default connect(mapStateToProps, {getPost, likePost, unlikePost})(Post);
+export default connect(mapStateToProps, {getPost, updateLikes})(Post);
