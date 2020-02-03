@@ -28,7 +28,7 @@ profileRouter.get('/me', auth, async (req, res) => {
 });
 
 // @route POST api/profile
-// @desc Create or update user profile
+// @desc Update user profile
 // @access Private
 profileRouter.post('/', auth, async (req, res) => {
    const {
@@ -58,22 +58,13 @@ profileRouter.post('/', auth, async (req, res) => {
    if (instagram) profileFields.social.instagram = instagram;
 
    try {
-      // Search for the current user's profile
-      let profile = await Profile.findOne({user: req.user});
-
-      // If a profile with the current user's id is found, update it
-      if (profile) {
-         profile = await Profile.findOneAndUpdate(
-            {user: req.user},
-            {$set: profileFields},
-            {new: true}
-         );
-         return res.json(profile);
-      }
-
-      // If not, create a profile for the current user
-      profile = await Profile.create(profileFields);
+      let profile = await Profile.findOneAndUpdate(
+         {user: req.user},
+         {$set: profileFields},
+         {new: true}
+      );
       return res.json(profile);
+
    } catch (err) {
       console.log(err.message);
       return res.status(500).send('Server Error');
@@ -83,11 +74,11 @@ profileRouter.post('/', auth, async (req, res) => {
 // @route GET api/profile/user/:id
 // @desc Get another user's profile
 // @access Public
-profileRouter.get('/user/:id', async (req, res) => {
+profileRouter.get('/user/:user_id', async (req, res) => {
    try {
-      // Find the corresponding Profile (to :id) in the database
-      const profile = await Profile.findById(req.params.id)
-         .populate('user', ['name', 'email']);
+      // Find the corresponding Profile to the user ID
+      const profile = await Profile.findOne({user: req.params.user_id})
+         .populate('user', ['name', 'email', 'followers', 'following']);
 
       // If no profile, return not found
       if (!profile)

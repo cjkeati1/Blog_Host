@@ -4,6 +4,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 require('dotenv/config');
 const User = require('../../models/user');
+const Profile = require('../../models/profile');
+
 const {check, validationResult} = require('express-validator');
 
 // @route POST api/register
@@ -17,7 +19,6 @@ registerRouter.post('/',
       if (!errors.isEmpty()) {
          return res.status(400).json({errors: errors.array()});
       }
-
       const {name, email, password} = req.body;
 
       try { // Check if a user with the entered email already exists
@@ -34,6 +35,9 @@ registerRouter.post('/',
 
          // Make new user and save to db
          let newUser = await User.create({name, email, password: hashedPassword});
+
+         // Make a profile with the new user associated with it
+         await Profile.create({user: newUser._id});
 
          // User has been registered. Now create a token for them
          const userForToken = {

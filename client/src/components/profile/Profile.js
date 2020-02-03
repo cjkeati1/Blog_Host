@@ -2,6 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Profile = props => {
+
+   const toggleEditModal = () => {
+      document.getElementById("edit-preferences-modal").classList.toggle('is-active');
+   };
    return (
       <div className='columns'>
          <div className='container profile'>
@@ -10,7 +14,7 @@ const Profile = props => {
                <div className='modal-card'>
                   <header className='modal-card-head'>
                      <p className='modal-card-title'>Edit Profile</p>
-                     <button className='delete'/>
+                     <button className='delete' onClick={()=>toggleEditModal()}/>
                   </header>
                   <section className='modal-card-body'>
                      <label className='label'>Name</label>
@@ -74,8 +78,8 @@ const Profile = props => {
                      </p>
                   </section>
                   <footer className='modal-card-foot'>
-                     <a className='button is-primary modal-save'>Save changes</a>
-                     <a className='button modal-cancel'>Cancel</a>
+                     <a className='button is-primary modal-save' onClick={()=>toggleEditModal()}>Save changes</a>
+                     <a className='button modal-cancel' onClick={()=>toggleEditModal()}>Cancel</a>
                   </footer>
                </div>
             </div>
@@ -91,7 +95,8 @@ const Profile = props => {
                         <span className='title is-bold'>Paul Miller</span>
                         <br/>
                         <a className='button is-primary is-outlined' href='#' id='edit-preferences'
-                           style={{margin: '5px 0'}}>
+                           style={{margin: '5px 0'}}
+                           onClick={() => toggleEditModal()}>
                            Edit Preferences
                         </a>
                         <br/>
