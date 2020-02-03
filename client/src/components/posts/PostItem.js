@@ -34,9 +34,7 @@ const PostItem = ({
          </header>
          <div className="card-content">
             <div className="content">
-               {body.length > 100 ? body.substring(0, 50) + '...' : body}
                {tags && <Fragment>
-                  <br/><br/>
                   {
                      (tags.map(tag => (
                         <span className="tag">#{tag}</span>
