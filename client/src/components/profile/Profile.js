@@ -1,13 +1,13 @@
 import React, {useEffect, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
-import {getProfileById, followUser, unfollowUser} from "../../actions/profile";
+import {getProfileById, updateFollows} from "../../actions/profile";
 import Loader from "../loader/Loader";
+import {FOLLOW, UNFOLLOW} from "../../utils/enums";
 
 const Profile = ({
                     getProfileById,
-                    followUser,
-                    unfollowUser,
+                    updateFollows,
                     profile: {profile, loading},
                     auth,
                     match
@@ -138,12 +138,12 @@ const Profile = ({
                               {profile.user.followers
                                  .find(follower => follower.user === auth.user._id) ?
                                  <button
-                                    onClick={() => unfollowUser(profile.user._id)}
+                                    onClick={() => updateFollows(profile.user._id, UNFOLLOW)}
                                     className='button is-danger is-light'>
                                     Unfollow
                                  </button> :
                                  <button
-                                    onClick={() => followUser(profile.user._id)}
+                                    onClick={() => updateFollows(profile.user._id, FOLLOW)}
                                     className='button is-primary is-light'>
                                     Follow
                                  </button>
@@ -165,10 +165,9 @@ const mapStateToProps = state => ({
 
 Profile.propTypes = {
    getProfileById: PropTypes.func.isRequired,
-   followUser: PropTypes.func.isRequired,
-   unfollowUser: PropTypes.func.isRequired,
+   updateFollows: PropTypes.func.isRequired,
    profile: PropTypes.object.isRequired,
    auth: PropTypes.object.isRequired,
 };
 
-export default connect(mapStateToProps, {getProfileById, followUser, unfollowUser})(Profile);
+export default connect(mapStateToProps, {getProfileById,  updateFollows})(Profile);

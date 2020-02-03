@@ -2,8 +2,7 @@ import {
    GET_PROFILE,
    CLEAR_PROFILE,
    PROFILE_ERROR,
-   FOLLOW_USER,
-   UNFOLLOW_USER
+   UPDATE_FOLLOWS
 } from '../actions/types'
 
 const initialState = {
@@ -23,8 +22,7 @@ export default function (state = initialState, action) {
             loading: false
          };
 
-      case UNFOLLOW_USER:
-      case FOLLOW_USER:
+      case UPDATE_FOLLOWS:
          return {
             ...state,
             profile: {

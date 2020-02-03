@@ -3,9 +3,10 @@ import {
    GET_PROFILE,
    CLEAR_PROFILE,
    PROFILE_ERROR,
-   FOLLOW_USER,
-   UNFOLLOW_USER
+   UPDATE_FOLLOWS
 } from "./types";
+
+import {UNFOLLOW} from "../utils/enums";
 
 // Get Profile By User ID
 export const getProfileById = userId => async dispatch => {
@@ -27,12 +28,12 @@ export const getProfileById = userId => async dispatch => {
 };
 
 // Follow a User
-export const followUser = userId => async dispatch => {
+export const updateFollows = (userId, type) => async dispatch => {
    try {
-      const res = await axios.put(`/api/users/${userId}/follow`);
+      const res = await axios.put(`/api/users/${userId}/${type === UNFOLLOW ? 'un' : ''}follow`);
 
       dispatch({
-         type: FOLLOW_USER,
+         type: UPDATE_FOLLOWS,
          payload: res.data
       });
 
@@ -44,21 +45,4 @@ export const followUser = userId => async dispatch => {
       });
    }
 };
-// Follow a User
-export const unfollowUser = userId => async dispatch => {
-   try {
-      const res = await axios.put(`/api/users/${userId}/unfollow`);
 
-      dispatch({
-         type: UNFOLLOW_USER,
-         payload: res.data
-      });
-
-   } catch (e) {
-      dispatch({type: CLEAR_PROFILE});
-      dispatch({
-         type: PROFILE_ERROR,
-         payload: {msg: e.response.statusText, status: e.response.status}
-      });
-   }
-};
