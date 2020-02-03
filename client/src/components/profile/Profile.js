@@ -110,11 +110,13 @@ const Profile = ({
                               <p>
                                  <span className='title is-bold'>{profile.user ? profile.user.name : 'No Name'}</span>
                                  <br/>
+                                 {auth.isAuthenticated && auth.loading === false && auth.user._id ===
+                                 profile.user._id &&
                                  <a className='button is-primary is-outlined' href='#' id='edit-preferences'
                                     style={{margin: '5px 0'}}
                                     onClick={() => toggleEditModal()}>
-                                    Edit Preferences
-                                 </a>
+                                    Edit Profile
+                                 </a>}
                                  <br/>
                               </p>
                               <p className='tagline'>

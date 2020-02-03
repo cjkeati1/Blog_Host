@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import getDatePosted from "../../utils/getDatePosted";
 import {deleteComment} from "../../actions/post";
 import {connect} from 'react-redux'
+import {Link} from "react-router-dom";
 
 // TODO, add a modal confirmation when deleting comments
 const CommentItem = ({postId, comment, currentUser, deleteComment}) => {
@@ -13,7 +14,9 @@ const CommentItem = ({postId, comment, currentUser, deleteComment}) => {
             <div className="media-content">
                <div className="content">
                   <p>
-                     <strong>{comment.name}</strong> <small>{datePosted}</small>
+                     <Link to={`/profile/user/${comment.user}`}
+                           className={'author-name has-text-black'}><strong>{comment.name}</strong></Link>
+                     <small> {datePosted}</small>
                      <br/>
                      {comment.body}
                   </p>
