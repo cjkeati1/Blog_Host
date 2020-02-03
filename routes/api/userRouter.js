@@ -109,7 +109,7 @@ userRouter.put('/:id/unfollow', auth, async (req, res) => {
       await user.save();
       await followee.save();
 
-      res.send(user.following);
+      res.send(followee.followers);
    } catch (err) {
       if (err.kind === 'ObjectId') {
          return res.status(404).json({msg: 'A user with that ID was not found'});

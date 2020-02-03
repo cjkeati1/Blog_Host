@@ -1,7 +1,9 @@
 import {
    GET_PROFILE,
    CLEAR_PROFILE,
-   PROFILE_ERROR, FOLLOW_USER
+   PROFILE_ERROR,
+   FOLLOW_USER,
+   UNFOLLOW_USER
 } from '../actions/types'
 
 const initialState = {
@@ -20,6 +22,8 @@ export default function (state = initialState, action) {
             profile: payload,
             loading: false
          };
+
+      case UNFOLLOW_USER:
       case FOLLOW_USER:
          return {
             ...state,
@@ -32,13 +36,13 @@ export default function (state = initialState, action) {
             },
             loading: false
          };
-      case PROFILE_ERROR:
-         return {
-            ...state,
-            error: payload,
-            loading: false,
-            profile: null
-         };
+      // case PROFILE_ERROR:
+      //    return {
+      //       ...state,
+      //       error: payload,
+      //       loading: false,
+      //       profile: null
+      //    };
       // case CLEAR_PROFILE:
       //    return {
       //       ...state,

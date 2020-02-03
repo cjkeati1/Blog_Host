@@ -1,12 +1,13 @@
 import React, {useEffect, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
-import {getProfileById, followUser} from "../../actions/profile";
+import {getProfileById, followUser, unfollowUser} from "../../actions/profile";
 import Loader from "../loader/Loader";
 
 const Profile = ({
                     getProfileById,
                     followUser,
+                    unfollowUser,
                     profile: {profile, loading},
                     auth,
                     match
@@ -137,7 +138,7 @@ const Profile = ({
                               {profile.user.followers
                                  .find(follower => follower.user === auth.user._id) ?
                                  <button
-                                    onClick={() => followUser(profile.user._id)}
+                                    onClick={() => unfollowUser(profile.user._id)}
                                     className='button is-danger is-light'>
                                     Unfollow
                                  </button> :
@@ -165,8 +166,9 @@ const mapStateToProps = state => ({
 Profile.propTypes = {
    getProfileById: PropTypes.func.isRequired,
    followUser: PropTypes.func.isRequired,
+   unfollowUser: PropTypes.func.isRequired,
    profile: PropTypes.object.isRequired,
    auth: PropTypes.object.isRequired,
 };
 
-export default connect(mapStateToProps, {getProfileById, followUser})(Profile);
+export default connect(mapStateToProps, {getProfileById, followUser, unfollowUser})(Profile);
