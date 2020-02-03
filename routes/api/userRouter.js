@@ -37,6 +37,7 @@ userRouter.put('/:id/follow', auth, async (req, res) => {
       return res.status(400).json({msg: 'You cannot follow yourself'});
 
    try {
+      console.log(999);
       // Find current user by ID
       const user = await User.findById(req.user);
 
@@ -62,10 +63,10 @@ userRouter.put('/:id/follow', auth, async (req, res) => {
       await user.save();
       await followee.save();
 
-      res.send(user.following);
+      res.send(followee.followers);
    } catch (err) {
       if (err.kind === 'ObjectId') {
-         return res.status(404).json({msg: 'Post not found'});
+         return res.status(404).json({msg: 'User not found'});
       }
       return res.status(500).send('Server Error');
    }

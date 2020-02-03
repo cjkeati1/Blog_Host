@@ -1,11 +1,12 @@
 import React, {useEffect, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
-import {getProfileById} from "../../actions/profile";
+import {getProfileById, followUser} from "../../actions/profile";
 import Loader from "../loader/Loader";
 
 const Profile = ({
                     getProfileById,
+                    followUser,
                     profile: {profile, loading},
                     auth,
                     match
@@ -133,7 +134,19 @@ const Profile = ({
                            </div>
                            {auth.isAuthenticated && auth.loading === false && auth.user._id !==
                            profile.user._id && <div className='column has-text-centered '>
-                              <button className='button is-primary is-light'>Follow</button>
+                              {profile.user.followers
+                                 .find(follower => follower.user === auth.user._id) ?
+                                 <button
+                                    onClick={() => followUser(profile.user._id)}
+                                    className='button is-danger is-light'>
+                                    Unfollow
+                                 </button> :
+                                 <button
+                                    onClick={() => followUser(profile.user._id)}
+                                    className='button is-primary is-light'>
+                                    Follow
+                                 </button>
+                              }
                            </div>}
                         </div>
                      </div>
@@ -151,8 +164,9 @@ const mapStateToProps = state => ({
 
 Profile.propTypes = {
    getProfileById: PropTypes.func.isRequired,
+   followUser: PropTypes.func.isRequired,
    profile: PropTypes.object.isRequired,
    auth: PropTypes.object.isRequired,
 };
 
-export default connect(mapStateToProps, {getProfileById})(Profile);
+export default connect(mapStateToProps, {getProfileById, followUser})(Profile);
