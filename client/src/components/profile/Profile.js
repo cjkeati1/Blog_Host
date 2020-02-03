@@ -131,6 +131,10 @@ const Profile = ({
                               <p className='stat-val'>{profile.user.following.length}</p>
                               <p className='stat-key'>Following</p>
                            </div>
+                           {auth.isAuthenticated && auth.loading === false && auth.user._id !==
+                           profile.user._id && <div className='column has-text-centered '>
+                              <button className='button is-primary is-light'>Follow</button>
+                           </div>}
                         </div>
                      </div>
                   </div>

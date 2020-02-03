@@ -138,7 +138,7 @@ export const likePost = postId => async dispatch => {
    }
 };
 
-// Unlike a Comment
+// Unlike a Post
 export const unlikePost = postId => async dispatch => {
    try {
       const res = await axios.put(`/api/posts/${postId}/unlike`);
