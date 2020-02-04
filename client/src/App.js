@@ -36,7 +36,7 @@ function App() {
             <Route exact path={'/'} component={Home}/>
             <Route exact path={'/categories'} component={Categories}/>
 
-            <div className={'container'}>
+            <div className={'test-container'}>
                <Switch>
                   <Route exact path={'/profile/user/:id'} component={Profile}/>
                   <Route exact path={'/posts/:id'} component={Post}/>

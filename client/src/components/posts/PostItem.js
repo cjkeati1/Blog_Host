@@ -8,7 +8,7 @@ import {Link} from "react-router-dom";
 import getDatePosted from "../../utils/getDatePosted";
 
 const PostItem = ({
-                     post: {_id, title, author_name, author, likes, comments, date, tags},
+                     post: {_id, content, title, author_name, author, likes, comments, date, tags},
                      auth,
                      deletePost
                   }) => {
@@ -34,7 +34,9 @@ const PostItem = ({
          </header>
          <div className="card-content">
             <div className="content">
+               {content.length > 100 ? content.substring(0, 50) + '...' : content}
                {tags && <Fragment>
+                  <br/><br/>
                   {
                      (tags.map(tag => (
                         <span key={uuid()} className="tag">#{tag}</span>

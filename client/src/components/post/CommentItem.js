@@ -9,7 +9,7 @@ import {Link} from "react-router-dom";
 const CommentItem = ({postId, comment, currentUser, deleteComment}) => {
    const datePosted = getDatePosted(comment.date);
    return (
-      <div style={{marginBottom: '20px'}}>
+      <div className={"is-size-6"} style={{marginBottom: '20px'}}>
          <article className="media">
             <div className="media-content">
                <div className="content">
