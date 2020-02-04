@@ -18,14 +18,14 @@ const Post = ({post: {loading, post}, match, auth, getPost, updateLikes}) => {
       <Fragment>
          <p className="title is-1 is-spaced has-text-centered has-text-left-mobile">{post.title}</p>
          <section className="has-text-centered has-text-left-mobile">
-            <p className="subtitle">{post.name}</p>
+            <p className="subtitle">{post.author_name}</p>
             <h2 className="subtitle is-size-6">
                <Moment format={'MMMM DD, YYYY'}>{post.date}</Moment>
             </h2>
          </section>
 
          <section className="section">
-            {post.body}
+            {post.content}
          </section>
 
          <div className="field is-grouped is-grouped-multiline">

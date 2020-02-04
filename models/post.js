@@ -6,15 +6,15 @@ const PostSchema = new Schema({
       type: String,
       required: true
    },
-   body: {
+   content: {
       type: String,
       required: true
    },
-   name: {
+   author_name: {
       type: String,
       required: true
    },
-   user: {type: Schema.Types.ObjectId, ref: 'User'},
+   author: {type: Schema.Types.ObjectId, ref: 'User'},
    category: {type: String, required: true},
    tags: [
       {
@@ -32,15 +32,15 @@ const PostSchema = new Schema({
    ],
    comments: [
       {
-         user: {
+         author: {
             type: Schema.Types.ObjectID,
             ref: 'User'
          },
-         body: {
+         content: {
             type: String,
             required: true
          },
-         name: {
+         author_name: {
             type: String
          },
          date: {

@@ -37,16 +37,6 @@ const Profile = ({
                               <p className='control'>
                                  <input className='input' placeholder='Text input' type='text'/>
                               </p>
-                              <label className='label'>Username</label>
-                              <p className='control has-icon has-icon-right'>
-                                 <input className='input' placeholder='Text input' type='text' value='pmillerk'/>
-                              </p>
-                              <label className='label'>Email</label>
-                              <p className='control has-icon has-icon-right'>
-                                 <input className='input' placeholder='Email input' type='text' value='hello@'/>
-                                 <i className='fa fa-warning'/>
-                                 <span className='help is-danger'>This email is invalid</span>
-                              </p>
                               <div className='control'>
                                  <div className='control-label is-pulled-left'>
                                     <label className='label'>Date of Birth</label>

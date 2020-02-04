@@ -11,6 +11,7 @@ const auth = require('../../middleware/auth');
 // @desc Delete account (incl. posts & profile)
 // @access Private
 accountRouter.delete('/', auth, async (req, res) => {
+   // TODO delete from the other users' followers array
    try {
       // Remove user posts
       await Post.deleteMany({user: req.user});

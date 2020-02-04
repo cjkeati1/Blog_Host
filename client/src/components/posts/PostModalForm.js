@@ -10,7 +10,7 @@ const toggleModal = () => {
 const PostModalForm = ({addPost}) => {
    const [formData, setFormData] = useState({
       title: '',
-      body: '',
+      content: '',
       tags: '',
       category: '',
    });
@@ -28,7 +28,7 @@ const PostModalForm = ({addPost}) => {
          await addPost(formData);
          // setFormData({
          //    title: '',
-         //    body: '',
+         //    content: '',
          //    tags: '',
          //    category: ''
          // });
@@ -60,9 +60,9 @@ const PostModalForm = ({addPost}) => {
                   <div className="field">
                      <label className="label">Write a Post</label>
                      <div className="control">
-                        <textarea onChange={(e) => onChange(e)} className="textarea" value={formData.body}
+                        <textarea onChange={(e) => onChange(e)} className="textarea" value={formData.content}
                                   placeholder="What's on your mind?"
-                                  name={'body'} required/>
+                                  name={'content'} required/>
                      </div>
                   </div>
                   <div className="field">

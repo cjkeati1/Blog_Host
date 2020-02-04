@@ -4,17 +4,16 @@ import {connect} from 'react-redux';
 import {addComment} from "../../actions/post";
 
 const CommentForm = ({addComment, postId}) => {
-   const [body, setBody] = useState('');
-
+   const [content, setContent] = useState('');
 
    const onChange = e => {
-      setBody(e.target.value);
+      setContent(e.target.value);
    };
 
    const onFormSubmit = async e => {
       e.preventDefault();
-      await addComment({body}, postId,);
-      setBody('');
+      await addComment({content}, postId);
+      setContent('');
    };
 
    return (
@@ -22,11 +21,11 @@ const CommentForm = ({addComment, postId}) => {
          <label className="label">Write a Response</label>
          <div className="control">
             <textarea
-               name={'body'}
+               name={'content'}
                onChange={e => onChange(e)}
                className="textarea"
                placeholder="Add a comment"
-               value={body}/>
+               value={content}/>
          </div>
          <div className="field">
             <div className="control">

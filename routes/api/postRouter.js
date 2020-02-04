@@ -26,7 +26,7 @@ postRouter.get('/', async (req, res) => {
 // @desc Create a post
 // @access Private
 postRouter.post('/', auth, async (req, res) => {
-   const {title, body, category, tags} = req.body;
+   const {title, content, category, tags} = req.body;
 
    try {
       // Get user, leave out the password
@@ -39,7 +39,7 @@ postRouter.post('/', auth, async (req, res) => {
       }
 
       // Make new post and save to db
-      let newPost = await Post.create({title, body, name: user.name, tags: postTags, category, user,});
+      let newPost = await Post.create({title, content, author_name: user.name, tags: postTags, category, author: user});
 
       return res.json(newPost);
 
@@ -83,7 +83,7 @@ postRouter.delete('/:id', auth, async (req, res) => {
          return res.status(404).json({msg: 'Post not found'});
 
       // If the current user is not the author of the post, return unauthorized
-      if (req.user !== post.user.toString())
+      if (req.user !== post.author.toString())
          return res.status(401).json({msg: 'You cannot delete a post that is not yours'});
 
       // If verified, delete the post
@@ -166,7 +166,7 @@ postRouter.put('/:id/unlike', auth, async (req, res) => {
 // @desc Comment on a post
 // @access Private
 postRouter.post('/:id/comment', auth, async (req, res) => {
-   const {body} = req.body;
+   const {content} = req.body;
    try {
       // Get the post by ID
       let post = await Post.findById(req.params.id);
@@ -180,13 +180,14 @@ postRouter.post('/:id/comment', auth, async (req, res) => {
 
       // Create a comment object
       const newComment = {
-         user: req.user,
-         body,
-         name: user.name
+         author: req.user,
+         content,
+         author_name: user.name
       };
 
       // Add comment to comments array
       post.comments.unshift(newComment);
+
       await post.save();
 
       res.send(post.comments);
@@ -210,6 +211,7 @@ postRouter.delete('/:postId/comment/:commentId', auth, async (req, res) => {
       if (!post)
          return res.status(404).json({msg: 'Post not found'});
 
+
       // Find index of the user's comment if there is one
       const removeIndex = post.comments.map(comment => comment._id.toString()).indexOf(req.params.commentId);
 
@@ -217,6 +219,10 @@ postRouter.delete('/:postId/comment/:commentId', auth, async (req, res) => {
       if (removeIndex === -1) {
          return res.status(400).json({msg: 'Comment not found'});
       }
+
+      // If current user is not the author of the comment
+      if (req.user !== post.comments[removeIndex].author.toString())
+         return res.status(401).json({msg: 'Cannot delete a comment that is not yours'});
 
       // Remove the comment from the array
       post.comments.splice(removeIndex, 1);

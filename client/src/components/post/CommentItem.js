@@ -14,15 +14,15 @@ const CommentItem = ({postId, comment, currentUser, deleteComment}) => {
             <div className="media-content">
                <div className="content">
                   <p>
-                     <Link to={`/profile/user/${comment.user}`}
-                           className={'author-name has-text-black'}><strong>{comment.name}</strong></Link>
+                     <Link to={`/profile/user/${comment.author}`}
+                           className={'author-name has-text-black'}><strong>{comment.author_name}</strong></Link>
                      <small> {datePosted}</small>
                      <br/>
-                     {comment.body}
+                     {comment.content}
                   </p>
                </div>
             </div>
-            {comment.user === currentUser && <div className="media-right">
+            {comment.author === currentUser && <div className="media-right">
                <button onClick={() => deleteComment(postId, comment._id)} className="delete"/>
             </div>
             }
