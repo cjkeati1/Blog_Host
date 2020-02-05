@@ -8,6 +8,7 @@ import CommentItem from "./CommentItem";
 import CommentForm from "./CommentForm";
 import {Link} from "react-router-dom";
 import {LIKE, UNLIKE} from "../../utils/enums";
+import uuid from "uuid/v4";
 
 const Post = ({post: {loading, post}, match, auth, getPost, updateLikes}) => {
    useEffect(() => {
@@ -30,6 +31,11 @@ const Post = ({post: {loading, post}, match, auth, getPost, updateLikes}) => {
             {post.content}
          </section>
 
+         {post.tags.map(tag => (
+            <Link to={`/tag/${tag}`}><span key={uuid()} className="tag">{tag}</span></Link>
+         ))}
+         <br/>
+         <br/>
          <div className="field is-grouped is-grouped-multiline">
             <div className="control">
                <div className="tags has-addons">
@@ -47,7 +53,6 @@ const Post = ({post: {loading, post}, match, auth, getPost, updateLikes}) => {
                   </span>
                </div>
             </div>
-
          </div>
          {auth.isAuthenticated ? <CommentForm postId={post._id}/>
             : <div><p>You must be <Link to={'/login'}>logged in</Link> to reply</p><br/></div>}

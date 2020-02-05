@@ -6,14 +6,15 @@ import {getPostsByTag} from "../../actions/post";
 import PostItem from "./PostItem";
 import PostForm from "./PostModalForm";
 
+// TODO If tag is clicked the component does reload
 const Posts = ({getPostsByTag, post: {posts_by_tag, loading}, auth, match}) => {
    useEffect(() => {
       getPostsByTag(match.params.tag)
    }, []);
    return loading || auth.loading ? <Loader/> : <Fragment>
-      <p className="has-text-grey">TAGGED IN</p>
-      <h1 className={'title has-text-left is-marginless'}>{match.params.tag}</h1>
-
+      <br/>
+      <h2 className={'subtitle'}>TAGGED IN</h2>
+      <h1 className="title">{match.params.tag}</h1>
       <PostForm/>
       {posts_by_tag && posts_by_tag.length > 0 ? posts_by_tag.map(post => (
          <PostItem key={post._id} post={post}/>

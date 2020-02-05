@@ -12,7 +12,7 @@ const PostItem = ({
                      deletePost
                   }) => {
 
-
+// TODO figure out a way to use <Link> on tag click and make it refresh the page if already in PostsByTag component
    const postedDate = getDatePosted(date);
 
    return <Fragment>
@@ -38,7 +38,7 @@ const PostItem = ({
                   <br/><br/>
                   {
                      (tags.map(tag => (
-                        <Link to={`/tag/${tag}`}><span key={uuid()} className="tag">{tag}</span></Link>
+                        <a href={`/tag/${tag}`}><span key={uuid()} className="tag">{tag}</span></a>
                      )))
                   }
                </Fragment>}
