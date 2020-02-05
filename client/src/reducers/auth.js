@@ -8,6 +8,8 @@ import {
    LOGOUT
 } from '../actions/types';
 
+import axios from 'axios'
+
 const initialState = {
    token: localStorage.getItem('token'),
    isAuthenticated: false,
@@ -40,6 +42,7 @@ export default function (state = initialState, action) {
       case AUTH_ERROR:
       case LOGIN_FAIL:
          localStorage.removeItem('token');
+         delete axios.defaults.headers.common['Authorization'];
          return {
             ...state,
             token: null,
