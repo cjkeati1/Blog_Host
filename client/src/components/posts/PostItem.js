@@ -39,7 +39,7 @@ const PostItem = ({
                   <br/><br/>
                   {
                      (tags.map(tag => (
-                        <span key={uuid()} className="tag">#{tag}</span>
+                        <span key={uuid()} className="tag">{tag}</span>
                      )))
                   }
                </Fragment>}
