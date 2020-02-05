@@ -1,16 +1,15 @@
 const express = require('express');
 const tagRouter = express.Router();
-const auth = require('../../middleware/auth');
 require('dotenv/config');
 
 const Post = require('../../models/post');
-const User = require('../../models/user');
 
 // @route GET api/tag/:tag_name
 // @desc Get posts with the tag param
 // @access Public
 tagRouter.get('/:tag_name', async (req, res) => {
    try {
+      console.log(999);
       // Get all posts in the DB
       const posts = await Post.find({tags: req.params.tag_name});
 

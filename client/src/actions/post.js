@@ -2,6 +2,7 @@ import axios from 'axios';
 import {
    GET_POSTS,
    GET_POST,
+   GET_POSTS_BY_TAG,
    ADD_POST,
    DELETE_POST,
    POST_ERROR,
@@ -18,6 +19,25 @@ export const getPosts = () => async dispatch => {
 
       dispatch({
          type: GET_POSTS,
+         payload: res.data
+      });
+
+   } catch (e) {
+      dispatch({
+         type: POST_ERROR,
+         payload: {msg: e.response.statusText, status: e.response.status}
+      });
+   }
+};
+
+// Get Posts
+export const getPostsByTag = tag => async dispatch => {
+   try {
+      console.log('action hit');
+      const res = await axios.get(`/api/tag/${tag}`);
+
+      dispatch({
+         type: GET_POSTS_BY_TAG,
          payload: res.data
       });
 

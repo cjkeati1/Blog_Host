@@ -17,7 +17,7 @@ export const GET_PROFILE = 'GET_PROFILE';
 export const CLEAR_PROFILE = 'CLEAR_PROFILE';
 export const PROFILE_ERROR = 'PROFILE_ERROR';
 export const UPDATE_FOLLOWS = 'UPDATE_FOLLOWS';
-
+export const GET_POSTS_BY_TAG = 'GET_POSTS_BY_TAG';
 
 
 

@@ -18,6 +18,7 @@ import Profile from "./components/profile/Profile";
 import {loadUser} from "./actions/auth";
 import {Provider} from 'react-redux';
 import store from "./store";
+import PostsByTag from "./components/posts/PostsByTag";
 
 
 if (localStorage.token) {
@@ -43,6 +44,8 @@ function App() {
                   <Route exact path={'/register'} component={Register}/>
                   <Route exact path={'/login'} component={Login}/>
                   <Route exact path={'/posts'} component={Posts}/>
+                  <Route exact path={'/tag/:tag'} component={PostsByTag}/>
+
                </Switch>
             </div>
          </Router>

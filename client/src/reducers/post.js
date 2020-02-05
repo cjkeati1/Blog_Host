@@ -1,6 +1,7 @@
 import {
    GET_POSTS,
    GET_POST,
+   GET_POSTS_BY_TAG,
    POST_ERROR,
    ADD_POST,
    DELETE_POST,
@@ -30,6 +31,12 @@ export default function (state = initialState, action) {
          return {
             ...state,
             post: payload,
+            loading: false
+         };
+      case GET_POSTS_BY_TAG:
+         return {
+            ...state,
+            posts_by_tag: payload,
             loading: false
          };
       case ADD_POST:
