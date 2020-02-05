@@ -11,13 +11,11 @@ const Posts = ({getPostsByTag, post: {posts_by_tag, loading}, auth, match}) => {
       getPostsByTag(match.params.tag)
    }, []);
    return loading || auth.loading ? <Loader/> : <Fragment>
-      <p className="title  is-1">Posts</p>
-      <p className=" subtitle is-4">Explore fascinating stories...</p>
+      <p className="has-text-grey">TAGGED IN</p>
+      <h1 className={'title has-text-left is-marginless'}>{match.params.tag}</h1>
 
-      <h1 className="button is-success is-inverted is-large is-paddingles">Showing results for the
-         tag: {match.params.tag}</h1>
       <PostForm/>
-      {posts_by_tag.length > 0 ? posts_by_tag.map(post => (
+      {posts_by_tag && posts_by_tag.length > 0 ? posts_by_tag.map(post => (
          <PostItem key={post._id} post={post}/>
       )) : <p>There are currently no posts with this tag.</p>}
    </Fragment>

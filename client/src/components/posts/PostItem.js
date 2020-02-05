@@ -1,6 +1,5 @@
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
-import Moment from "react-moment";
 import {connect} from "react-redux";
 import {deletePost} from "../../actions/post";
 import uuid from 'uuid/v4'
@@ -39,7 +38,7 @@ const PostItem = ({
                   <br/><br/>
                   {
                      (tags.map(tag => (
-                        <span key={uuid()} className="tag">{tag}</span>
+                        <Link to={`/tag/${tag}`}><span key={uuid()} className="tag">{tag}</span></Link>
                      )))
                   }
                </Fragment>}
