@@ -7,10 +7,10 @@ import PostItem from "./PostItem";
 import PostForm from "./PostModalForm";
 
 // TODO If tag is clicked the component does reload
-const Posts = ({getPostsByTag, post: {posts_by_tag, loading}, auth, match}) => {
+const Posts = ({getPostsByTag, post: {posts, posts_by_tag, loading}, auth, match}) => {
    useEffect(() => {
       getPostsByTag(match.params.tag)
-   }, []);
+   }, [posts]);
    return loading || auth.loading ? <Loader/> : <Fragment>
       <br/>
       <h2 className={'subtitle'}>TAGGED IN</h2>
