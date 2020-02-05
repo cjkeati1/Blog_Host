@@ -1,2 +1,2 @@
-# Blog_Host
+# Blog_Platform
 ### Medium.com clone
