@@ -12,7 +12,7 @@
 ***
 ### Found a post that may interest you? 
 #### Just click on 'View'. You're free to like the post and publish a response to it—provided you're logged in.
-![Post Example](https://user-images.githubusercontent.com/46345713/73826220-a53dc780-47ba-11ea-889f-231f4e4ac7a2.JPG)
+![Post Example_rev](https://user-images.githubusercontent.com/46345713/73827085-29dd1580-47bc-11ea-9f18-a77f08977163.JPG)
 ***
 ## More features soon
 
