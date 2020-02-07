@@ -35,7 +35,6 @@ function App() {
          <Router>
             <Navbar/>
             <Route exact path={'/'} component={Home}/>
-            <Route exact path={'/categories'} component={Categories}/>
 
             <div className={'test-container'}>
                <Switch>

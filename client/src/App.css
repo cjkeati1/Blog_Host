@@ -61,7 +61,6 @@ body {
 
 .tag:hover {
    filter: brightness(90%);
-
 }
 
 .indicator svg polyline {

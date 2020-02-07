@@ -26,12 +26,6 @@ const PostModalForm = ({addPost}) => {
       e.preventDefault();
       try {
          await addPost(formData);
-         // setFormData({
-         //    title: '',
-         //    content: '',
-         //    tags: '',
-         //    category: ''
-         // });
          toggleModal();
 
       } catch (err) {

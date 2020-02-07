@@ -34,9 +34,6 @@ const Navbar = ({auth: {isAuthenticated, loading}, logout}) => {
                <Link className="navbar-item" to={'/posts'} onClick={() => toggleHamburger()}>
                   Posts
                </Link>
-               <Link className="navbar-item" to={'/categories'} onClick={() => toggleHamburger()}>
-                  Categories
-               </Link>
                <div className="navbar-item has-dropdown is-hoverable">
                   <div className="navbar-link">
                      More
