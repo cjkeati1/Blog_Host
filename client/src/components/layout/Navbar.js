@@ -35,21 +35,27 @@ const Navbar = ({auth: {isAuthenticated, loading, user}, logout}) => {
                <Link className="navbar-item" to={'/posts'} onClick={() => toggleHamburger()}>
                   Posts
                </Link>
-               <div className="navbar-item has-dropdown is-hoverable">
-                  <div className="navbar-link">
-                     More
-                  </div>
+               <Link className="navbar-item" to={'/contact'} onClick={() => toggleHamburger()}>
+                  Contact
+               </Link>
+               {/*<div className="navbar-item has-dropdown is-hoverable">*/}
+               {/*   <div className="navbar-link">*/}
+               {/*      More*/}
+               {/*   </div>*/}
 
-                  <div className="navbar-dropdown">
-                     <Link className="navbar-item" to={'/about'} onClick={() => toggleHamburger()}>
-                        About
-                     </Link>
-                     <Link className="navbar-item" to={'/contact'} onClick={() => toggleHamburger()}>
-                        Contact
-                     </Link>
-                
-                  </div>
-               </div>
+               {/*   <div className="navbar-dropdown">*/}
+               {/*      <Link className="navbar-item" to={'/about'} onClick={() => toggleHamburger()}>*/}
+               {/*         About*/}
+               {/*      </Link>*/}
+               {/*      <Link className="navbar-item" to={'/contact'} onClick={() => toggleHamburger()}>*/}
+               {/*         Contact*/}
+               {/*      </Link>*/}
+               {/*      <hr className="navbar-divider"/>*/}
+               {/*      <Link className="navbar-item" to={'/report-issue'} onClick={() => toggleHamburger()}>*/}
+               {/*         Report an issue*/}
+               {/*      </Link>*/}
+               {/*   </div>*/}
+               {/*</div>*/}
 
                <div className="navbar-item">
                   <div className="field has-addons">
