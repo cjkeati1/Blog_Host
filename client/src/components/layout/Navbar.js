@@ -3,10 +3,9 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import PropTypes from 'prop-types'
 import {logout} from "../../actions/auth";
-import auth from "../../reducers/auth";
 
 // TODO add login, signup, and logout icons
-const Navbar = ({auth: {isAuthenticated, loading, user}, logout}) => {
+const Navbar = ({auth: {isAuthenticated, user}, logout}) => {
    const toggleHamburger = () => {
       document.getElementById("navbarBasicExample").classList.toggle('is-active');
       document.getElementById("button").classList.toggle('is-active');
@@ -15,7 +14,7 @@ const Navbar = ({auth: {isAuthenticated, loading, user}, logout}) => {
       <nav className="navbar" role="navigation" aria-label="main navigation">
          <div className="navbar-brand">
             <Link className="navbar-item" to="/">
-               <i className="fas fa-blog"/> <span className={'has-text-weight-bold'}>&nbsp;Blog Host</span>
+               <i className="fas fa-blog"/> <span className={'has-text-weight-bold'}>&nbsp;Easy Blogs</span>
             </Link>
 
             <div id="button" role="button" className="navbar-burger burger" aria-label="menu"

@@ -1,16 +1,13 @@
 import React, {Fragment} from 'react';
-import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import PropTypes from 'prop-types'
 import Loader from "../loader/Loader";
-import auth from "../../reducers/auth";
 
 const title = () => {
    return <section className="hero is-medium is-dark is-bold">
       <div className="hero-body">
          <div className="container">
             <h1 className="title">
-               Welcome to Blog Host
+               Welcome to Easy Blogs
             </h1>
             <h2 className="subtitle">
                Read and write stories &mdash; all in one place.
@@ -19,7 +16,7 @@ const title = () => {
       </div>
    </section>
 };
-const Home = ({auth: {user, loading, isAuthenticated}}) => {
+const Home = ({auth: {loading}}) => {
    return (loading ? <Loader/> :
       (
          <Fragment>
