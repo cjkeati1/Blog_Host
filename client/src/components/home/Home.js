@@ -24,13 +24,6 @@ const Home = ({auth: {user, loading, isAuthenticated}}) => {
       (
          <Fragment>
             {title()}
-            <figure className="image ">
-               <img
-                  src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80"/>
-               <img
-                  src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"/>
-
-            </figure>
          </Fragment>
       ))
 };

@@ -7,7 +7,6 @@ import setAuthToken from "./utils/setAuthToken";
 // Components
 import Home from "./components/home/Home";
 import Posts from "./components/posts/Posts";
-import Categories from "./components/categories/Categories";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
 import Navbar from "./components/layout/Navbar";
@@ -19,6 +18,7 @@ import {loadUser} from "./actions/auth";
 import {Provider} from 'react-redux';
 import store from "./store";
 import PostsByTag from "./components/posts/PostsByTag";
+import Contact from "./components/contact/Contact";
 
 
 if (localStorage.token) {
@@ -35,6 +35,7 @@ function App() {
          <Router>
             <Navbar/>
             <Route exact path={'/'} component={Home}/>
+            <Route exact path={'/contact'} component={Contact}/>
 
             <div className={'test-container'}>
                <Switch>
@@ -44,6 +45,7 @@ function App() {
                   <Route exact path={'/login'} component={Login}/>
                   <Route exact path={'/posts'} component={Posts}/>
                   <Route exact path={'/tag/:tag'} component={PostsByTag}/>
+
 
                </Switch>
             </div>

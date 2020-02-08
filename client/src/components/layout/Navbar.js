@@ -3,9 +3,10 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import PropTypes from 'prop-types'
 import {logout} from "../../actions/auth";
+import auth from "../../reducers/auth";
 
 // TODO add login, signup, and logout icons
-const Navbar = ({auth: {isAuthenticated, loading}, logout}) => {
+const Navbar = ({auth: {isAuthenticated, loading, user}, logout}) => {
    const toggleHamburger = () => {
       document.getElementById("navbarBasicExample").classList.toggle('is-active');
       document.getElementById("button").classList.toggle('is-active');
@@ -46,10 +47,7 @@ const Navbar = ({auth: {isAuthenticated, loading}, logout}) => {
                      <Link className="navbar-item" to={'/contact'} onClick={() => toggleHamburger()}>
                         Contact
                      </Link>
-                     <hr className="navbar-divider"/>
-                     <Link className="navbar-item" to={'/report-issue'} onClick={() => toggleHamburger()}>
-                        Report an issue
-                     </Link>
+                
                   </div>
                </div>
 
@@ -70,6 +68,8 @@ const Navbar = ({auth: {isAuthenticated, loading}, logout}) => {
             {isAuthenticated ? <div className="navbar-end">
                <div className="navbar-item">
                   <div className="buttons">
+                     <Link className="button is-inverted is-info" to={`/profile/user/${user ? user._id : '#'}`}>My Profile</Link>
+
                      <a className="button is-danger is-inverted" onClick={() => {
                         logout();
                         toggleHamburger();
