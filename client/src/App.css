@@ -139,7 +139,7 @@ body {
 @media (max-width: 1024px) {
    .test-container {
       width: 100%;
-      padding: 0 32px;
+      padding: 0 15px;
    }
 }
 
