@@ -128,14 +128,14 @@ body {
    }
 }
 
-@media (min-width: 750px) {
+@media (min-width: 780px) {
    .test-container {
       max-width: 750px;
       margin: auto;
    }
 }
 
-@media (max-width: 750px) {
+@media (max-width: 780px) {
    .test-container {
       width: 100%;
       padding: 0 15px;
