@@ -1,4 +1,4 @@
-# Blog Platform
+# Easy Blogs
 ## A platform to share ideas and gain knowledge.
 
 [Go to website](http://www.easyblogs.net/)
