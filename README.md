@@ -1,7 +1,7 @@
 # Blog Platform
 ## A platform to share ideas and gain knowledge.
 
-[Go to website](http://easyblogs.net/)
+[Go to website](http://www.easyblogs.net/)
 
 ![Posts Page](https://user-images.githubusercontent.com/46345713/73825171-ba195b80-47b8-11ea-9308-b75083552752.JPG)
 ***
