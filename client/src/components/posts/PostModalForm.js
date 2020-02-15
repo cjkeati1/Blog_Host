@@ -60,14 +60,6 @@ const PostModalForm = ({addPost}) => {
                      </div>
                   </div>
                   <div className="field">
-                     <label className="label">Category</label>
-                     <div className="control">
-                        <input onChange={(e) => onChange(e)} className="input" type="text" value={formData.category}
-                               placeholder="Text input"
-                               name={'category'} required/>
-                     </div>
-                  </div>
-                  <div className="field">
                      <label className="label">Tags</label>
                      <div className="control">
                         <input onChange={(e) => onChange(e)} className="input" type="text" value={formData.tags}

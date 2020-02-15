@@ -23,27 +23,60 @@ postRouter.get('/', async (req, res) => {
 });
 
 // @route POST api/posts
-// @desc Create a post
+// @desc Create or update a post
 // @access Private
 postRouter.post('/', auth, async (req, res) => {
-   const {title, content, category, tags} = req.body;
+   const {title, content, tags, postId} = req.body;
+
 
    try {
       // Get user, leave out the password
       const user = await User.findById(req.user).select('-password');
+
+      const postFields = {};
+      postFields.author = user;
+      postFields.title = title;
+      postFields.content = content;
+      postFields.author_name = user.name;
 
       // Extract tags, if any, (Which should be comma separated) and insert into an array
       let postTags = [];
       if (tags) {
          postTags = tags.split(',').map(tag => tag.trim()).filter(tag => tag !== '');
       }
+      postFields.tags = postTags;
 
-      // Make new post and save to db
-      let newPost = await Post.create({title, content, author_name: user.name, tags: postTags, category, author: user});
+
+      let post = null;
+      if (postId !== null)
+         post = await Post.findById(postId); // Find post with the ID
+
+
+      if (post) { // Update the post if found and current user is the author
+
+         console.log(post.author);
+         console.log(user._id);
+         if (post.author.toString() !== user._id.toString()) {
+            return res.status(400).json({msg: 'Cannot edit a post that is not yours'});
+         } else {
+            post = await Post.findOneAndUpdate(
+               {_id: postId},
+               {$set: postFields},
+               {new: true}
+            );
+            return res.json(post);
+         }
+      }
+
+      // There is no post so create one
+      let newPost = await Post.create(postFields);
 
       return res.json(newPost);
 
    } catch (err) {
+      if (err.kind === 'ObjectId') {
+         return res.status(404).json({msg: 'Post not found'});
+      }
       console.error(err);
       return res.status(500).send('Server Error');
    }

@@ -15,7 +15,6 @@ const PostSchema = new Schema({
       required: true
    },
    author: {type: Schema.Types.ObjectId, ref: 'User'},
-   category: {type: String, required: true},
    tags: [
       {
          type: String,
