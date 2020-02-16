@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {sendMessage} from "../../actions/contact";
 import {connect} from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 
 const Contact = ({sendMessage}) => {
    const [formData, setFormData] = useState({
@@ -11,11 +11,7 @@ const Contact = ({sendMessage}) => {
       message: '',
    });
 
-   routeChange = () => {
-      let path = `/contact/confirmation`;
-      let history = useHistory();
-      history.push(path);
-   };
+   const history = useHistory();
 
    const onChange = e => {
       setFormData({...formData, [e.target.name]: e.target.value});
@@ -26,7 +22,8 @@ const Contact = ({sendMessage}) => {
       try {
          await sendMessage(formData);
 
-         routeChange();
+         let path = `/contact/confirmation`;
+         history.push(path);
       } catch (err) {
          //setPostError(true);
       }
