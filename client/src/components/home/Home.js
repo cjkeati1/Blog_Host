@@ -10,7 +10,7 @@ const title = () => {
                Welcome to Easy Blogs
             </h1>
             <h2 className="subtitle">
-               Read and write stories &mdash; all in one place.
+               A place to read and write stories.
             </h2>
          </div>
       </div>
