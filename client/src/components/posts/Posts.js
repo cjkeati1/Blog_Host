@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types';
 import Loader from "../loader/Loader";
@@ -6,16 +6,20 @@ import {getPosts} from "../../actions/post";
 import PostItem from "./PostItem";
 import PostForm from "./PostModalForm";
 import {Link} from "react-router-dom";
+import DeletePostConfirmationModal from "../post/DeletePostConfirmationModal";
 
 const toggleModal = () => {
    document.getElementById("modal").classList.toggle('is-active');
 };
 
+
 const Posts = ({getPosts, post: {posts, loading}, auth}) => {
    useEffect(() => {
       getPosts();
    }, [getPosts]);
+   const [selectedPost, setSelectedPost] = useState(null);
    return loading || auth.loading ? <Loader/> : <Fragment>
+
       <p className="title  is-1">Posts</p>
       <p className=" subtitle is-4">Explore fascinating stories...</p>
 
@@ -26,7 +30,7 @@ const Posts = ({getPosts, post: {posts, loading}, auth}) => {
       </button> : <p><Link to={'/login'}>Log in</Link> to create a post</p>}
       <PostForm/>
       {posts.length > 0 ? posts.map(post => (
-         <PostItem key={post._id} post={post}/>
+         <PostItem key={post._id} post={post} setPost={setSelectedPost} selectedPost={selectedPost}/>
       )) : <p>There are currently no posts.</p>}
    </Fragment>
 };

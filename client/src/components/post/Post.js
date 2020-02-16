@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 import {getPost, updateLikes} from "../../actions/post";
 import {connect} from "react-redux";
@@ -22,9 +22,8 @@ const Post = ({post: {loading, post}, match, auth, getPost, updateLikes}) => {
       getPost(match.params.id);
    }, [getPost, match.params.id]);
 
-   {
-      post && console.log(post.title);
-   }
+   const [selectedComment, setSelectedComment] = useState(null);
+
    return loading || auth.loading || post === null || post._id !== match.params.id ? <Loader/> :
 
       <Fragment>
@@ -78,7 +77,7 @@ const Post = ({post: {loading, post}, match, auth, getPost, updateLikes}) => {
          <hr className={'style10'}/>
          <div className={'comment-section'}>{post.comments.length > 0 ? post.comments.map(comment => (
             <CommentItem postId={post._id} currentUser={auth.user ? auth.user._id : null} key={comment._id}
-                         comment={comment}/>
+                         comment={comment} setComment={setSelectedComment} selectedComment={selectedComment}/>
          )) : <p>There are currently no comments on this post.</p>}</div>
 
       </Fragment>

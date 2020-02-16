@@ -12,7 +12,7 @@ const toggleModal = () => {
 };
 
 // TODO, add a modal confirmation when deleting comments
-const CommentItem = ({postId, comment, currentUser, deleteComment}) => {
+const CommentItem = ({postId, comment, currentUser, setComment, selectedComment}) => {
    const datePosted = getDatePosted(comment.date);
    return (
       <div className={"is-size-6"} style={{marginBottom: '20px'}}>
@@ -28,11 +28,14 @@ const CommentItem = ({postId, comment, currentUser, deleteComment}) => {
                   </p>
                </div>
             </div>
-            <DeleteCommentConfirmationModal postId={postId} commentId={comment._id}/>
+            <DeleteCommentConfirmationModal postId={postId} commentId={selectedComment}/>
             {comment.author === currentUser && <div className="media-right">
                <span className="icon">
                   <i
-                     onClick={() => toggleModal()}
+                     onClick={() => {
+                        setComment(comment._id);
+                        toggleModal()
+                     }}
                      className="far fa-trash-alt"
                      style={{color: 'red'}}/>
                </span>
