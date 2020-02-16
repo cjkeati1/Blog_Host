@@ -40,7 +40,7 @@ const DeletePostConfirmationModal = ({deletePost, postId}) => {
 
 DeletePostConfirmationModal.propTypes = {
    editPost: PropTypes.func.isRequired,
-   postId: PropTypes.string.isRequired
+   postId: PropTypes.string
 };
 
 

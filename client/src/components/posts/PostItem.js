@@ -8,8 +8,7 @@ import getDatePosted from "../../utils/getDatePosted";
 import DeletePostConfirmationModal from "../post/DeletePostConfirmationModal";
 
 
-const toggleModal = (selectedPost) => {
-   console.log(selectedPost);
+const toggleModal = () => {
    document.getElementById("delete-post-modal").classList.toggle('is-active');
 };
 
@@ -17,7 +16,6 @@ const toggleModal = (selectedPost) => {
 const PostItem = ({
                      post: {_id, content, title, author_name, author, likes, comments, date, tags},
                      auth,
-                     deletePost,
                      setPost,
                      selectedPost
                   }) => {
@@ -38,18 +36,17 @@ const PostItem = ({
                   className={'author-name has-text-weight-normal is-italic has-text-black'}>{author_name}</small></Link>
                </div>
             </div>
-            <a href="#" className="card-header-icon" aria-label="more options" onClick={() => {
+            {auth && auth.isAuthenticated && author === auth.user._id &&
+            <Fragment><a href="#" className="card-header-icon" aria-label="more options" onClick={() => {
                setPost(_id);
                toggleModal(selectedPost)
             }}>
-               {auth && auth.isAuthenticated && author === auth.user._id && <span className="icon">
+              <span className="icon">
        <i className="far fa-trash-alt" style={{color: 'red'}}/>
-      </span>}
+      </span>
             </a>
+            </Fragment>}
          </header>
-         {/*<DeletePostConfirmationModal postId={_id}/>*/}
-
-         {/*TODO postId will always be the last rendered post, same with  deleteCommentModal so it'll delete the most recent post no matter what*/}
          <div className="card-content">
             <div className="content">
                {content.length > 100 ? content.substring(0, 50) + '...' : content}

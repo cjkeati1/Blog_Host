@@ -6,7 +6,6 @@ import {getPosts} from "../../actions/post";
 import PostItem from "./PostItem";
 import PostForm from "./PostModalForm";
 import {Link} from "react-router-dom";
-import DeletePostConfirmationModal from "../post/DeletePostConfirmationModal";
 
 const toggleModal = () => {
    document.getElementById("modal").classList.toggle('is-active');

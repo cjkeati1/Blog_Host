@@ -42,7 +42,7 @@ const DeleteCommentConfirmationModal = ({postId, commentId, deleteComment}) => {
 DeleteCommentConfirmationModal.propTypes = {
    deleteComment: PropTypes.func.isRequired,
    postId: PropTypes.string.isRequired,
-   commentId: PropTypes.string.isRequired
+   commentId: PropTypes.string
 };
 
 
