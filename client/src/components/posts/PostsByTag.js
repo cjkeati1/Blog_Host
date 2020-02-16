@@ -6,7 +6,7 @@ import {getPostsByTag} from "../../actions/post";
 import PostItem from "./PostItem";
 import PostForm from "./PostModalForm";
 
-// TODO If tag is clicked the component does reload
+// TODO If tag is clicked the component doesnt reload
 const Posts = ({getPostsByTag, post: {posts, posts_by_tag, loading}, auth, match}) => {
    useEffect(() => {
       getPostsByTag(match.params.tag)

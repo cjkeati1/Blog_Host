@@ -9,7 +9,6 @@ const Post = require('../../models/post');
 // @access Public
 tagRouter.get('/:tag_name', async (req, res) => {
    try {
-      console.log(999);
       // Get all posts in the DB
       const posts = await Post.find({tags: req.params.tag_name});
 

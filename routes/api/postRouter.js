@@ -29,10 +29,7 @@ postRouter.post('/', auth, async (req, res) => {
    const {title, content, tags, postId} = req.body;
 
    try {
-      console.log(title);
-      console.log(content);
-      console.log(postId);
-      console.log(tags);
+
       // Get user, leave out the password
       const user = await User.findById(req.user).select('-password');
 
@@ -46,7 +43,8 @@ postRouter.post('/', auth, async (req, res) => {
          // Extract tags, if any, (Which should be comma separated) and insert into an array
          let postTags = [];
          if (tags) {
-            postTags = tags.split(',').map(tag => tag.trim()).filter(tag => tag !== '');
+            postTags = tags.split(',').map(tag => tag.trim()).filter(tag => tag !== '')
+            postTags.splice(0, postTags.length, ...(new Set(postTags)));
          }
          postFields.tags = postTags;
       } else {
