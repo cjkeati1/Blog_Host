@@ -39,6 +39,7 @@ postRouter.post('/', auth, async (req, res) => {
       postFields.content = content;
       postFields.author_name = user.name;
 
+      // TODO Don't allow backslashes '/' in ID's. It will go to /posts/beginningoftag/endoftag which is not a page
       if (!Array.isArray(tags)) { // If we're editing a post and don't change tags, they will come in as an array
          // Extract tags, if any, (Which should be comma separated) and insert into an array
          let postTags = [];

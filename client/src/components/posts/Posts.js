@@ -26,7 +26,10 @@ const Posts = ({getPosts, post: {posts, loading}, auth}) => {
          onClick={() => toggleModal()}
          className="button is-success is-inverted is-large is-paddingless	">
          Create a Post
-      </button> : <p><Link to={{pathname: '/login', state: {from: '/posts'}}}>Log in</Link> to create a post</p>}
+      </button> : <p>
+         <Link to={{pathname: '/login', state: {from: '/posts'}}}>
+            Log in</Link> to create a post</p>
+      }
       <PostForm/>
       {posts.length > 0 ? posts.map(post => (
          <PostItem key={post._id} post={post} setPost={setSelectedPost} selectedPost={selectedPost}/>

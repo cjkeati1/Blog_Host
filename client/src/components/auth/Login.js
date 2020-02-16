@@ -30,11 +30,11 @@ const Login = ({isAuthenticated, login, location}) => {
    };
    if (isAuthenticated) {
       if (location.state && location.state.from) {
-         history.replace(location.state.from);
+         history.push(location.state.from);
       }
       // else go to home
       else {
-         history.replace('/');
+         history.push('/');
       }
    }
    return (

@@ -22,7 +22,6 @@ const PostItem = ({
 
 // TODO figure out a way to use <Link> on tag click and make it refresh the page if already in PostsByTag component
    const postedDate = getDatePosted(date);
-
    return <Fragment>
 
       <DeletePostConfirmationModal postId={selectedPost}/>
@@ -36,7 +35,7 @@ const PostItem = ({
                   className={'author-name has-text-weight-normal is-italic has-text-black'}>{author_name}</small></Link>
                </div>
             </div>
-            {auth && auth.isAuthenticated && author === auth.user._id &&
+            {auth && auth.isAuthenticated && auth.user && author === auth.user._id &&
             <Fragment><a href="#" className="card-header-icon" aria-label="more options" onClick={() => {
                setPost(_id);
                toggleModal(selectedPost)

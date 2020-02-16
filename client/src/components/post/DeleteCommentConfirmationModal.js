@@ -21,7 +21,6 @@ const DeleteCommentConfirmationModal = ({postId, commentId, deleteComment}) => {
 
    };
 
-   console.log(commentId);
    return (
       <div id={'delete-comment-modal'} className="modal">
          <div className="modal-background"/>
