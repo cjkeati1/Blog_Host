@@ -1,20 +1,19 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {editPost} from "../../actions/post";
-import {deletePost} from "../../actions/post";
+import {deleteComment} from "../../actions/post";
 
 const toggleModal = () => {
-   document.getElementById("delete-post-modal").classList.toggle('is-active');
+   document.getElementById("delete-comment-modal").classList.toggle('is-active');
 };
 
-const DeletePostConfirmationModal = ({deletePost, postId}) => {
+const DeleteCommentConfirmationModal = ({postId, commentId, deleteComment}) => {
    const onFormSubmit = async e => {
       e.preventDefault();
       try {
          toggleModal();
 
-         await deletePost(postId);
+         await deleteComment(postId, commentId);
 
       } catch (err) {
          //setPostError(true);
@@ -22,11 +21,11 @@ const DeletePostConfirmationModal = ({deletePost, postId}) => {
 
    };
    return (
-      <div id={'delete-post-modal'} className="modal">
+      <div id={'delete-comment-modal'} className="modal">
          <div className="modal-background"/>
          <div className="modal-card">
             <header className="modal-card-head">
-               <p className="modal-card-title">Are you sure you want to delete this post?</p>
+               <p className="modal-card-title">Are you sure you want to delete this comment?</p>
                <button onClick={() => toggleModal()} className="delete" aria-label="close"/>
             </header>
             <footer className="modal-card-foot">
@@ -38,11 +37,12 @@ const DeletePostConfirmationModal = ({deletePost, postId}) => {
    );
 };
 
-DeletePostConfirmationModal.propTypes = {
-   editPost: PropTypes.func.isRequired,
-   postId: PropTypes.string.isRequired
+DeleteCommentConfirmationModal.propTypes = {
+   deleteComment: PropTypes.func.isRequired,
+   postId: PropTypes.string.isRequired,
+   commentId: PropTypes.string.isRequired
 };
 
 
-export default connect(null, {deletePost})(DeletePostConfirmationModal);
+export default connect(null, {deleteComment})(DeleteCommentConfirmationModal);
 

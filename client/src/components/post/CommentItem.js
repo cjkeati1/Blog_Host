@@ -4,6 +4,12 @@ import getDatePosted from "../../utils/getDatePosted";
 import {deleteComment} from "../../actions/post";
 import {connect} from 'react-redux'
 import {Link} from "react-router-dom";
+import DeleteCommentConfirmationModal from "./DeleteCommentConfirmationModal";
+
+
+const toggleModal = () => {
+   document.getElementById("delete-comment-modal").classList.toggle('is-active');
+};
 
 // TODO, add a modal confirmation when deleting comments
 const CommentItem = ({postId, comment, currentUser, deleteComment}) => {
@@ -22,8 +28,14 @@ const CommentItem = ({postId, comment, currentUser, deleteComment}) => {
                   </p>
                </div>
             </div>
+            <DeleteCommentConfirmationModal postId={postId} commentId={comment._id}/>
             {comment.author === currentUser && <div className="media-right">
-               <button onClick={() => deleteComment(postId, comment._id)} className="delete"/>
+               <span className="icon">
+                  <i
+                     onClick={() => toggleModal()}
+                     className="far fa-trash-alt"
+                     style={{color: 'red'}}/>
+               </span>
             </div>
             }
          </article>

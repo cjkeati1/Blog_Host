@@ -9,7 +9,7 @@ import DeletePostConfirmationModal from "../post/DeletePostConfirmationModal";
 
 
 const toggleModal = () => {
-   document.getElementById("delete-modal").classList.toggle('is-active');
+   document.getElementById("delete-post-modal").classList.toggle('is-active');
 };
 
 
