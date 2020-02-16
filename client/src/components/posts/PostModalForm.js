@@ -26,7 +26,6 @@ const PostModalForm = ({addPost}) => {
       try {
          await addPost(formData);
          toggleModal();
-
       } catch (err) {
          //setPostError(true);
       }

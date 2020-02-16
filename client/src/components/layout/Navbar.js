@@ -56,18 +56,18 @@ const Navbar = ({auth: {isAuthenticated, user}, logout}) => {
                {/*   </div>*/}
                {/*</div>*/}
 
-               <div className="navbar-item">
-                  <div className="field has-addons">
-                     <div className="control">
-                        <input className="input is-normal" type="text" placeholder="Search"/>
-                     </div>
-                     <div className="control">
-                        <div className="button is-info is-normal" onClick={() => toggleHamburger()}>
-                           <i className="fas fa-search"/>
-                        </div>
-                     </div>
-                  </div>
-               </div>
+               {/*<div className="navbar-item">*/}
+               {/*   <div className="field has-addons">*/}
+               {/*      <div className="control">*/}
+               {/*         <input className="input is-normal" type="text" placeholder="Search"/>*/}
+               {/*      </div>*/}
+               {/*      <div className="control">*/}
+               {/*         <div className="button is-info is-normal" onClick={() => toggleHamburger()}>*/}
+               {/*            <i className="fas fa-search"/>*/}
+               {/*         </div>*/}
+               {/*      </div>*/}
+               {/*   </div>*/}
+               {/*</div>*/}
             </div>
 
             {isAuthenticated ? <div className="navbar-end">
