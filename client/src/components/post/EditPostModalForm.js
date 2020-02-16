@@ -72,7 +72,7 @@ const EditPostModalForm = ({editPost, post, postId}) => {
                </form>
             </section>
             <footer className="modal-card-foot">
-               <button onClick={(e) => onFormSubmit(e)} className="button is-success">Create</button>
+               <button onClick={(e) => onFormSubmit(e)} className="button is-success">Edit</button>
                <button onClick={() => toggleModal()} className="button">Cancel</button>
             </footer>
          </div>
