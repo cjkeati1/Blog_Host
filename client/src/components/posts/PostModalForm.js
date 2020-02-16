@@ -29,8 +29,8 @@ const PostModalForm = ({addPost}) => {
       } catch (err) {
          //setPostError(true);
       }
-
    };
+
    return (
       <div id={'modal'} className="modal">
          <div className="modal-background"/>

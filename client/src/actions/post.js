@@ -34,7 +34,6 @@ export const getPosts = () => async dispatch => {
 // Get Posts
 export const getPostsByTag = tag => async dispatch => {
    try {
-      console.log('action hit');
       const res = await axios.get(`/api/tag/${tag}`);
 
       dispatch({

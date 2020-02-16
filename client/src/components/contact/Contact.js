@@ -1,7 +1,37 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
+import {sendMessage} from "../../actions/contact";
+import {connect} from 'react-redux';
+import { useHistory } from 'react-router-dom';
 
-const Contact = props => {
+const Contact = ({sendMessage}) => {
+   const [formData, setFormData] = useState({
+      name: '',
+      email: '',
+      message: '',
+   });
+
+   routeChange = () => {
+      let path = `/contact/confirmation`;
+      let history = useHistory();
+      history.push(path);
+   };
+
+   const onChange = e => {
+      setFormData({...formData, [e.target.name]: e.target.value});
+   };
+
+   const onFormSubmit = async e => {
+      e.preventDefault();
+      try {
+         await sendMessage(formData);
+
+         routeChange();
+      } catch (err) {
+         //setPostError(true);
+      }
+   };
+
    return (
       <section className="hero is-fullheight">
          <div className="hero-body">
@@ -15,24 +45,36 @@ const Contact = props => {
                      <div className="field">
                         <label className="label">Name</label>
                         <div className="control">
-                           <input className="input is-medium" type="text"/>
+                           <input className="input is-medium"
+                                  name={"name"}
+                                  type="text"
+                                  onChange={e => onChange(e)}/>
                         </div>
                      </div>
                      <div className="field">
                         <label className="label">Email</label>
                         <div className="control">
-                           <input className="input is-medium" type="text"/>
+                           <input
+                              className="input is-medium"
+                              name={"email"}
+                              type="text"
+                              onChange={e => onChange(e)}/>
                         </div>
                      </div>
                      <div className="field">
                         <label className="label">Message</label>
                         <div className="control">
-                           <textarea className="textarea is-medium"/>
+                           <textarea
+                              className="textarea is-medium"
+                              name={"message"}
+                              onChange={e => onChange(e)}/>
                         </div>
                      </div>
                      <div className="control">
-                        <button type="submit"
-                                className="button is-link is-fullwidth has-text-weight-medium is-medium">Send Message
+                        <button
+                           type="submit"
+                           className="button is-link is-fullwidth has-text-weight-medium is-medium"
+                           onClick={e => onFormSubmit(e)}>Send Message
                         </button>
                      </div>
                   </div>
@@ -40,11 +82,11 @@ const Contact = props => {
             </div>
          </div>
       </section>
-);
+   );
 };
 
 Contact.propTypes = {
-
+   sendMessage: PropTypes.func.isRequired
 };
 
-export default Contact;
+export default connect(null, {sendMessage})(Contact);

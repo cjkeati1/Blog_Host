@@ -8,7 +8,9 @@ const Message = require('../../models/message');
 contactRouter.post('/',
    async (req, res) => {
       const {name, email, message} = req.body;
-
+      console.log(name);
+      console.log(email);
+      console.log(message);
       try {
          let newMessage = await Message.create({author_name: name, author_email: email, content: message});
          res.json(newMessage);

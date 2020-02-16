@@ -19,6 +19,7 @@ import {Provider} from 'react-redux';
 import store from "./store";
 import PostsByTag from "./components/posts/PostsByTag";
 import Contact from "./components/contact/Contact";
+import ContactConfirmation from "./components/contact/ContactConfirmation";
 
 
 if (localStorage.token) {
@@ -45,6 +46,7 @@ function App() {
                   <Route exact path={'/login'} component={Login}/>
                   <Route exact path={'/posts'} component={Posts}/>
                   <Route exact path={'/tag/:tag'} component={PostsByTag}/>
+                  <Route exact path={'/contact/confirmation'} component={ContactConfirmation}/>
 
 
                </Switch>
