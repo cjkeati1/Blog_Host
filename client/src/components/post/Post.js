@@ -71,7 +71,13 @@ const Post = ({post: {loading, post}, match, auth, getPost, updateLikes}) => {
             </div>
          </div>
          {auth.isAuthenticated ? <CommentForm postId={post._id}/>
-            : <div><p>You must be <Link to={'/login'}>logged in</Link> to reply</p><br/></div>}
+            : <div>
+               <p>
+                  You must be <Link to={{pathname: '/login', state: {from: `/posts/${post._id}`}}}>logged in</Link> to
+                  reply
+               </p>
+               <br/>
+            </div>}
          <p className="title is-5 is-spaced has-text-centered has-text-left-mobile is-marginless">Replies</p>
          <hr className={'style10'}/>
          <div className={'comment-section'}>{post.comments.length > 0 ? post.comments.map(comment => (

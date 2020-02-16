@@ -3,8 +3,9 @@ import {Redirect} from "react-router-dom";
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {login} from "../../actions/auth";
+import {useHistory} from 'react-router-dom';
 
-const Login = ({isAuthenticated, login}) => {
+const Login = ({isAuthenticated, login, location}) => {
    const [formData, setFormData] = useState({
       email: '',
       password: ''
@@ -16,6 +17,8 @@ const Login = ({isAuthenticated, login}) => {
 
    const onChange = e => setFormData({...formData, [e.target.name]: e.target.value});
 
+   const history = useHistory();
+
    const onSubmit = async e => {
       e.preventDefault();
       await login(formData);
@@ -26,7 +29,13 @@ const Login = ({isAuthenticated, login}) => {
 
    };
    if (isAuthenticated) {
-      return <Redirect to={'/'}/>
+      if (location.state && location.state.from) {
+         history.replace(location.state.from);
+      }
+      // else go to home
+      else {
+         history.replace('/');
+      }
    }
    return (
       <Fragment>

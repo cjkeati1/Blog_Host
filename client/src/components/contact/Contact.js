@@ -23,7 +23,7 @@ const Contact = ({sendMessage}) => {
          await sendMessage(formData);
 
          let path = `/contact/confirmation`;
-         history.push(path);
+         history.push(path)
       } catch (err) {
          //setPostError(true);
       }
