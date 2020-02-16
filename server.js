@@ -7,7 +7,6 @@ const path = require('path');
 connectDb();
 app.use(express.json());
 
-
 // TODO Decide on making resource names plural or singlular (Ex. /api/post vs. /api/posts)
 app.use('/api/register', require('./routes/api/registerRouter'));
 app.use('/api/login', require('./routes/api/loginRouter'));
@@ -17,6 +16,7 @@ app.use('/api/posts', require('./routes/api/postRouter'));
 app.use('/api/users', require('./routes/api/userRouter'));
 app.use('/api/auth', require('./routes/api/authRouter'));
 app.use('/api/tag', require('./routes/api/tagRouter'));
+app.use('/api/contact', require('./routes/api/contactRouter'));
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {
