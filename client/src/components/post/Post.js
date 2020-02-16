@@ -13,6 +13,7 @@ import uuid from "uuid/v4";
 
 
 const toggleModal = () => {
+   console.log('create');
    document.getElementById("modal").classList.toggle('is-active');
 };
 

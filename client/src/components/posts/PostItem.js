@@ -5,11 +5,17 @@ import {deletePost} from "../../actions/post";
 import uuid from 'uuid/v4'
 import {Link} from "react-router-dom";
 import getDatePosted from "../../utils/getDatePosted";
+import DeletePostConfirmationModal from "../post/DeletePostConfirmationModal";
+
+
+const toggleModal = () => {
+   document.getElementById("delete-modal").classList.toggle('is-active');
+};
+
 
 const PostItem = ({
                      post: {_id, content, title, author_name, author, likes, comments, date, tags},
-                     auth,
-                     deletePost
+                     auth
                   }) => {
 
 // TODO figure out a way to use <Link> on tag click and make it refresh the page if already in PostsByTag component
@@ -25,12 +31,13 @@ const PostItem = ({
                   className={'author-name has-text-weight-normal is-italic has-text-black'}>{author_name}</small></Link>
                </div>
             </div>
-            <a href="#" className="card-header-icon" aria-label="more options">
+            <a href="#" className="card-header-icon" aria-label="more options" onClick={() => toggleModal()}>
                {auth && auth.isAuthenticated && author === auth.user._id && <span className="icon">
-       <i className="far fa-trash-alt" style={{color: 'red'}} onClick={() => deletePost(_id)}/>
+       <i className="far fa-trash-alt" style={{color: 'red'}}/>
       </span>}
             </a>
          </header>
+         <DeletePostConfirmationModal postId={_id}/>
          <div className="card-content">
             <div className="content">
                {content.length > 100 ? content.substring(0, 50) + '...' : content}
