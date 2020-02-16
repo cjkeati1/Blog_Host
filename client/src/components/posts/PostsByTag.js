@@ -1,4 +1,4 @@
-import React, {Fragment, useEffect} from 'react';
+import React, {Fragment, useEffect, useState} from 'react';
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types';
 import Loader from "../loader/Loader";
@@ -11,13 +11,15 @@ const Posts = ({getPostsByTag, post: {posts, posts_by_tag, loading}, auth, match
    useEffect(() => {
       getPostsByTag(match.params.tag)
    }, [posts]);
+   const [selectedPost, setSelectedPost] = useState(null);
+
    return loading || auth.loading ? <Loader/> : <Fragment>
       <br/>
       <h2 className={'subtitle'}>TAGGED IN</h2>
       <h1 className="title">{match.params.tag}</h1>
       <PostForm/>
       {posts_by_tag && posts_by_tag.length > 0 ? posts_by_tag.map(post => (
-         <PostItem key={post._id} post={post}/>
+         <PostItem key={post._id} post={post} setPost={setSelectedPost} selectedPost={selectedPost}/>
       )) : <p>There are currently no posts with this tag.</p>}
    </Fragment>
 };
