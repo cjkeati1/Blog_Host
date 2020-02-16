@@ -28,8 +28,11 @@ postRouter.get('/', async (req, res) => {
 postRouter.post('/', auth, async (req, res) => {
    const {title, content, tags, postId} = req.body;
 
-
    try {
+      console.log(title);
+      console.log(content);
+      console.log(postId);
+      console.log(tags);
       // Get user, leave out the password
       const user = await User.findById(req.user).select('-password');
 
@@ -39,12 +42,16 @@ postRouter.post('/', auth, async (req, res) => {
       postFields.content = content;
       postFields.author_name = user.name;
 
-      // Extract tags, if any, (Which should be comma separated) and insert into an array
-      let postTags = [];
-      if (tags) {
-         postTags = tags.split(',').map(tag => tag.trim()).filter(tag => tag !== '');
+      if (!Array.isArray(tags)) { // If we're editing a post and don't change tags, they will come in as an array
+         // Extract tags, if any, (Which should be comma separated) and insert into an array
+         let postTags = [];
+         if (tags) {
+            postTags = tags.split(',').map(tag => tag.trim()).filter(tag => tag !== '');
+         }
+         postFields.tags = postTags;
+      } else {
+         postFields.tags = tags;
       }
-      postFields.tags = postTags;
 
 
       let post = null;
@@ -54,8 +61,6 @@ postRouter.post('/', auth, async (req, res) => {
 
       if (post) { // Update the post if found and current user is the author
 
-         console.log(post.author);
-         console.log(user._id);
          if (post.author.toString() !== user._id.toString()) {
             return res.status(400).json({msg: 'Cannot edit a post that is not yours'});
          } else {

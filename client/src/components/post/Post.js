@@ -6,18 +6,35 @@ import Loader from "../loader/Loader";
 import Moment from "react-moment";
 import CommentItem from "./CommentItem";
 import CommentForm from "./CommentForm";
+import EditPostModalForm from "./EditPostModalForm";
 import {Link} from "react-router-dom";
 import {LIKE, UNLIKE} from "../../utils/enums";
 import uuid from "uuid/v4";
+
+
+const toggleModal = () => {
+   document.getElementById("modal").classList.toggle('is-active');
+};
 
 const Post = ({post: {loading, post}, match, auth, getPost, updateLikes}) => {
    useEffect(() => {
       getPost(match.params.id);
    }, [getPost, match.params.id]);
 
-   return loading || auth.loading || post === null ? <Loader/> :
+   {
+      post && console.log(post.title);
+   }
+   return loading || auth.loading || post === null || post._id !== match.params.id ? <Loader/> :
+
       <Fragment>
-         <p className="title is-1 is-spaced has-text-left has-text-left-mobile">{post.title}</p>
+         {auth.user && auth.user._id === post.author &&
+         <button
+            onClick={() => toggleModal()}
+            className="button is-primary is-pulled-right is-inverted is-large">
+            Edit
+         </button>}
+         <EditPostModalForm post={post} postId={match.params.id}/>
+         < p className="title is-1 is-spaced has-text-left has-text-left-mobile">{post.title}</p>
          <section>
             <p className="subtitle"><Link to={`/profile/user/${post.author}`}
                                           className={'author-name has-text-black'}><strong>{post.author_name}</strong></Link>
@@ -39,18 +56,18 @@ const Post = ({post: {loading, post}, match, auth, getPost, updateLikes}) => {
          <div className="field is-grouped is-grouped-multiline">
             <div className="control">
                <div className="tags has-addons">
-                  <span className="tag is-white" onClick={() => auth.user ? updateLikes(post._id, LIKE) : null}>
-                     <i className={`far fa-thumbs-up has-text-${
-                        post.likes.find(like =>
-                           auth.user && like.user === auth.user._id) !== undefined ?
-                           'primary' : 'grey'} fa-fw control`}/>
-                  </span>
+            <span className="tag is-white" onClick={() => auth.user ? updateLikes(post._id, LIKE) : null}>
+            <i className={`far fa-thumbs-up has-text-${
+               post.likes.find(like =>
+                  auth.user && like.user === auth.user._id) !== undefined ?
+                  'primary' : 'grey'} fa-fw control`}/>
+            </span>
                   <span className="tag is-white">
-               <i className={'control'}>{post.likes.length}</i>
-                  </span>
+            <i className={'control'}>{post.likes.length}</i>
+            </span>
                   <span className="tag is-white" onClick={() => auth.user ? updateLikes(post._id, UNLIKE) : null}>
-               <i className="far fa-thumbs-down has-text-grey fa-fw control"/>
-                  </span>
+            <i className="far fa-thumbs-down has-text-grey fa-fw control"/>
+            </span>
                </div>
             </div>
          </div>

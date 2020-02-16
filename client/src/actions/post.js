@@ -8,7 +8,8 @@ import {
    POST_ERROR,
    ADD_COMMENT,
    DELETE_COMMENT,
-   UPDATE_LIKES
+   UPDATE_LIKES,
+   EDIT_POST
 } from "./types";
 import {UNLIKE} from "../utils/enums";
 
@@ -73,6 +74,25 @@ export const addPost = formData => async dispatch => {
       const res = await axios.post('/api/posts', formData);
       dispatch({
          type: ADD_POST,
+         payload: res.data
+      });
+
+   } catch (e) {
+      dispatch({
+         type: POST_ERROR,
+         payload: {msg: e.response.statusText, status: e.response.status}
+      });
+      throw e;
+   }
+};
+
+// Edit Post
+export const editPost = (formData) => async dispatch => {
+   console.log('hit');
+   try {
+      const res = await axios.post('/api/posts', formData);
+      dispatch({
+         type: EDIT_POST,
          payload: res.data
       });
 

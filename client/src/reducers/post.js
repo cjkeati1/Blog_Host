@@ -7,7 +7,8 @@ import {
    DELETE_POST,
    ADD_COMMENT,
    DELETE_COMMENT,
-   UPDATE_LIKES
+   UPDATE_LIKES,
+   EDIT_POST
 } from '../actions/types'
 
 const initialState = {
@@ -27,6 +28,12 @@ export default function (state = initialState, action) {
             posts: payload,
             loading: false
          };
+      case EDIT_POST:
+         return {
+            ...state,
+            post: payload,
+            loading: false
+         };
       case GET_POST:
          return {
             ...state,
@@ -39,6 +46,7 @@ export default function (state = initialState, action) {
             posts_by_tag: payload,
             loading: false
          };
+
       case ADD_POST:
          return {
             ...state,

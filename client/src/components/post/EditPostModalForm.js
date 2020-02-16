@@ -1,17 +1,18 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {addPost} from "../../actions/post";
+import {editPost} from "../../actions/post";
 
 const toggleModal = () => {
    document.getElementById("modal").classList.toggle('is-active');
 };
 
-const PostModalForm = ({addPost}) => {
+const EditPostModalForm = ({editPost, post, postId}) => {
    const [formData, setFormData] = useState({
-      title: '',
-      content: '',
-      tags: '',
+      title: post.title,
+      content: post.content,
+      tags: post.tags,
+      postId: postId
    });
 
    // TODO Display error alert on a post error
@@ -24,7 +25,8 @@ const PostModalForm = ({addPost}) => {
    const onFormSubmit = async e => {
       e.preventDefault();
       try {
-         await addPost(formData);
+
+         await editPost(formData);
          toggleModal();
 
       } catch (err) {
@@ -37,7 +39,7 @@ const PostModalForm = ({addPost}) => {
          <div className="modal-background"/>
          <div className="modal-card">
             <header className="modal-card-head">
-               <p className="modal-card-title">Create a Post!</p>
+               <p className="modal-card-title">Edit Post!</p>
                <button onClick={() => toggleModal()} className="delete" aria-label="close"/>
             </header>
             <section className="modal-card-body">
@@ -78,9 +80,11 @@ const PostModalForm = ({addPost}) => {
    );
 };
 
-PostModalForm.propTypes = {
-   addPost: PropTypes.func.isRequired
+EditPostModalForm.propTypes = {
+   editPost: PropTypes.func.isRequired,
+   postId: PropTypes.string.isRequired
 };
 
-export default connect(null, {addPost})(PostModalForm);
+
+export default connect(null, {editPost})(EditPostModalForm);
 

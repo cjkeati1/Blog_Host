@@ -21,7 +21,7 @@ const Profile = ({
    }, [getProfileById, match.params.id]);
    return (
       <Fragment>
-         {profile === null || loading ? <Loader/> :
+         {profile === null || loading || profile.user._id !== match.params.id ? <Loader/> :
             <Fragment>
                <div className='columns'>
                   <div className='container profile'>
@@ -155,4 +155,4 @@ Profile.propTypes = {
    auth: PropTypes.object.isRequired,
 };
 
-export default connect(mapStateToProps, {getProfileById,  updateFollows})(Profile);
+export default connect(mapStateToProps, {getProfileById, updateFollows})(Profile);
