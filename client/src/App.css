@@ -33,7 +33,7 @@ body {
    margin-bottom: 75px;
 }
 
-.comment-section{
+.comment-section {
    margin-bottom: 300px;
 }
 
@@ -53,12 +53,12 @@ body {
 
 }
 
-i.far.fa-trash-alt{
+i.far.fa-trash-alt, .follow-stats {
    cursor: pointer;
 
 }
 
-.tag{
+.tag {
    cursor: pointer;
    margin-right: 2px;
 }
@@ -147,6 +147,6 @@ i.far.fa-trash-alt{
    }
 }
 
-.post-content{
+.post-content {
    margin: 50px 0;
 }

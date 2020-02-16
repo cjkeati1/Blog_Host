@@ -4,6 +4,8 @@ import {connect} from "react-redux";
 import {getProfileById, updateFollows} from "../../actions/profile";
 import Loader from "../loader/Loader";
 import {FOLLOW, UNFOLLOW} from "../../utils/enums";
+import FollowersModal from "./FollowersModal";
+import FollowingModal from "./FollowingModal";
 
 const Profile = ({
                     getProfileById,
@@ -16,6 +18,13 @@ const Profile = ({
    const toggleEditModal = () => {
       document.getElementById("edit-preferences-modal").classList.toggle('is-active');
    };
+   const toggleFollowersModal = () => {
+      document.getElementById("followers-modal").classList.toggle('is-active');
+   };
+   const toggleFollowingModal = () => {
+      document.getElementById("following-modal").classList.toggle('is-active');
+   };
+
    useEffect(() => {
       getProfileById(match.params.id)
    }, [getProfileById, match.params.id]);
@@ -110,14 +119,22 @@ const Profile = ({
                                  {/*{bio}*/}
                               </p>
                            </div>
-                           <div className='column is-2-tablet is-4-mobile has-text-centered'>
+                           <div onClick={() => toggleFollowersModal()}
+                                className='follow-stats column is-2-tablet is-4-mobile has-text-centered'>
                               <p className='stat-val'>{profile.user.followers.length}</p>
-                              <p className='stat-key'>Followers</p>
+                              <p className='stat-key'>Follower{(profile.user.followers.length !== 1) ? 's' : null} </p>
                            </div>
-                           <div className='column is-2-tablet is-4-mobile has-text-centered'>
+                           <FollowersModal name={profile.user.name} followers={profile.user.followers}/>
+
+
+                           <div onClick={() => toggleFollowingModal()}
+                                className='follow-stats column is-2-tablet is-4-mobile has-text-centered'>
                               <p className='stat-val'>{profile.user.following.length}</p>
                               <p className='stat-key'>Following</p>
                            </div>
+                           <FollowingModal following={profile.user.following}/>
+
+
                            {auth.isAuthenticated && auth.loading === false && auth.user._id !==
                            profile.user._id && <div className='column has-text-centered '>
                               {profile.user.followers
