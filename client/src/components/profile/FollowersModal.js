@@ -15,10 +15,10 @@ const FollowersModal = ({followers}) => {
                <p className="modal-card-title">{followers.length} Follower{(followers.length !== 1) ? 's' : null}</p>
                <button onClick={() => toggleModal()} className="delete" aria-label="close"/>
             </header>
-            <div className="card-content">
-               <div className="content">
-                  {followers.map(user => (
-                     <UserItem userId={user._id} name={user.name}/>
+            <div className="modal-card-body">
+               <div className="list is-hoverable">
+                  {followers.map(follower => (
+                     <UserItem key={follower._id} userId={follower.user._id} name={follower.user.name}/>
                   ))
                   }
                </div>

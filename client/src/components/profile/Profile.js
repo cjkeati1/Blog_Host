@@ -138,14 +138,14 @@ const Profile = ({
                            {auth.isAuthenticated && auth.loading === false && auth.user._id !==
                            profile.user._id && <div className='column has-text-centered '>
                               {profile.user.followers
-                                 .find(follower => follower.user === auth.user._id) ?
+                                 .find(follower => follower.user._id === auth.user._id) ?
                                  <button
-                                    onClick={() => updateFollows(profile.user._id, UNFOLLOW)}
+                                    onClick={() => updateFollows(profile.user, UNFOLLOW)}
                                     className='button is-danger is-light'>
                                     Unfollow
                                  </button> :
                                  <button
-                                    onClick={() => updateFollows(profile.user._id, FOLLOW)}
+                                    onClick={() => updateFollows(profile.user, FOLLOW)}
                                     className='button is-primary is-light'>
                                     Follow
                                  </button>

@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from "react-router-dom";
 
-const UserItem = ({name, profileId}) => {
+const UserItem = ({name, userId}) => {
    return (
-      <span >{name}</span>
+      <Link to={`/profile/user/${userId}`} className="list-item">{name}</Link>
 
    );
 };

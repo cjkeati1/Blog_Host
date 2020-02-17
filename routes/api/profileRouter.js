@@ -2,6 +2,7 @@ const express = require('express');
 const profileRouter = express.Router();
 require('dotenv/config');
 const Profile = require('../../models/profile');
+const User = require('../../models/user');
 
 const auth = require('../../middleware/auth');
 
@@ -79,6 +80,10 @@ profileRouter.get('/user/:user_id', async (req, res) => {
       // Find the corresponding Profile to the user ID
       const profile = await Profile.findOne({user: req.params.user_id})
          .populate('user', ['name', 'email', 'followers', 'following']);
+
+      profile.user = await User.findById(req.params.user_id)
+         .populate('followers.user', ['name', '_id'])
+         .populate('following.user', ['name', '_id']);
 
       // If no profile, return not found
       if (!profile)

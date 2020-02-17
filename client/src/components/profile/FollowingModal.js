@@ -15,12 +15,14 @@ const FollowingModal = ({following}) => {
                <p className="modal-card-title">{following.length} Following</p>
                <button onClick={() => toggleModal()} className="delete" aria-label="close"/>
             </header>
-            <div className="card-content">
+            <div className="modal-card-body">
+               <div className="list is-hoverable">
                <div className="content">
-                  {following.map(user => (
-                     <UserItem userId={user._id} name={user.name}/>
+                  {following.map(followee => (
+                     <UserItem key={followee._id} userId={followee.user._id} name={followee.user.name}/>
                   ))
                   }
+               </div>
                </div>
             </div>
             <footer className="modal-card-foot">

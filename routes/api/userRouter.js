@@ -41,7 +41,7 @@ userRouter.put('/:id/follow', auth, async (req, res) => {
       const user = await User.findById(req.user);
 
       // Find followee by ID
-      const followee = await User.findById(req.params.id);
+      let followee = await User.findById(req.params.id);
 
       // Verify that they both exist
       if (!user)
@@ -62,6 +62,10 @@ userRouter.put('/:id/follow', auth, async (req, res) => {
       await user.save();
       await followee.save();
 
+      followee = await User.findById(req.params.id).populate('followers.user', ['name', '_id']);
+
+
+      console.log(followee.followers);
       res.send(followee.followers);
    } catch (err) {
       if (err.kind === 'ObjectId') {
@@ -81,10 +85,10 @@ userRouter.put('/:id/unfollow', auth, async (req, res) => {
 
    try {
       // Find current user by ID
-      const user = await User.findById(req.user);
+      let user = await User.findById(req.user);
 
       // Find followee by ID
-      const followee = await User.findById(req.params.id);
+      let followee = await User.findById(req.params.id);
 
       // Verify that they both exist
       if (!user)
@@ -107,6 +111,8 @@ userRouter.put('/:id/unfollow', auth, async (req, res) => {
 
       await user.save();
       await followee.save();
+      followee = await User.findById(req.params.id).populate('followers.user', ['name', '_id']);
+      console.log(followee.followers);
 
       res.send(followee.followers);
    } catch (err) {

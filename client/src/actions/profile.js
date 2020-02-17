@@ -28,9 +28,9 @@ export const getProfileById = userId => async dispatch => {
 };
 
 // Follow a User
-export const updateFollows = (userId, type) => async dispatch => {
+export const updateFollows = (user, type) => async dispatch => {
    try {
-      const res = await axios.put(`/api/users/${userId}/${type === UNFOLLOW ? 'un' : ''}follow`);
+      const res = await axios.put(`/api/users/${user._id}/${type === UNFOLLOW ? 'un' : ''}follow`);
 
       dispatch({
          type: UPDATE_FOLLOWS,
