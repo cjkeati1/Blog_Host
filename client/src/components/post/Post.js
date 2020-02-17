@@ -48,7 +48,9 @@ const Post = ({post: {loading, post}, match, auth, getPost, updateLikes}) => {
          </section>
 
          {post.tags.map(tag => (
-            <Link to={`/tag/${tag}`}><span key={uuid()} className="tag">{tag}</span></Link>
+            <Link key={tag._id} to={`/tag/${tag}`}>
+               <span key={uuid()} className="tag">{tag}</span>
+            </Link>
          ))}
          <br/>
          <br/>

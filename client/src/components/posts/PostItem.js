@@ -36,7 +36,7 @@ const PostItem = ({
                </div>
             </div>
             {auth && auth.isAuthenticated && auth.user && author === auth.user._id &&
-            <Fragment><a href="#" className="card-header-icon" aria-label="more options" onClick={() => {
+            <Fragment><a className="card-header-icon" aria-label="more options" onClick={() => {
                setPost(_id);
                toggleModal(selectedPost)
             }}>
@@ -53,7 +53,7 @@ const PostItem = ({
                   <br/><br/>
                   {
                      (tags.map(tag => (
-                        <a href={`/tag/${tag}`}><span key={uuid()} className="tag">{tag}</span></a>
+                        <a href={`/tag/${tag}`} key={tag._id}><span key={uuid()} className="tag">{tag}</span></a>
                      )))
                   }
                </Fragment>}
