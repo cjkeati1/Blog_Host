@@ -3,8 +3,9 @@ import {Redirect} from "react-router-dom";
 import {register} from "../../actions/auth";
 import {connect} from "react-redux";
 import PropTypes from 'prop-types'
+import {useHistory} from 'react-router-dom';
 
-const Register = ({register, isAuthenticated}) => {
+const Register = ({register, isAuthenticated, location}) => {
    const [formData, setFormData] = useState({
       name: '',
       email: '',
@@ -17,6 +18,7 @@ const Register = ({register, isAuthenticated}) => {
    const [emailTaken, setEmailTaken] = useState(false);
 
    const {email, password, password2} = formData;
+   const history = useHistory();
 
    // Verify passwords on every input
    useEffect(() => {
@@ -52,7 +54,13 @@ const Register = ({register, isAuthenticated}) => {
 
    };
    if (isAuthenticated) {
-      return <Redirect to={'/'}/>
+      if (location.state && location.state.from) {
+         history.push(location.state.from);
+      }
+      // else go to home
+      else {
+         history.push('/');
+      }
    }
    return (
       <Fragment>

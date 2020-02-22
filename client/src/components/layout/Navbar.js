@@ -89,7 +89,7 @@ const Navbar = ({auth: {isAuthenticated, user}, logout}) => {
             </div> : <div className="navbar-end">
                <div className="navbar-item">
                   <div className="buttons">
-                     <Link className="button is-primary is-inverted" to={'/register'} onClick={() => toggleHamburger()}>
+                     <Link className="button is-primary is-inverted" to={{pathname: '/register', state: {from: location.pathname}}} onClick={() => toggleHamburger()}>
                         Sign Up
                      </Link>
                      <Link className="button is-inverted is-info"
