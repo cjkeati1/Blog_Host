@@ -10,6 +10,7 @@ import EditPostModalForm from "./EditPostModalForm";
 import {Link} from "react-router-dom";
 import {LIKE, UNLIKE} from "../../utils/enums";
 import uuid from "uuid/v4";
+import {useLocation} from 'react-router-dom'
 
 
 const toggleModal = () => {
@@ -17,6 +18,8 @@ const toggleModal = () => {
 };
 
 const Post = ({post: {loading, post}, match, auth, getPost, updateLikes}) => {
+   let location = useLocation();
+
    useEffect(() => {
       getPost(match.params.id);
    }, [getPost, match.params.id]);
@@ -48,7 +51,7 @@ const Post = ({post: {loading, post}, match, auth, getPost, updateLikes}) => {
          </section>
 
          {post.tags.map(tag => (
-            <Link key={tag._id} to={`/tag/${tag}`}>
+            <Link key={uuid()} to={`/tag/${tag}`}>
                <span key={uuid()} className="tag">{tag}</span>
             </Link>
          ))}
@@ -75,7 +78,7 @@ const Post = ({post: {loading, post}, match, auth, getPost, updateLikes}) => {
          {auth.isAuthenticated ? <CommentForm postId={post._id}/>
             : <div>
                <p>
-                  You must be <Link to={{pathname: '/login', state: {from: `/posts/${post._id}`}}}>logged in</Link> to
+                  You must be <Link to={{pathname: '/login', state: {from: location.pathname}}}>logged in</Link> to
                   reply
                </p>
                <br/>

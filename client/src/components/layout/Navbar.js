@@ -3,9 +3,11 @@ import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import PropTypes from 'prop-types'
 import {logout} from "../../actions/auth";
+import {useLocation} from 'react-router-dom'
 
 // TODO add login, signup, and logout icons
 const Navbar = ({auth: {isAuthenticated, user}, logout}) => {
+   let location = useLocation();
    const toggleHamburger = () => {
       document.getElementById("navbarBasicExample").classList.toggle('is-active');
       document.getElementById("button").classList.toggle('is-active');
@@ -73,7 +75,8 @@ const Navbar = ({auth: {isAuthenticated, user}, logout}) => {
             {isAuthenticated ? <div className="navbar-end">
                <div className="navbar-item">
                   <div className="buttons">
-                     <Link className="button is-inverted is-info" to={`/profile/user/${user ? user._id : '#'}`}>My Profile</Link>
+                     <Link className="button is-inverted is-info" to={`/profile/user/${user ? user._id : '#'}`}>My
+                        Profile</Link>
 
                      <a className="button is-danger is-inverted" onClick={() => {
                         logout();
@@ -89,7 +92,9 @@ const Navbar = ({auth: {isAuthenticated, user}, logout}) => {
                      <Link className="button is-primary is-inverted" to={'/register'} onClick={() => toggleHamburger()}>
                         Sign Up
                      </Link>
-                     <Link className="button is-inverted is-info" to={'/login'} onClick={() => toggleHamburger()}>
+                     <Link className="button is-inverted is-info"
+                           to={{pathname: '/login', state: {from: location.pathname}}}
+                           onClick={() => toggleHamburger()}>
                         Log In
                      </Link>
                   </div>

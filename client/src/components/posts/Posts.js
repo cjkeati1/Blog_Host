@@ -6,6 +6,7 @@ import {getPosts} from "../../actions/post";
 import PostItem from "./PostItem";
 import PostForm from "./PostModalForm";
 import {Link} from "react-router-dom";
+import {useLocation} from 'react-router-dom'
 
 const toggleModal = () => {
    document.getElementById("modal").classList.toggle('is-active');
@@ -13,6 +14,7 @@ const toggleModal = () => {
 
 
 const Posts = ({getPosts, post: {posts, loading}, auth}) => {
+   let location = useLocation();
    useEffect(() => {
       getPosts();
    }, [getPosts]);
@@ -27,7 +29,7 @@ const Posts = ({getPosts, post: {posts, loading}, auth}) => {
          className="button is-success is-inverted is-large is-paddingless	">
          Create a Post
       </button> : <p>
-         <Link to={{pathname: '/login', state: {from: '/posts'}}}>
+         <Link to={{pathname: '/login', state: {from: location.pathname}}}>
             Log in</Link> to create a post</p>
       }
       <PostForm/>
