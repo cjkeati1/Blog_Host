@@ -34,85 +34,85 @@ const Profile = ({
             <Fragment>
                <div className='columns'>
                   <div className='container profile'>
-                     <div className='modal' id='edit-preferences-modal'>
-                        <div className='modal-background'/>
-                        <div className='modal-card'>
-                           <header className='modal-card-head'>
-                              <p className='modal-card-title'>Edit Profile</p>
-                              <button className='delete' onClick={() => toggleEditModal()}/>
-                           </header>
-                           <section className='modal-card-body'>
-                              <label className='label'>Name</label>
-                              <p className='control'>
-                                 <input className='input' placeholder='Text input' type='text'/>
-                              </p>
-                              <div className='control'>
-                                 <div className='control-label is-pulled-left'>
-                                    <label className='label'>Date of Birth</label>
-                                 </div>
-                                 <span>
-              <span className='select'>
-                <select>
-                  <option>Month</option>
-                  <option>With options</option>
-                </select>
-              </span>
-              <span className='select'>
-                <select>
-                  <option>Day</option>
-                  <option>With options</option>
-                </select>
-              </span>
-              <span className='select'>
-                <select>
-                  <option>Year</option>
-                  <option>With options</option>
-                </select>
-              </span>
-            </span>
-                              </div>
-                              <label className='label'>Description</label>
-                              <p className='control'>
-                                 <textarea className='textarea' placeholder='Describe Yourself!'/>
-                              </p>
-                              <div className='content'>
-                                 <h1>Optional Information</h1>
-                              </div>
-                              <label className='label'>Phone Number</label>
-                              <p className='control has-icon has-icon-right'>
-                                 <input className='input' placeholder='Text input' type='text' value='+1 *** *** 0535'/>
-                              </p>
-                              <label className='label'>Work</label>
-                              <p className='control has-icon has-icon-right'>
-                                 <input className='input' placeholder='Text input' type='text'
-                                        value='Greater Washington Publishing'/>
-                              </p>
-                              <label className='label'>School</label>
-                              <p className='control has-icon has-icon-right'>
-                                 <input className='input' placeholder='Text input' type='text'
-                                        value='George Mason University'/>
-                              </p>
-                           </section>
-                           <footer className='modal-card-foot'>
-                              <a className='button is-primary modal-save' onClick={() => toggleEditModal()}>Save
-                                 changes</a>
-                              <a className='button modal-cancel' onClick={() => toggleEditModal()}>Cancel</a>
-                           </footer>
-                        </div>
-                     </div>
+            {/*         <div className='modal' id='edit-preferences-modal'>*/}
+            {/*            <div className='modal-background'/>*/}
+            {/*            <div className='modal-card'>*/}
+            {/*               <header className='modal-card-head'>*/}
+            {/*                  <p className='modal-card-title'>Edit Profile</p>*/}
+            {/*                  <button className='delete' onClick={() => toggleEditModal()}/>*/}
+            {/*               </header>*/}
+            {/*               <section className='modal-card-body'>*/}
+            {/*                  <label className='label'>Name</label>*/}
+            {/*                  <p className='control'>*/}
+            {/*                     <input className='input' placeholder='Text input' type='text'/>*/}
+            {/*                  </p>*/}
+            {/*                  <div className='control'>*/}
+            {/*                     <div className='control-label is-pulled-left'>*/}
+            {/*                        <label className='label'>Date of Birth</label>*/}
+            {/*                     </div>*/}
+            {/*                     <span>*/}
+            {/*  <span className='select'>*/}
+            {/*    <select>*/}
+            {/*      <option>Month</option>*/}
+            {/*      <option>With options</option>*/}
+            {/*    </select>*/}
+            {/*  </span>*/}
+            {/*  <span className='select'>*/}
+            {/*    <select>*/}
+            {/*      <option>Day</option>*/}
+            {/*      <option>With options</option>*/}
+            {/*    </select>*/}
+            {/*  </span>*/}
+            {/*  <span className='select'>*/}
+            {/*    <select>*/}
+            {/*      <option>Year</option>*/}
+            {/*      <option>With options</option>*/}
+            {/*    </select>*/}
+            {/*  </span>*/}
+            {/*</span>*/}
+            {/*                  </div>*/}
+            {/*                  <label className='label'>Description</label>*/}
+            {/*                  <p className='control'>*/}
+            {/*                     <textarea className='textarea' placeholder='Describe Yourself!'/>*/}
+            {/*                  </p>*/}
+            {/*                  <div className='content'>*/}
+            {/*                     <h1>Optional Information</h1>*/}
+            {/*                  </div>*/}
+            {/*                  <label className='label'>Phone Number</label>*/}
+            {/*                  <p className='control has-icon has-icon-right'>*/}
+            {/*                     <input className='input' placeholder='Text input' type='text' value='+1 *** *** 0535'/>*/}
+            {/*                  </p>*/}
+            {/*                  <label className='label'>Work</label>*/}
+            {/*                  <p className='control has-icon has-icon-right'>*/}
+            {/*                     <input className='input' placeholder='Text input' type='text'*/}
+            {/*                            value='Greater Washington Publishing'/>*/}
+            {/*                  </p>*/}
+            {/*                  <label className='label'>School</label>*/}
+            {/*                  <p className='control has-icon has-icon-right'>*/}
+            {/*                     <input className='input' placeholder='Text input' type='text'*/}
+            {/*                            value='George Mason University'/>*/}
+            {/*                  </p>*/}
+            {/*               </section>*/}
+            {/*               <footer className='modal-card-foot'>*/}
+            {/*                  <a className='button is-primary modal-save' onClick={() => toggleEditModal()}>Save*/}
+            {/*                     changes</a>*/}
+            {/*                  <a className='button modal-cancel' onClick={() => toggleEditModal()}>Cancel</a>*/}
+            {/*               </footer>*/}
+            {/*            </div>*/}
+            {/*         </div>*/}
                      <div className='section profile-heading'>
                         <div className='columns is-mobile is-multiline'>
                            <div className='column is-4-tablet is-10-mobile name'>
                               <p>
                                  <span className='title is-bold'>{profile.user ? profile.user.name : 'No Name'}</span>
                                  <br/>
-                                 {auth.isAuthenticated && auth.loading === false && auth.user._id ===
-                                 profile.user._id &&
-                                 <a className='button is-primary is-outlined' href='#' id='edit-preferences'
-                                    style={{margin: '5px 0'}}
-                                    onClick={() => toggleEditModal()}>
-                                    Edit Profile
-                                 </a>}
+                                 {/*{auth.isAuthenticated && auth.loading === false && auth.user._id ===*/}
+                                 {/*profile.user._id &&*/}
+                                 {/*<a className='button is-primary is-outlined' href='#' id='edit-preferences'*/}
+                                 {/*   style={{margin: '5px 0'}}*/}
+                                 {/*   onClick={() => toggleEditModal()}>*/}
+                                 {/*   Edit Profile*/}
+                                 {/*</a>}*/}
                                  <br/>
                               </p>
                               <p className='tagline'>
